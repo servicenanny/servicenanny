@@ -1,0 +1,13 @@
+.registration {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(27, 27, 1);
+    font-size: 12px;
+}
+
+.registration:hover {
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(27, 27, 1);
+    font-size: 12px;
+}

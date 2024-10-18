@@ -1,0 +1,84 @@
+:root {
+    --blue-color: rgba(208, 228, 251, 1);
+    --yellow-color: rgba(235, 245, 214, 1);
+    --main-background-color: rgba(243, 248, 254, 1);
+    --white-background-color: rgba(250, 252, 255, 1);
+}
+
+
+.page-header {
+    background-color: rgb(217, 217, 217);
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.page-header-info {
+    padding-top: 10%;
+    padding-bottom: 20%;
+}
+
+.page-header-title {
+    font-size: 1.5em;
+}
+
+.btn-yellow {
+    background-color: var(--yellow-color);
+}
+
+.btn-yellow:hover, .btn-yellow:active, .btn-yellow:visited {
+    background-color: var(--yellow-color)!important;
+    color: rgb(0, 0, 0, 1)!important;
+}
+
+.triangle {
+    position: relative;
+    border-left: 48.5vw solid transparent;
+	border-right: 48.5vw solid transparent;
+	border-bottom: 5vh solid var(--main-background-color);
+    width: 100%!important;
+    padding: 0;
+    margin: 0;
+}
+
+#how-to-use {
+    background-color: var(--main-background-color);
+}
+
+.card {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
+
+.navbar-background {
+    background-color: white;
+}
+
+.navbar-nav-active {
+    background-color: var(--blue-color)!important;
+    color: black;
+}
+
+#cities-block {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
+
+#why_choose_us {
+    background-color: var(--white-background-color);
+}
+
+#in_subscribe {
+    background-color: var(--main-background-color);
+}
+
+.background-blue {
+    background-color: var(--blue-color);
+}
+
+.background-yellow {
+    background-color: var(--yellow-color)
+}
+
+.background-linear {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}

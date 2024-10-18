@@ -1,0 +1,22 @@
+:root {
+    --blue-color: rgba(208, 228, 251, 1);
+    --yellow-color: rgba(235, 245, 214, 1);
+    --main-background-color: rgba(243, 248, 254, 1);
+    --white-background-color: rgba(250, 252, 255, 1);
+}
+
+.mt-9 {
+    margin-top: 9rem !important;
+}
+
+.background-blue {
+    background-color: var(--blue-color);
+}
+
+.background-yellow {
+    background-color: var(--yellow-color)
+}
+
+.background-linear {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
