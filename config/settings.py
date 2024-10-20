@@ -18,9 +18,8 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 PARENT_BASE_DIR = BASE_DIR.parent
 
-dotenv_path = str(PARENT_BASE_DIR.joinpath('.env'))
-if os.path.exists(dotenv_path):
-    load_dotenv(dotenv_path)
+dotenv_path = BASE_DIR.joinpath('.env')
+load_dotenv(dotenv_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,7 +28,8 @@ if os.path.exists(dotenv_path):
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+
+DEBUG = False
 
 if DEBUG == False:
     ALLOWED_HOSTS = [
