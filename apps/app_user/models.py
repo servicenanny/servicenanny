@@ -61,6 +61,9 @@ class UserManager(BaseUserManager):
             password, 
             **extra_fields
         )
+    
+    def verificate(self, email, password, **extra_fields):
+        ...
 
 
 class User(AbstractUser):

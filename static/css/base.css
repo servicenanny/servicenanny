@@ -1,0 +1,57 @@
+:root {
+    --blue-color: rgba(208, 228, 251, 1);
+    --yellow-color: rgba(235, 245, 214, 1);
+    --main-background-color: rgba(243, 248, 254, 1);
+    --white-background-color: rgba(250, 252, 255, 1);
+}
+
+/* BREAKPOINTS */
+
+/* SM breakpoint */
+@media (min-width: 576px) {
+    /* CUSTOM WIDTHS */
+    .w-sm-25 { width: 25%!important; }
+    .w-sm-50 { width: 50%!important; }
+    .w-sm-75 { width: 75%!important; }
+    .w-sm-100 { width: 100%!important; }
+    /* CUSTOM ALIGN TEXT */
+    text-sm-center { text-align: center!important; }
+}
+
+/* MD breakpoint*/
+@media (min-width: 768px) {
+    /* CUSTOM WIDTHS */
+    .w-md-25 { width: 25%!important; }
+    .w-md-50 { width: 50%!important; }
+    .w-md-75 { width: 75%!important; }
+    .w-md-100 { width: 100%!important; }
+    /* CUSTOM ALIGN TEXT */
+    text-md-center { text-align: center!important; }
+}
+
+/* LG breakpoint */
+@media (min-width: 992px) {
+    /* CUSTOM WIDTHS */
+    .w-lg-20 { width: 20%!important; }
+    .w-lg-25 { width: 25%!important; }
+    .w-lg-35 { width: 35%!important; }
+    .w-lg-50 { width: 50%!important; }
+    .w-lg-75 { width: 75%!important; }
+    .w-lg-100 { width: 100%!important; }
+}
+
+.mt-9 {
+    margin-top: 9rem !important;
+}
+
+.background-blue {
+    background-color: var(--blue-color);
+}
+
+.background-yellow {
+    background-color: var(--yellow-color)
+}
+
+.background-linear {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
