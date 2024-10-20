@@ -7,14 +7,14 @@ from .models import Subscribe, UserSubscribe
 class SubscribeAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Отоброжаемая информация", {"fields": ('name', 'short_description')}),
-        ("Конфигурация подписки", {"fields": ('client_type', 'price', ('year_range', 'month_range', 'day_range'))}),
+        ("Конфигурация подписки", {"fields": ('client_type', 'price', 'day_range')}),
     )
     add_fieldsets = (
         ("Отоброжаемая информация", {"fields": ('name', 'short_description')}),
-        ("Конфигурация подписки", {"fields": ('client_type', 'price', ('year_range', 'month_range', 'day_range'))}),
+        ("Конфигурация подписки", {"fields": ('client_type', 'price', 'day_range')}),
     )
-    list_display = ['name', 'client_type', 'year_range', 'month_range', 'day_range', 'is_deleted']
-    list_filter = ['client_type', 'is_deleted', 'year_range', 'month_range', 'day_range']
+    list_display = ['name', 'client_type', 'day_range', 'is_deleted']
+    list_filter = ['client_type', 'is_deleted', 'day_range']
     readonly_fields = ['created_by', 'created_at', 'updated_at', 'is_deleted']
     ordering = ('created_at', 'is_deleted')
     search_fields = ("name", )

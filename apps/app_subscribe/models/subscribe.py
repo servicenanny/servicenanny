@@ -11,20 +11,8 @@ class Subscribe(SoftDeleteModel):
     short_description = models.CharField(max_length=255, verbose_name="Описание подписки", help_text="Введите описание подписки (максимальное количество символов 255)")
     client_type = models.CharField(max_length=1, choices=CLIENT_TYPE.get_choices(), verbose_name="Тип клиента", help_text="Выберите тип клиент, для которого работает эта подписка")
     price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Стоимость подписки", help_text="Введите стоимость подписки")
-    year_range = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(10)],
-        default=0,
-        verbose_name="Год",
-        help_text="Продолжительность работы подписки в годах"
-    )
-    month_range = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(12)],
-        default=0,
-        verbose_name="Месяц", 
-        help_text="Продолжительность работы подписки в месяцах"
-    )
     day_range = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(31)],
+        validators=[MinValueValidator(0), MaxValueValidator(20000)],
         default=0,
         verbose_name="Дни",
         help_text="Продолжительность работы подписки в днях"

@@ -3,7 +3,6 @@ import enum
 
 class SUBSCRIBE_DATE_RANGE(enum.Enum):
     MONTH = ('M', 'Месяц')
-    YEAR = ('Y', 'Год')
 
     @classmethod
     def get_choices(cls):
