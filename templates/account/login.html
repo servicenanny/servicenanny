@@ -34,6 +34,9 @@
             {% csrf_token %}
             {{ form }}
         </form>
+        <div class="submit-row">
+            <input type="submit" class="btn btn-dark w-100 fs-5" value="ВОЙТИ">
+        </div>
         <div class="password-reset-link text-center">
             <a href="{% url 'account_password_reset' %}">Забыли свой пароль?</a>
         </div>
