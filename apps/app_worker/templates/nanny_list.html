@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>База нянь</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+{% endblock %}
+{% block  header %}
+{% endblock %}
+{% block  content %}
+<div class="container">
+    {% if nanny_list %}
+        <div class="row w-100">
+        {% for nanny in nanny_list %}
+            <div class="col-lg-12 col-md-6 col-sm-12 row">
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <img src="{{ nanny.photo }}" alt="Фото няни" />
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12">
+                    <p><strong>{{ nanny.user.first_name }} {{ nanny.user.last_name }} </strong></p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="">{{ nanny.age }}</div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="">{{ nanny.experience }}</div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="">График {{ cities|join:' · '|escape }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
