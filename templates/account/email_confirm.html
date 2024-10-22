@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-    <title>Вход</title>
+    <title>Подтверждение почты</title>
 {% endblock %}
 
 {% block style %}
@@ -15,16 +15,11 @@
 {% block  content %}
 <div class="container">
     {% if form.errors %}
-      <p>Пользователь не найден, попробуйте снова</p>
+      <p>ОШИБКА</p>
     {% endif %}
-  
-    {% if user.is_authenticated %}
-        <div class="container">
-            <p class="text-center mt-2 h2">У вас нет доступа к этой странице, так как вы уже вошли в аккаунт</p>
-            <p class="text-center mt-2"><a href="{% url 'logout' %}" class="fs-5">Выйти?</a></p>
-        </div>
+
     {% else %}
-        <p class="h2 text-center">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</p>
+        <p class="h2 text-center">ПОДТВЕРДИТЬ ПОЧТУ</p>
         <form 
             action="{% url "account_login" %}" 
             method="post" 
