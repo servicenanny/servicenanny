@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'apps.app_infrastructure.apps.AppInfrastructureConfig',
     'apps.app_payment.apps.AppPaymentConfig',
     'apps.app_subscribe.apps.AppSubscribeConfig',
-    'apps.app_user.apps.AppUserConfig',
     'apps.app_worker.apps.AppWorkerConfig',
     'apps.p_about_us.apps.PAboutUsConfig',
     'apps.p_home.apps.PHomeConfig'
@@ -137,7 +136,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'app_user.User'
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
