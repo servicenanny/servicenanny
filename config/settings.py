@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 if DEBUG == False:
     ALLOWED_HOSTS = [
@@ -47,17 +47,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     "phonenumber_field",
-    'apps.app_auth.apps.AppAuthConfig',
+    'django_bootstrap5',
+    "account",
     'apps.app_contrib.apps.AppContribConfig',
     'apps.app_infrastructure.apps.AppInfrastructureConfig',
     'apps.app_payment.apps.AppPaymentConfig',
     'apps.app_subscribe.apps.AppSubscribeConfig',
-    'apps.app_user.apps.AppUserConfig',
     'apps.app_worker.apps.AppWorkerConfig',
     'apps.p_about_us.apps.PAboutUsConfig',
     'apps.p_home.apps.PHomeConfig'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "account.middleware.LocaleMiddleware",
+    "account.middleware.TimezoneMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -82,6 +87,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "account.context_processors.account",
             ],
         },
     },
@@ -131,7 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'app_user.User'
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
