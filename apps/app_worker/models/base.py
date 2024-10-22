@@ -11,12 +11,14 @@ class BaseWorker(models.Model):
     """
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name="Аккаунт работника", help_text="Выберите аккаунт работника")
     phone_number = PhoneNumberField(verbose_name="Номер телефона", help_text="Введите номер телефона работника")
+    cost_per_hour = models.PositiveIntegerField(verbose_name="Стоимость в час", help_text="Введите стоимость в час", default=0)
     city = models.ForeignKey(
         City,
         on_delete=models.DO_NOTHING,
         verbose_name="Города", 
         help_text="Города, в которых работает работник"
     )
+    photo = models.ImageField(verbose_name="Фото работника", help_text="Загрузите фото", null=True)
     
     def __str__(self) -> str:
         return str(self.user)
