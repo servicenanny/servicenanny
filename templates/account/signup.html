@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Регистрация</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+{% block  header %}
+{% endblock %}
+{% block  content %}
+<div class="container">
+        <p class="h2 text-center">ЗАРЕГИСТРИРОВАТЬСЯ</p>
+        <form 
+            action="{% url "account_signup" %}" 
+            method="post" 
+            id="signup-form"
+            class="mb-3"
+        >
+            {% csrf_token %}
+            {{ form }}
+            <div class="submit-row">
+                <input type="submit" class="btn btn-dark w-100 fs-5" value="ЗАРЕГИСТРИРОВАТЬСЯ">
+            </div>
+        </form>
+</div>
+{% endblock %}
