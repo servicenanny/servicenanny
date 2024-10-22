@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block title %}
     <title>Подтверждение почты</title>
 {% endblock %}
@@ -13,25 +14,13 @@
 {% block  header %}
 {% endblock %}
 {% block  content %}
-<div class="container">
-    {% if form.errors %}
-      <p>ОШИБКА</p>
-    {% endif %}
+<form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
+    <legend>Confirm Email</legend>
+        {% csrf_token %}
+        <p>Confirm email address <b>{{ confirmation.email_address.email }}</b>?</p>
 
-    {% else %}
-        <p class="h2 text-center">ПОДТВЕРДИТЬ ПОЧТУ</p>
-        <form 
-            action="{% url "account_login" %}" 
-            method="post" 
-            id="login-form"
-            class="mb-3"
-        >
-            {% csrf_token %}
-            {{ form }}
-        </form>
-        <div class="password-reset-link text-center">
-            <a href="{% url 'account_password_reset' %}">Забыли свой пароль?</a>
+        <div class="form-actions">
+            <button>Confirm</button>
         </div>
-    {% endif %}
-</div>
+</form>
 {% endblock %}
