@@ -15,8 +15,8 @@
             </div>
             {% if not user.is_authenticated  %}
                 <div id="registration-block">
-                    <a href="#" class="text-decoration-none">
-                        <button class="registration btn py-2 px-5">Войти</button>
+                    <a href="{% url 'account_login' %}" class="text-decoration-none">
+                        <button class="registration-white btn py-2 px-5">Войти</button>
                     </a>
                 </div>
             {% else %}
