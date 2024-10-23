@@ -9,8 +9,10 @@ from apps.app_worker.db.subscribe_nanny import get_subscriber_nanny
 
 class NannyListView(LoginRequiredMixin, NannySubscribeRequiredMixin, ListView):
     model = Nanny
-    context_object_name = 'nanny_list'
-
+    template_name = 'nanny_list.html'
 
     def get_queryset(self):
-        return get_subscriber_nanny(Nanny.objects)
+        return get_subscriber_nanny(Nanny.objects)[:10]
+    
+    def get_template_names(self):
+        return super().get_template_names()

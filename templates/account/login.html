@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/header.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
 {% endblock %}
 {% block  header %}
     {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
 {% block  content %}
-<div class="my-5 py-4 container justify-content-center">
+<div class="container my-5 py-5">
     {% if form.errors %}
-    <p>Пользователь не найден, попробуйте снова</p>
+        <p>Пользователь не найден, попробуйте снова</p>
     {% endif %}
     {% if user.is_authenticated %}
         <div class="container">
@@ -24,21 +24,45 @@
             <p class="text-center mt-2"><a href="{% url 'logout' %}" class="fs-5">Выйти?</a></p>
         </div>
     {% else %}
-        <p class="h2 text-center">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</p>
-        <form 
-            action="{% url "account_login" %}" 
-            method="post" 
-            id="login-form"
-            class="mb-3"
-        >
-            {% csrf_token %}
-            {{ form }}
-            <div class="submit-row mx-auto">
-                <input type="submit" class="btn btn-dark w-50 align-center fs-5" value="Войти" />
+        <div class="row">
+            <p class="h2 text-center col-12">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</p>
+            <form 
+                action="{% url "account_login" %}" 
+                method="post" 
+                id="login-form"
+                class="mb-3"
+            >
+                {% csrf_token %}
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-50 mx-auto">
+                        <label class="mb-2">Email</label> 
+                        <p class="input-control">{{ form.email }}</p>
+                        <p>{{ form.email.errors }}</p>
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-50 mx-auto">
+                        <label class="mb-2">Пароль</label> 
+                        <p class="input-control">{{ form.password }}</p>
+                        <p>{{ form.password.errors }}</p>
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-50 mx-auto">
+                        <span class="input-check">{{ form.remember }} Запомнить меня </span> 
+                        <p>{{ form.remember.errors }}</p>
+                    </div>
+                </div>
+                <div class="submit-row d-flex justify-content-center">
+                    <input type="submit" class="btn btn-yellow align-center fs-5 w-25 mx-auto" value="Войти" />
+                </div>
+            </form>
+            <div class="text-center my-3">
+                <a href="{% url 'account_signup' %}">Регистрация</a>
             </div>
-        </form>
-        <div class="password-reset-link text-center">
-            <a href="{% url 'account_password_reset' %}">Забыли свой пароль?</a>
+            <div class="text-center">
+                <a href="{% url 'account_password_reset' %}">Забыли свой пароль?</a>
+            </div>
         </div>
     {% endif %}
 </div>
