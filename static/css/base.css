@@ -3,6 +3,7 @@
     --yellow-color: rgba(235, 245, 214, 1);
     --main-background-color: rgba(243, 248, 254, 1);
     --white-background-color: rgba(250, 252, 255, 1);
+    --light-blue-color: rgba(243, 248, 254, 1);
 }
 
 
@@ -15,8 +16,6 @@
     .w-sm-50 { width: 50%!important; }
     .w-sm-75 { width: 75%!important; }
     .w-sm-100 { width: 100%!important; }
-    /* CUSTOM ALIGN TEXT */
-    text-sm-center { text-align: center!important; }
 }
 
 /* MD breakpoint*/
@@ -26,8 +25,6 @@
     .w-md-50 { width: 50%!important; }
     .w-md-75 { width: 75%!important; }
     .w-md-100 { width: 100%!important; }
-    /* CUSTOM ALIGN TEXT */
-    text-md-center { text-align: center!important; }
 }
 
 /* LG breakpoint */
@@ -76,4 +73,8 @@
 
 .background-linear {
     background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
+
+.background-light-blue {
+    background-color: var(--light-blue-color);
 }
