@@ -12,8 +12,8 @@ def get_leftover_days(queryset: QuerySet[UserSubscribe], user: AbstractBaseUser)
     result = queryset.filter(
             user__id__in = user.id
         ).annotate(
-            leftover = today - F('subscribe__day_range') + F('subscribe__created_at')
+            total = F('subscribe__day_range') + F('created_at') - today
         ).values(
-            'leftover'
+            'total'
         ).last()
-    return result['leftover']
+    return result['total']
