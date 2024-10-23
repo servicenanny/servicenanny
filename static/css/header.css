@@ -21,3 +21,12 @@
 .header-bg-yellow {
     background-color: var(--yellow-header-color);
 }
+
+@media (min-width: 978px) {
+    .d-collapse-none {
+        display: none!important;
+    }
+    .d-collapse-block {
+        display: block!important;
+    }
+}
