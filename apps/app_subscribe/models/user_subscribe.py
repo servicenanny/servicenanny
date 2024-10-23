@@ -33,7 +33,7 @@ class UserSubscribe(models.Model):
     leftover = LeftoverUserSubscribeManager()
 
     def __str__(self) -> str:
-        return self.created_at
+        return datetime.strftime(self.created_at, '%d.%m.%y')
     
     class Meta:
         verbose_name = 'Подписка пользователя'
