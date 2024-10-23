@@ -33,4 +33,4 @@ class UserSubscribe(models.Model):
     leftover = LeftoverUserSubscribeManager()
 
     def __str__(self) -> str:
-        return self.end_date
+        return self.created_at
