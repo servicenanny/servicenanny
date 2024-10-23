@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
 {% endblock %}
 {% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
 {% block  content %}
-<div class="container">
+<div class="container my-5">
     {% if nanny_list %}
         <div class="row w-100">
         {% for nanny in nanny_list %}
