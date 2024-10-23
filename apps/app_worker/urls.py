@@ -4,5 +4,6 @@ from .views import *
 
 
 urlpatterns = [
-     path('', NannyListView.as_view(), name='nannies')
+     path('', NannyListView.as_view(), name='nannies'),
+     path('register', NannyCreateOrUpdateView.as_view())
 ]
