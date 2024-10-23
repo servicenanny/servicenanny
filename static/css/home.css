@@ -13,6 +13,11 @@
 
 .page-header-title {
     font-size: 1.5em;
+    font-weight: 800;
+}
+
+.page-header-btn {
+    font-weight: 525;
 }
 
 .triangle {

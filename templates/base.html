@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {% block title %}<title>Аггрегатор нянь</title>{% endblock %}
+    {% block title %}<title>Агрегатор нянь</title>{% endblock %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load static %}
@@ -10,6 +10,22 @@
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    {% block fonts %}      <style>
+        @font-face {
+          font-family: Poppins-Regular;
+          src: local('Poppins-Regular'),
+            url({%  static 'fonts/Poppins-Regular.ttf' %}) format('truetype');
+        }
+        @font-face {
+          font-family: Poppins-SemiBold;
+          src: url({%  static 'fonts/Poppins-SemiBold.ttf' %}) format('truetype');
+        }
+        @font-face {
+          font-family: MursGothic-WideDark;
+          src: url({%  static 'fonts/MursGothic-WideDark.ttf' %}) format('truetype');
+        }
+      </style>
+    {% endblock %}
     {% block style %}{% endblock %}
     {% block js %}{% endblock %}
   </head>
