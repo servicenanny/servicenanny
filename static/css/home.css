@@ -36,6 +36,7 @@
 
 .card {
     background: linear-gradient(var(--blue-color), var(--yellow-color));
+    border-radius: calc(var(--bs-card-border-radius) + 1rem);
 }
 
 .navbar-background {
@@ -57,4 +58,12 @@
 
 #in_subscribe {
     background-color: var(--main-background-color);
+}
+
+
+.text-overflow-hidden {
+    width : 100px;
+    overflow:hidden;
+    display:inline-block;
+    white-space: nowrap;
 }
