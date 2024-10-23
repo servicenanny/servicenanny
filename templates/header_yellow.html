@@ -8,10 +8,10 @@
                 <div class="justify-content collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav justify-content-between w-lg-35 w-md-50 w-sm-100">
                         <li class="nav-item">
-                            <a href="#" class="text-decoration-none {{text_color}}">О приложении</a>
+                            <a href="{% url 'home' %}" class="text-decoration-none {{text_color}}">О приложении</a>
                         </li>
                         <li class="nav-item"><a href="#" class="text-decoration-none {{text_color}}">Города</a></li>
-                        <li class="nav-item"><a href="#" class="text-decoration-none {{text_color}}">Няням</a></li>
+                        <li class="nav-item"><a href="{% url 'nannies' %}" class="text-decoration-none {{text_color}}">Няням</a></li>
                     </ul>
                 </div>
                 {% if not user.is_authenticated  %}
