@@ -16,8 +16,8 @@
 <div class="container my-5">
     <form action="." method="POST">
         {% csrf_token %}
-        {{ company_form.as_p }}
-        {{ account_form.as_p }}
+        {{ form.user_form.as_p }}
+        {{ form.nanny_form.as_p }}
         <button type="submit">
     </form>
 </div>
