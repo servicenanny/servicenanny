@@ -38,6 +38,22 @@
     .w-lg-100 { width: 100%!important; }
 }
 
+.poppins-reg {
+    font-family: Poppins-Regular, sans-serif;
+}
+
+.poppins-semibold {
+    font-family: Poppins-SemiBold, sans-serif;
+}
+
+.mursgothic {
+    font-family: MursGothic-WideDark, sans-serif;
+}
+
+.mursgothic > strong {
+    font-weight: 800;
+}
+
 .mt-9 {
     margin-top: 9rem !important;
 }

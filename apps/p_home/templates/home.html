@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-    <title>Аггрегатор нянь</title>
+    <title>Агрегатор нянь</title>
 {% endblock %}
 
 {% block style %}
@@ -30,27 +30,27 @@
 <div>
     {% load static %}
     <div 
-        class="page-header justify-content-center w-100"
+        class="page-header justify-content-center w-100 mursgothic"
         style="background-image: url('{% static 'img/page-header.jfif' %}')"
     >
         {% include "header.html" with text_color='text-white' %}
         <div class="page-header-info px-2">
             <div class="m-auto w-lg-50 w-md-50 w-sm-100">
                 <h1 class="text-uppercase text-center text-white fs-2">
-                    <strong class="page-header-title">Сервис для поиска опытных нянь для вашего ребёнка</strong>
+                    <strong class="page-header-title mursgothic">Сервис для поиска опытных нянь для вашего ребёнка</strong>
                 </h1>
             </div>
-            <div class="row mt-4 justify-content-center w-100 m-auto">
+            <div class="row mt-4 justify-content-center w-100 m-auto poppins-semibold">
                 <div class="col-lg-2 col-md-4 col-sm-12 mb-2">
                     <a href="#">
-                        <button class="btn btn-yellow px-5 py-3 w-100">
+                        <button class="btn btn-yellow px-5 py-3 w-100 page-header-btn">
                             <strong>Стать няней</strong>
                         </button>
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-12 mb-2">
                     <a href="#">
-                        <button class="btn btn-yellow px-5 py-3 w-100">
+                        <button class="btn btn-yellow px-5 py-3 w-100 page-header-btn">
                             <strong>Найти няню</strong>
                         </button>
                     </a>
@@ -62,7 +62,12 @@
 
     <div id="how-to-use">
         <div class="container py-5">
-            <h1 class="text-uppercase text-center mb-5">Как пользоваться сервисом</h1>
+            <h1 class="text-uppercase text-center my-5 mursgothic">
+                <strong>
+                    <p>Как пользоваться</p> 
+                    <p>сервисом</p>
+                </strong>
+            </h1>
             <ul class="justify-content-center nav nav-pills mb-5" id="pills-tab" role="tablist">
                 <li class="nav-item navbar-background" role="presentation">
                     <button class="nav-link active" id="pills-nanny-tab" data-bs-toggle="pill" data-bs-target="#pills-nanny" type="button" role="tab" aria-controls="pills-nanny" aria-selected="true">Я-няня</button>
