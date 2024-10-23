@@ -34,3 +34,7 @@ class UserSubscribe(models.Model):
 
     def __str__(self) -> str:
         return self.end_date
+    
+    class Meta:
+        verbose_name = 'Подписка пользователя'
+        verbose_name_plural = 'Подписки пользователей'

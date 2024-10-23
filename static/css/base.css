@@ -5,6 +5,7 @@
     --white-background-color: rgba(250, 252, 255, 1);
 }
 
+
 /* BREAKPOINTS */
 
 /* SM breakpoint */
@@ -42,6 +43,27 @@
 
 .mt-9 {
     margin-top: 9rem !important;
+}
+
+.background-blue {
+    background-color: var(--blue-color);
+}
+
+.background-yellow {
+    background-color: var(--yellow-color)
+}
+
+.background-linear {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
+
+.btn-yellow {
+    background-color: var(--yellow-color);
+}
+
+.btn-yellow:hover, .btn-yellow:active, .btn-yellow:visited {
+    background-color: var(--yellow-color)!important;
+    color: rgb(0, 0, 0, 1)!important;
 }
 
 .background-blue {
