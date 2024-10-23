@@ -28,20 +28,6 @@ class NannyCreateOrUpdateView(CreateView):
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.user = None
-    
-    # def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-    #     user_form = UserForm(request.POST)
-    #     nanny_form = NannyForm(request.POST)
-    #     if user_form.is_valid() and nanny_form.is_valid():
-    #         user_form.save()
-    #         nanny_form.save()
-    #         return HttpResponseRedirect('/home')        
-    #     else:
-    #         context = {
-    #             'user_form': user_form,
-    #             'nanny_form': nanny_form,
-    #         }
-    #     return render(request, 'nanny_register.html', context)
 
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
         return super().post(request, *args, **kwargs)
