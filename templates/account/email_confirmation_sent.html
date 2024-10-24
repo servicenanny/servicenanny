@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Подтверждение почты</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block  header %}
+{% endblock %}
+
+{% block body %}
+<div>
+    <h2>Confirm your email address</h2>
+
+    <p>We have sent you an email to <strong>your email</strong> for verification. Follow the link provided to finalize the signup process.</p>
+    <p>Go back</p>
+</div>
+{% endblock %}

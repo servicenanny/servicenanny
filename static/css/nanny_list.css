@@ -1,0 +1,27 @@
+.nanny-img {
+    border-radius: 50%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+/* SM breakpoint */
+@media (min-width: 992px) {
+    /* CUSTOM WIDTHS */
+    .nanny-img { max-height: 10rem!important; }
+}
+
+/* MD breakpoint*/
+@media (min-width: 768px) and (max-width: 992px) {
+    /* CUSTOM WIDTHS */
+    .nanny-img { max-height: 10rem!important; }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    /* CUSTOM WIDTHS */
+    .nanny-img { max-height: 10rem!important; }
+}
+
+.nanny-card {
+    border-radius: 10px;
+}

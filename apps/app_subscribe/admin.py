@@ -29,3 +29,8 @@ class SubscribeAdmin(admin.ModelAdmin):
     def delete_queryset(self, request, queryset: QuerySet[Subscribe]):
         for obj in queryset:
             obj.soft_delete()
+
+
+@admin.register(UserSubscribe)
+class UserSubscribeAdmin(admin.ModelAdmin):
+    list_display = ['user', 'subscribe', 'created_at']
