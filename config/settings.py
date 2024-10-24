@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 if DEBUG == False:
     ALLOWED_HOSTS = [
@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'apps.app_infrastructure.apps.AppInfrastructureConfig',
     'apps.app_payment.apps.AppPaymentConfig',
     'apps.app_subscribe.apps.AppSubscribeConfig',
+    'apps.app_user.apps.AppUserConfig',
     'apps.app_worker.apps.AppWorkerConfig',
     'apps.p_about_us.apps.PAboutUsConfig',
     'apps.p_home.apps.PHomeConfig'
@@ -139,12 +140,29 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+ACCOUNT_USER_DISPLAY = lambda user: user.email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = "sem4ter@yandex.ru"
+EMAIL_HOST_PASSWORD = "dxezxmpyaviniivx"
+
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.Argon2PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'account.auth_backends.EmailAuthenticationBackend',
 ]
 
 

@@ -1,19 +1,22 @@
 from datetime import timedelta, datetime
 
-from django.db.models import QuerySet, F
+from django.db.models import QuerySet, Func
 from django.contrib.auth.models import AbstractBaseUser
 
 
 from apps.app_subscribe.models import UserSubscribe
 
 
+class IntervalSeconds(Func):
+    function = 'INTERVAL'
+    template = "(%(expressions)s * %(function)s '1 days')"
+
+
 def get_leftover_days(queryset: QuerySet[UserSubscribe], user: AbstractBaseUser) -> timedelta:
     today = datetime.now()
-    result = queryset.filter(
-            user__id__in = user.id
-        ).annotate(
-            leftover = today - F('subscribe__day_range') + F('subscribe__created_at')
-        ).values(
-            'leftover'
+    last = queryset.filter(
+            user = user
         ).last()
-    return result['leftover']
+    if last is None:
+        return None
+    return last.created_at + timedelta(days=last.subscribe.day_range) - today
