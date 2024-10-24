@@ -8,10 +8,13 @@ class NannyForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = Nanny
         fields = ['phone_number', 'age', 'experience', 'cost_per_hour', 'describe', 'skills', 'work_days']
         widgets = {
-            'describe': Textarea(attrs={'cols': 8, 'rows': 5}),
+            'describe': Textarea(attrs={'cols': 8, 'rows': 8}),
             'skills': Textarea(attrs={'cols': 8, 'rows': 5}),
         }
