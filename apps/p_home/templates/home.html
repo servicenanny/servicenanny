@@ -36,8 +36,8 @@
         {% include "header.html" with text_color='text-white' %}
         <div class="page-header-info px-2">
             <div class="m-auto w-lg-50 w-md-50 w-sm-100 w-100">
-                <h1 class="text-uppercase text-center text-white fs-lg-2 fs-md-5 fs-sm-6 fs-6">
-                    <strong class="page-header-title mursgothic">
+                <h1 class="text-uppercase text-center text-white">
+                    <strong>
                         <p class="mb-0">Сервис для поиска</p>
                         <p class="mb-0">опытных нянь</p>
                         <p class="mb-0">для вашего ребёнка</p>
@@ -66,12 +66,12 @@
 
     <div id="how-to-use">
         <div class="container py-5">
-            <h1 class="text-uppercase text-center my-5 mursgothic">
-                <strong>
-                    <p>Как пользоваться</p> 
+            <strong class="mursgothic">
+                <h1 class="text-uppercase text-center my-5">
+                    <p class="mb-0">Как пользоваться</p> 
                     <p>сервисом</p>
-                </strong>
-            </h1>
+                </h1>
+            </strong>
             <div class="justify-content-center d-flex">
                 <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
                     <li class="nav-item navbar-background" role="presentation">
@@ -177,10 +177,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12 col-12 row mb-5 mx-0">
-                    <div class="col-lg-12 col-md-6 col-sm-12 col-12">
-                        <h1 class="text-lg-start text-md-start text-sm-center text-center text-uppercase mursgothic">
-                            <strong>где работает сервис — приложение доступно в 63 городах:</strong>
-                        </h1>
+                    <div class="col-lg-12 col-md-6 col-sm-12 col-12 px-0">
+                        <strong class="mursgothic">
+                            <h1 class="text-lg-start text-md-start text-sm-center text-center text-uppercase">
+                                <strong>где работает сервис — приложение доступно в 63 городах:</strong>
+                            </h1>
+                        </strong>
                     </div>
                     <div class="col-lg-12 col-md-6 col-sm-12 col-12 poppins-reg">
                         {% if cities is not none and cities|length > 0 %}
@@ -200,7 +202,11 @@
 
     <div id="why_choose_us">
         <div class="container py-5">
-            <h1 class="my-5 text-uppercase mursgothic text-lg-start text-md-start text-sm-center text-center"><strong>почему выбирают наш сервис</strong></h1>
+            <strong class="mursgothic">
+                <h1 class="my-5 text-uppercase text-lg-start text-md-start text-sm-center text-center">
+                    почему выбирают наш сервис
+                </h1>
+            </strong>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="rounded-3 background-blue w-lg-25 w-md-50 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto mb-4 py-1 px-3 poppins-reg">
@@ -233,13 +239,13 @@
     <div id="in_subscribe">
         <div class="container py-5">
             <div class="d-sm-block d-md-none">
-                <h1 class="text-center text-uppercase mb-5 w-100 mursgothic">
-                    <strong>
+                <strong class="mursgothic">
+                    <h1 class="text-center text-uppercase mb-5 w-100">
                         <p class="mb-0">Что входит</p>
                         <p class="mb-0">в стоимость</p>
                         <p class="mb-0">подписки</p>
-                    </strong>
-                </h1>
+                    </h1>
+                </strong>
             </div>
             <div class="justify-content-md-start justify-content-sm-center d-flex">
                 <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
@@ -293,10 +299,13 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
-                                <ul class="markers list-inline mx-sm-auto mx-2 justify-content-center">
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3"><strong>Закрытая страница с базой нянь для родителя</strong></li>
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Подробная анкета в личном кабинете няни</strong></li>
+                                <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3"><strong>Дополнительные обучения от сервиса</strong></li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Подробная анкета в личном кабинете</strong></li>
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Отдел заботы при возникновении вопросов</strong></li>
+                                    <div class="d-flex justify-content-center w-100">
+                                        <div class="list-inline-item bg-white py-2 px-4 mt-4 price"><strong>490₽ / 1 месяц</strong></div>
+                                    </div>
                                 </ul>
                             </div>
                         </div>
@@ -333,9 +342,12 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
-                                <ul class="markers list-inline mx-sm-auto mx-2 justify-content-center">
+                                <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3"><strong>Закрытая страница с базой нянь</strong></li>
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Отдел заботы при возникновении вопросов</strong></li>
+                                    <div class="d-flex justify-content-center w-100">
+                                        <div class="list-inline-item bg-white py-2 px-4 mt-4 price"><strong>1490₽ / 1 месяц</strong></div>
+                                    </div>
                                 </ul>
                             </div>
                         </div>
@@ -364,14 +376,14 @@
         class="page-header justify-content-center w-100"
         style="background-image: url('{% static 'img/page-header2.jfif' %}')"
     >
-        <div class="page-header-info w-lg-75 w-md-75 w-sm-100 w-100 m-auto px-lg-auto px-md-auto px-sm-2 px-1 w-md-75 w-sm-100 w-100">
-            <div class="w-100">
-                <h1 class="text-uppercase text-center text-white fs-lg-3 fs-md-5 fs-sm-6 fs-6">
-                    <strong class="page-header-title mursgothic">
-                        <p class="mb-0"><strong class="page-header-title">Найдите работу</strong></p>
-                        <p><strong class="page-header-title">няней в вашем городе</strong></p>
-                    </strong>
-                </h1>
+        <div class="page-header-info px-lg-auto px-md-auto px-sm-2 px-1">
+            <div class="m-auto w-lg-50 w-md-50 w-sm-100 w-100">
+                <strong class=" mursgothic">
+                    <h1 class="text-uppercase text-center text-white">              
+                            <p class="mb-0">Найдите работу</p>
+                            <p>няней в вашем городе</p>
+                    </h1>
+                </strong>
             </div>
             <div class="d-flex justify-content-center mt-4">
                 <a href="#" class="me-1">
