@@ -7,13 +7,8 @@
 }
 
 .page-header-info {
-    padding-top: 10%;
-    padding-bottom: 20%;
-}
-
-.page-header-title {
-    font-size: 1.5em;
-    font-weight: 800;
+    padding-top: 14%;
+    padding-bottom: 14%;
 }
 
 .page-header-btn {
@@ -60,6 +55,13 @@
     background-color: var(--main-background-color);
 }
 
+.price {
+    transform: rotate(357deg);
+}
+
+.price li::before {
+    list-style-type: none!important;
+}
 
 .text-overflow-hidden {
     width : 100px;
