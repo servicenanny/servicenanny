@@ -22,6 +22,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['end_range'] = get_leftover_days(UserSubscribe.leftover.get_queryset(), self.user)
+        if self.user.is_authenticated:
+            context['end_range'] = get_leftover_days(UserSubscribe.leftover.get_queryset(), self.user)
         context['cities'] = City.objects.all()
         return context
