@@ -1,3 +1,4 @@
+{% load static %}
 <footer class="text-center text-lg-start background-blue text-muted border-top">
     <section class="border-bottom">
         <div class="container text-center text-md-start mt-5">
@@ -47,13 +48,15 @@
         </div>
     </section>
     <hr class="m-0" />
-    <section class="container py-3">
-        <div class="row w-100 m-0">
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
-                <a href="{{ MEDIA_URL }}{{ privacy_policy.file }}" class="text-doc text-decoration-none">Политика конфиденциальности</a>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
-                <a href="{{ MEDIA_URL }}{{ privacy_policy.file }}" class="text-doc text-decoration-none">Договор оферты</a>
+    <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
+                    <a href="{% static "doc/355f7cc3-f59b-4da6-bf1c-5c752aa171e7.pdf" %}" class="text-doc text-decoration-none">Политика конфиденциальности</a>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
+                    <a href="{% static "doc/bedac6d0-a796-463b-ad3d-72adf0a8ff7d.pdf" %}" class="text-doc text-decoration-none">Договор оферты</a>
+                </div>
             </div>
         </div>
     </section>
