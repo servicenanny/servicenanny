@@ -1,24 +1,54 @@
 {% extends "base.html" %}
 {% block title %}
-    <title>Регистрация нянь</title>
+<title>Регистрация нянь</title>
 {% endblock %}
 
 {% block style %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" href="{% static 'css/header.css' %}" />
+<link rel="stylesheet" href="{% static 'css/footer.css' %}" />
 {% endblock %}
-{% block  header %}
-    {% include "header_yellow.html" with text_color='text-dark' %}
+{% block header %}
+{% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
-{% block  content %}
+{% block content %}
 <div class="container my-5">
+    <h1 class="my-5 text-uppercase mursgothic text-center"><strong>Личная</strong></h1>
+    <h1 class="my-5 text-uppercase mursgothic text-center"><strong>Информация</strong></h1>
     <form action="." method="POST">
-        {% csrf_token %}
-        {{ form.user_form.as_p }}
-        {{ form.nanny_form.as_p }}
-        <button type="submit">
+        <div class="row no-gutters">
+            {% csrf_token %}
+            <div class="col-4">
+                <div class="row py-2 w-100">Ваше имя</div>
+                <div class="row py-2 w-100">{{ form.user_form.first_name }}</div>
+                <div class="row py-2 w-100">Ваша фамилия</div>
+                <div class="row py-2 w-100">{{ form.user_form.last_name }}</div>
+                <div class="row py-2 w-100">Ваш номер </div>
+                <div class="row py-2 w-100">{{ form.nanny_form.phone_number }}</div>
+            </div>
+            <div class="col-8">
+                <div class="row py-2 w-100">Расскажите о себе</div>
+                <div class="row py-2 w-100">{{ form.nanny_form.describe }}</div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-4">
+                    <div class="row py-2 w-100">Ваш возраст</div>
+                    <div class="row py-2 w-100">{{ form.nanny_form.age }}</div>
+                    <div class="row py-2 w-100">Опыт работы</div>
+                    <div class="row py-2 w-100">{{ form.nanny_form.experience }}</div>
+                    <div class="row py-2 w-100">Ставка в час</div>
+                    <div class="row py-2 w-100">{{ form.nanny_form.cost_per_hour }}</div>
+                </div>
+                <div class="col-8">
+                    <div class="row py-2 w-100">Что вы умеете</div>
+                    <div class="row py-2 w-100">{{ form.nanny_form.skills }}</div>
+                    <div class="row py-2 w-100">График работы</div>
+                    <div class="row py-2 w-100">{{ form.nanny_form.work_days }}</div>
+                </div>
+            </div>
+            <button class="btn btn-yellow py-2 w-lg-25 w-100">Сохранить изменения</button>
+        </div>
     </form>
 </div>
 {% endblock %}
