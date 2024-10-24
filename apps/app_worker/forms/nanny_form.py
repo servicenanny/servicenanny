@@ -15,6 +15,6 @@ class NannyForm(ModelForm):
         model = Nanny
         fields = ['phone_number', 'age', 'experience', 'cost_per_hour', 'describe', 'skills', 'work_days']
         widgets = {
-            'describe': Textarea(attrs={'cols': 8, 'rows': 8}),
+            'describe': Textarea(attrs={'cols': 8, 'rows': 9}),
             'skills': Textarea(attrs={'cols': 8, 'rows': 5}),
         }
