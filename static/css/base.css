@@ -39,6 +39,7 @@
     .w-lg-75 { width: 75%!important; }
     .w-lg-100 { width: 100%!important; }
     .fs-lg-2 { font-size: calc(1.325rem + .9vw) !important; }
+    .fs-lg-3 { font-size: calc(1.3rem + .6vw) !important;; }
 }
 
 .poppins-reg {
@@ -53,7 +54,8 @@
     font-family: MursGothic-WideDark, sans-serif;
 }
 
-.mursgothic > strong {
+.mursgothic h1{
+    font-size: calc(1.4rem + 1.5vw);
     font-weight: 800;
 }
 
