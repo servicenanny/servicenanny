@@ -5,7 +5,7 @@ from apps.app_worker.auth.permission import is_have_nanny_permission
 
 
 class NannySubscribeRequiredMixin(SubscribeRequiredMixin):
-    """Verify that the current user is subscriber."""
+    """Verify that the current nanny is subscriber."""
 
     def dispatch(self, request: HttpRequest, *args, **kwargs):
         if is_have_nanny_permission(request.user):
