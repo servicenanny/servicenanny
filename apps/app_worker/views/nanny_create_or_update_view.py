@@ -5,8 +5,8 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from apps.app_worker.models import Nanny
 from apps.app_worker.forms import NannyForm, UserForm
 
 
@@ -22,7 +22,7 @@ class MultipleNannyForm:
     user_form: UserForm
 
 
-class NannyCreateOrUpdateView(CreateView):
+class NannyCreateOrUpdateView(LoginRequiredMixin, CreateView):
     template_name = 'nanny_register.html'
     
     def __init__(self, **kwargs: Any) -> None:
