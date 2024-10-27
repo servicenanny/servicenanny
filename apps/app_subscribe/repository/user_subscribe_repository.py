@@ -9,7 +9,7 @@ from domain.entity.user import User
 class UserSubscribeRepository:
     def get_leftover_days(self, user_id: int) -> timedelta:
         today = date.today()
-        last_subscribe = UserSubscribe.leftover.filter(
+        last_subscribe = UserSubscribe.objects.filter(
                 user__id = user_id
             ).last()
         if last_subscribe is None:

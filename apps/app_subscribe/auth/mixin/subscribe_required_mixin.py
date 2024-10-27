@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponseRedirect
 from django.urls import reverse_lazy
 
 from apps.app_subscribe.repository import UserSubscribeRepository
-from domain.entity.user import User as DUser
+from apps.app_user.utils import to_domain_user
 
 
 class SubscribeRequiredMixin(AccessMixin):
@@ -12,15 +12,7 @@ class SubscribeRequiredMixin(AccessMixin):
     subscribe_url = reverse_lazy('home')
 
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponseRedirect:
-        d_user = self.__get_domain_user(request)
+        d_user = to_domain_user(request.user)
         if UserSubscribeRepository().is_have_subscribe_permission(d_user):
             return super().dispatch(request, *args, **kwargs)
         return HttpResponseRedirect(self.subscribe_url)
-    
-    def __get_domain_user(self, request: HttpRequest) -> DUser:
-        return DUser(
-            id = request.user.id,
-            email = request.user.id,
-            password = request.user.password,
-            is_superuser = request.user.is_superuser
-        )

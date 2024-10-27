@@ -1,4 +1,5 @@
 from enum import Enum
+from datetime import timedelta
 
 from domain.repository import UserSubscribeRepository
 
@@ -21,7 +22,7 @@ class LeftoverDays:
         leftover_days = repository.get_leftover_days(user_id)
         if leftover_days is None:
             return BUTTON_STATUS.NOT_AUTH.value[1]
-        elif leftover_days <= 0:
+        elif leftover_days <= timedelta():
             return BUTTON_STATUS.NOT_ACTIVE_SUBSCRIBE.value[1]
         else:
-            return BUTTON_STATUS.ACTIVE_SUBSCRIBE.value[1] + " " + leftover_days
+            return BUTTON_STATUS.ACTIVE_SUBSCRIBE.value[1] + " " + str(leftover_days.days)
