@@ -23,7 +23,7 @@ class MultipleNannyForm:
     user_form: UserForm
 
 
-class NannyCreateOrUpdateView(LoginRequiredMixin, NannySubscribeRequiredMixin,CreateView):
+class NannyCreateOrUpdateView(LoginRequiredMixin, NannySubscribeRequiredMixin, CreateView):
     template_name = 'nanny_register.html'
     
     def __init__(self, **kwargs: Any) -> None:
