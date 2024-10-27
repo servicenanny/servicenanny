@@ -1,4 +1,4 @@
-from datetime import timedelta, datetime
+from datetime import timedelta, date
 
 from django.db.models import QuerySet, Func
 from django.contrib.auth.models import AbstractBaseUser
@@ -13,7 +13,7 @@ class IntervalSeconds(Func):
 
 
 def get_leftover_days(queryset: QuerySet[UserSubscribe], user: AbstractBaseUser) -> timedelta:
-    today = datetime.now()
+    today = date.today()
     last = queryset.filter(
             user = user
         ).last()
