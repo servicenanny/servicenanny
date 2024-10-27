@@ -1,9 +1,14 @@
 from enum import Enum
 
 
-class CLIENT_TYPE(Enum):
-    NANNY = ('N', 'Няни')
-    PARENT = ('P', 'Родители')
+class WEEKDAYS(Enum):
+    MONDAY = ('0', 'Пн')
+    TUESDAY = ('1', 'Вт')
+    WEDNESDAY = ('2', 'Ср')
+    THURSDAY = ('3', 'Чт')
+    FRIDAY = ('4', 'Пт')
+    SATURDAY = ('', 'Сб')
+    SUNDAY = ('6', 'Вс')
 
     @classmethod
     def get_choices(cls):

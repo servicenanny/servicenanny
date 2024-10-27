@@ -6,5 +6,4 @@ from apps.app_subscribe.models import UserSubscribe
 
 
 def get_subscriber_nanny(queryset: QuerySet[Nanny]) -> QuerySet[Nanny]:
-    users = UserSubscribe.leftover.fresh_subscribe()
     return queryset.filter(user__in = UserSubscribe.leftover.fresh_subscribe().values('user'))

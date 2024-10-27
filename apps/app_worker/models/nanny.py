@@ -22,7 +22,6 @@ class Nanny(BaseWorker):
     age = models.PositiveSmallIntegerField(verbose_name="Возраст", help_text="Введите возраст", default=0)
     experience = models.PositiveSmallIntegerField(verbose_name="Опыт", help_text="Введите кол-во лет", default=0)
     describe = models.TextField(verbose_name="Описание", help_text="Введите описание")
-    skills = models.TextField(verbose_name="Навыки", help_text="Что вы умеете?")
 
     class Meta:
         verbose_name = 'Няня'

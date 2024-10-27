@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import MinValueValidator 
 
 from apps.app_infrastructure.models import City
 
@@ -11,7 +12,7 @@ class BaseWorker(models.Model):
     """
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name="Аккаунт работника", help_text="Выберите аккаунт работника")
     phone_number = PhoneNumberField(verbose_name="Номер телефона", help_text="Введите номер телефона работника")
-    cost_per_hour = models.PositiveIntegerField(verbose_name="Стоимость в час", help_text="Введите стоимость в час", default=0)
+    cost_per_hour = models.PositiveIntegerField(verbose_name="Стоимость в час", help_text="Введите стоимость в час", default=450, validators=[MinValueValidator(450)])
     city = models.ForeignKey(
         City,
         on_delete=models.DO_NOTHING,

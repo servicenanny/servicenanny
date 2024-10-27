@@ -39,7 +39,7 @@
                 </div>
                 <div class="row py-2">
                     <label class="mb-2">Ваш возраст</label>
-                    <p class="input-control" placeholder="69 лет" type="text">{{ form.nanny_form.age }}</p>
+                    <p class="input-control" placeholder="65 лет" type="text">{{ form.nanny_form.age }}</p>
                 </div>
                 <div class="row py-2">
                     <label class="mb-2">Опыт работы</label>
@@ -49,15 +49,19 @@
                     <label class="mb-2">Ставка в час</label>
                     <p class="input-control" placeholder="от 450" type="text">{{ form.nanny_form.cost_per_hour }}</p>
                 </div>
+                <div class="row py-2">
+                    <label class="mb-2">Выберите город</label>
+                    <p class="input-control" type="text">{{ form.nanny_form.city }}</p>
+                </div>
+                <div class="row py-2">
+                    <label class="mb-2">Добавить фото</label>
+                    <p class="input-control" type="text">{{ form.nanny_form.photo }}</p>
+                </div>
             </div>
             <div class="col-8 px-5">
                 <div class="row py-2">
                     <label class="mb-2">Расскажите о себе</label>
                     <p class="input-control" placeholder="Работаю с детьми от 3 лет..." type="text">{{ form.nanny_form.describe }}</p>
-                </div>
-                <div class="row py-2">
-                    <label class="mb-2">Что вы умеете</label>
-                    <p class="input-control" placeholder="Ваши навыки" type="text">{{ form.nanny_form.skills }}</p>
                 </div>
                 <div class="row py-2">
                     <label class="mb-2">График работы</label>

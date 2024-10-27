@@ -1,4 +1,4 @@
-from django.forms import ModelForm, CheckboxSelectMultiple
+from django.forms import ModelForm
 
 from apps.app_worker.models import Nanny
 
@@ -11,4 +11,13 @@ class NannyForm(ModelForm):
 
     class Meta:
         model = Nanny
-        fields = ['phone_number', 'age', 'experience', 'cost_per_hour', 'describe', 'skills', 'work_days']
+        fields = [
+            'phone_number',
+            'cost_per_hour',
+            'city',
+            'photo',
+            'work_days',
+            'age',
+            'experience',
+            'describe',
+        ]

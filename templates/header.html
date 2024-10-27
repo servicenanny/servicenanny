@@ -10,7 +10,7 @@
                     </div>
                 {% else %}
                     {% load static %}
-                    <div class="rounded-3 bg-white w-lg-20 w-md-25 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                    <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
                         <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{% if end_range is defined %}{{ end_range }}{% endif %}</strong>
                     </div>    
                 {% endif %}
@@ -48,7 +48,7 @@
                             </div>
                         {% else %}
                             {% load static %}
-                            <div class="rounded-3 bg-white w-lg-20 w-md-25 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                            <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
                                 <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{% if end_range is defined %}{{ end_range }}{% endif %}</strong>
                             </div>    
                         {% endif %}

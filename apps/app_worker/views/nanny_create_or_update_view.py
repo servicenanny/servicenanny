@@ -1,14 +1,12 @@
 from dataclasses import dataclass
 from typing import Any
-from django.forms import BaseModelForm
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.views.generic import CreateView
-from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from apps.app_worker.auth.mixin import NannySubscribeRequiredMixin
 from apps.app_worker.forms import NannyForm, UserForm
+from apps.app_worker.services import NannyProfileHandler, UpdateProfileDTO
 
 
 @dataclass
@@ -23,20 +21,43 @@ class MultipleNannyForm:
     user_form: UserForm
 
 
-class NannyCreateOrUpdateView(LoginRequiredMixin, NannySubscribeRequiredMixin, CreateView):
+class NannyProfileUpdateView(LoginRequiredMixin, NannySubscribeRequiredMixin, CreateView):
     template_name = 'nanny_register.html'
     
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.user = None
+        self.handler = NannyProfileHandler()
 
     def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
-        return super().post(request, *args, **kwargs)
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        forms = self.get_form()
+        if forms.user_form.is_valid() and forms.nanny_form.is_valid():
+            self.handler.update_user_info(UpdateProfileDTO(
+                    user_id = request.user.id,
+                    first_name = forms.nanny_form.cleaned_data['first_name'],
+                    last_name = forms.nanny_form.cleaned_data['last_name'],
+                    phone_number = forms.nanny_form.cleaned_data['phone_number'],
+                    cost_per_hour = forms.nanny_form.cleaned_data['cost_per_hour'],
+                    photo = forms.nanny_form.cleaned_data['photo'],
+                    city = forms.nanny_form.cleaned_data['city'],
+                    work_days = forms.nanny_form.cleaned_data['work_days'],
+                    age = forms.nanny_form.cleaned_data['age'],
+                    experience = forms.nanny_form.cleaned_data['experience'],
+                    describe = forms.nanny_form.cleaned_data['describe']
+                )
+            )
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=forms))
     
     def get_form_class(self):
         return MultipleNannyTypeForm(NannyForm, UserForm)
     
-    def get_form(self, form_class: MultipleNannyTypeForm = None) -> BaseModelForm:
+    def get_form(self, form_class: MultipleNannyTypeForm = None) -> MultipleNannyForm:
         """Return an instance of the form to be used in this view."""
         if form_class is None:
             form_class = self.get_form_class()
