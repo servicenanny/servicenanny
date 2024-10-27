@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'django_bootstrap5',
     "account",
+    'multiselectfield',
     'apps.app_contrib.apps.AppContribConfig',
     'apps.app_infrastructure.apps.AppInfrastructureConfig',
     'apps.app_payment.apps.AppPaymentConfig',

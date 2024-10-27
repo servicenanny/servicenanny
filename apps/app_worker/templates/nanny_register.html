@@ -61,7 +61,12 @@
                 </div>
                 <div class="row py-2">
                     <label class="mb-2">График работы</label>
-                    <p class="input-control" placeholder="Пн Вт Ср Чт Пт Сб Вс" type="text">{{ form.nanny_form.work_days }}</p>
+                    {% for value, text in form.nanny_form.work_days.field.choices %}
+                        <div class="ui slider checkbox">
+                            <input id="id_providers_{{ forloop.counter0 }}" name="{{ form.nanny_form.work_days.name }}" type="checkbox" value="{{ value }}"{% if value in checked_providers %} checked="checked"{% endif %}>
+                            <label>{{ text }}</label>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
             <button class="btn btn-yellow py-2 w-lg-25 w-100 gy-2">Сохранить изменения</button>
