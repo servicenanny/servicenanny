@@ -7,6 +7,7 @@ from django.views.generic import CreateView
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from apps.app_worker.auth.mixin import NannySubscribeRequiredMixin
 from apps.app_worker.forms import NannyForm, UserForm
 
 
@@ -22,7 +23,7 @@ class MultipleNannyForm:
     user_form: UserForm
 
 
-class NannyCreateOrUpdateView(LoginRequiredMixin, CreateView):
+class NannyCreateOrUpdateView(LoginRequiredMixin, NannySubscribeRequiredMixin, CreateView):
     template_name = 'nanny_register.html'
     
     def __init__(self, **kwargs: Any) -> None:
