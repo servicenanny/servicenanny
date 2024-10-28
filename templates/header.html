@@ -8,11 +8,18 @@
                             <button class="registration-white btn py-2 px-5">Войти</button>
                         </a>
                     </div>
+                {% elif end_range %}
+                    {% load static %}
+                    <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                        <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                    </div> 
                 {% else %}
                     {% load static %}
-                    <div class="rounded-3 bg-white w-lg-20 w-md-25 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
-                        <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{% if end_range is defined %}{{ end_range }}{% endif %}</strong>
-                    </div>    
+                    <a href="{{ header_button_href }}">
+                        <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                            <img src={% static 'img/fire.svg' %} />{{ header_button_text }}</strong>
+                        </div> 
+                    </a>
                 {% endif %}
             </div>
             <button 
@@ -35,7 +42,7 @@
                             <li class="nav-item mb-2">
                                 <a href="{% url 'home' %}" class="text-decoration-none {{text_color}}">О приложении</a>
                             </li>
-                            <li class="nav-item mb-2"><a href="#" class="text-decoration-none {{text_color}}">Города</a></li>
+                            <li class="nav-item mb-2"><a href="#cities-block" class="text-decoration-none {{text_color}}">Города</a></li>
                             <li class="nav-item mb-2"><a href="{% url 'nannies' %}" class="text-decoration-none {{text_color}}">Няням</a></li>
                         </ul>
                     </div>
@@ -46,11 +53,18 @@
                                     <button class="registration-white btn py-2 px-5">Войти</button>
                                 </a>
                             </div>
+                        {% elif end_range %}
+                            {% load static %}
+                            <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                                <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                            </div> 
                         {% else %}
                             {% load static %}
-                            <div class="rounded-3 bg-white w-lg-20 w-md-25 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
-                                <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{% if end_range is defined %}{{ end_range }}{% endif %}</strong>
-                            </div>    
+                            <a href="{{ header_button_href }}" class="text-decoration-none">
+                                <div class="rounded-3 bg-white text-dark text-center mx-lg-0 mx-md-0 mx-sm-auto py-2 px-5">
+                                    <strong>{{ header_button_text }}</strong>
+                                </div> 
+                            </a>
                         {% endif %}
                     </div>
                 </div>
