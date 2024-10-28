@@ -4,7 +4,7 @@ from datetime import timedelta
 from domain.repository import UserSubscribeRepository
 
 
-class BUTTON_STATUS(Enum):
+class SUBSCRIBE_STATUS(Enum):
     NOT_AUTH = ('NA', 'Вход')
     NOT_ACTIVE_SUBSCRIBE = ('NS', 'Подписаться')
     ACTIVE_SUBSCRIBE = ('AS', 'Осталось дней')
@@ -18,11 +18,18 @@ class BUTTON_STATUS(Enum):
 
 
 class LeftoverDays:
-    def get_subscribe_button_text(self, repository: UserSubscribeRepository, user_id: int) -> str:
-        leftover_days = repository.get_leftover_days(user_id)
-        if leftover_days is None:
-            return BUTTON_STATUS.NOT_AUTH.value[1]
-        elif leftover_days <= timedelta():
-            return BUTTON_STATUS.NOT_ACTIVE_SUBSCRIBE.value[1]
+    def __init__(self):
+        self.leftover_days = None
+
+    def get_subscribe_status(self, repository: UserSubscribeRepository, user_id: int):
+        if self.leftover_days is None:
+            self.leftover_days = repository.get_leftover_days(user_id)
+        if self.leftover_days is None or self.leftover_days <= timedelta():
+            return SUBSCRIBE_STATUS.NOT_ACTIVE_SUBSCRIBE
         else:
-            return BUTTON_STATUS.ACTIVE_SUBSCRIBE.value[1] + " " + str(leftover_days.days)
+            return SUBSCRIBE_STATUS.ACTIVE_SUBSCRIBE
+        
+    def get_leftover_days(self, repository: UserSubscribeRepository, user_id: int) -> timedelta:
+        if self.leftover_days is None: 
+            self.leftover_days = repository.get_leftover_days(user_id)
+        return self.leftover_days

@@ -90,6 +90,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "account.context_processors.account",
+                "apps.app_subscribe.context_processors.header_context_processor"
             ],
         },
     },
@@ -140,6 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # AUTH_USER_MODEL = 'app_user.User'
+LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True

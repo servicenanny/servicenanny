@@ -1,4 +1,4 @@
-from django.forms import BooleanField
+from django.forms import BooleanField, CheckboxInput
 
 import account.forms
 
@@ -9,6 +9,9 @@ class SignupForm(account.forms.SignupForm):
         required = False, 
         initial = True,
         label = "Я — няня"
+    )
+    is_accept = BooleanField(
+        widget = CheckboxInput()
     )
 
     def __init__(self, *args, **kwargs):

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Подтверждение почты</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+{% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
+{% endblock %}
+{% block content %}
+<div>
+    <h2>Подтвердите вашу почту</h2>
+    <p>Вам было отправлено письмо на почту, пожалуйста пройдите в нее и завершите регистрацию.</p>
+    <p>Если вы не нашли письмо, то просим посмотреть папку "спам"</p>
+</div>
+{% endblock %}
