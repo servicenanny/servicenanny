@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
-{% block  header %}
-{% endblock %}
 {% block  content %}
+{% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
+{% endblock %}
 <form method="post" action="{% url "account_confirm_email" key=confirmation.key %}">
     <legend>Confirm Email</legend>
         {% csrf_token %}

@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
+
 {% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
 
 {% block body %}

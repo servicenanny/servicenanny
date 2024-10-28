@@ -19,8 +19,7 @@ class UpdateNannyDTO:
 
 @dataclass
 class AddNannyDTO:
-    id: int
-    user: User
+    user_id: int
 
 
 class NannyRepository(BaseRepository[Nanny, AddNannyDTO, UpdateNannyDTO], Protocol):
