@@ -1,0 +1,14 @@
+from domain.entity import User as DUser
+from django.contrib.auth.models import AbstractUser
+
+
+def to_domain_user(user_model: AbstractUser) -> DUser:
+        return DUser(
+            id = user_model.id,
+            email = user_model.email,
+            password = user_model.password,
+            is_superuser = user_model.is_superuser,
+            is_staff = user_model.is_staff,
+            first_name = user_model.first_name,
+            last_name = user_model.last_name
+        )

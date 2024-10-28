@@ -6,9 +6,10 @@ class UserForm(ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+        self.fields['first_name'].widget.attrs['placeholder'] = "Татьяна"
+        self.fields['last_name'].widget.attrs['placeholder'] = "Попова"
 
     class Meta:
         model = get_user_model()
