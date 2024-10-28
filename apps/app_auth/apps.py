@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 
-class PAboutUsConfig(AppConfig):
+class AppAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.p_about_us'
+    name = 'apps.app_auth'
+    label = 'app_auth'

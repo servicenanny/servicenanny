@@ -17,12 +17,12 @@ class Nanny(BaseWorker):
         max_length=7,
         default=WEEKDAYS[0][0],
         verbose_name="Рабочие дни недели",
-        help_text="Выберите рабочие дни недели"
+        help_text="Выберите рабочие дни недели",
+        null=True
     )
-    age = models.PositiveSmallIntegerField(verbose_name="Возраст", help_text="Введите возраст", default=0)
-    experience = models.PositiveSmallIntegerField(verbose_name="Опыт", help_text="Введите кол-во лет", default=0)
-    describe = models.TextField(verbose_name="Описание", help_text="Введите описание")
-    skills = models.TextField(verbose_name="Навыки", help_text="Что вы умеете?")
+    age = models.PositiveSmallIntegerField(verbose_name="Возраст", help_text="Введите возраст", default=0, null=True)
+    experience = models.PositiveSmallIntegerField(verbose_name="Опыт", help_text="Введите кол-во лет", default=0, null=True)
+    describe = models.TextField(verbose_name="Описание", help_text="Введите описание", null=True)
 
     class Meta:
         verbose_name = 'Няня'

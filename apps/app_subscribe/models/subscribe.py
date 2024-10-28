@@ -26,7 +26,6 @@ class Subscribe(SoftDeleteModel):
         return str(self.name)
     
     def delete(self, *args, **kwargs):
-        raise Exception(kwargs)
         return super().delete(*args, **kwargs)
     
     class Meta:

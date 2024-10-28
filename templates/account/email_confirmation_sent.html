@@ -10,15 +10,13 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
-
 {% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
-
-{% block body %}
+{% block content %}
 <div>
-    <h2>Confirm your email address</h2>
-
-    <p>We have sent you an email to <strong>your email</strong> for verification. Follow the link provided to finalize the signup process.</p>
-    <p>Go back</p>
+    <h2>Подтвердите вашу почту</h2>
+    <p>Вам было отправлено письмо на почту, пожалуйста пройдите в нее и завершите регистрацию.</p>
+    <p>Если вы не нашли письмо, то просим посмотреть папку "спам"</p>
 </div>
 {% endblock %}

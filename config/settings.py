@@ -52,13 +52,13 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     "account",
     'multiselectfield',
+    'apps.app_auth.apps.AppAuthConfig',
     'apps.app_contrib.apps.AppContribConfig',
     'apps.app_infrastructure.apps.AppInfrastructureConfig',
     'apps.app_payment.apps.AppPaymentConfig',
     'apps.app_subscribe.apps.AppSubscribeConfig',
     'apps.app_user.apps.AppUserConfig',
     'apps.app_worker.apps.AppWorkerConfig',
-    'apps.p_about_us.apps.PAboutUsConfig',
     'apps.p_home.apps.PHomeConfig'
 ]
 
@@ -90,6 +90,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "account.context_processors.account",
+                "apps.app_subscribe.context_processors.header_context_processor"
             ],
         },
     },
@@ -138,6 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# AUTH_USER_MODEL = 'app_user.User'
+LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
