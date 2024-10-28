@@ -21,8 +21,11 @@
             <p class="text-center mt-2"><a href="{% url 'logout' %}" class="fs-5">Выйти?</a></p>
         </div>
     {% else %}
-        <div class="row">
-            <p class="h2 text-center col-12">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</p>
+        <h1 class="text-center text-uppercase mursgothic">
+            <p>Страница</p>
+            <p>входа</p>
+        </h1>
+        <div class="row poppins-reg">
             <form 
                 action="{% url "account_login" %}" 
                 method="post" 
@@ -34,7 +37,7 @@
                 {% endif %}
                 {% csrf_token %}
                 <div class="col align-self-center">
-                    <div class="w-lg-25 w-md-25 w-sm-50 w-50 mx-auto">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-100 mx-auto">
                         <p class="text-danger">{{ form.email.errors | first }}</p>
                         <label class="mb-2">Email</label> 
                         <p class="input-control">{{ form.email }}</p>
@@ -42,14 +45,14 @@
                     </div>
                 </div>
                 <div class="col align-self-center">
-                    <div class="w-lg-25 w-md-25 w-sm-50 w-50 mx-auto">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-100 mx-auto">
                         <p class="text-danger">{{ form.password.errors }}</p>
                         <label class="mb-2">Пароль</label> 
                         <p class="input-control">{{ form.password }}</p>
                     </div>
                 </div>
                 <div class="col align-self-center mb-4">
-                    <div class="w-lg-25 w-md-25 w-sm-50 w-50 mx-auto">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-100 mx-auto">
                         <p class="text-danger">{{ form.remember.errors }}</p>
                         <span class="input-check">{{ form.remember }} Запомнить меня </span>
                     </div>

@@ -9,6 +9,6 @@ class NannySubscribeRequiredMixin(SubscribeRequiredMixin):
     """Verify that the current nanny is subscriber."""
     def dispatch(self, request: HttpRequest, *args, **kwargs):
         d_user = to_domain_user(request.user)
-        if NannyRepository().is_have_nanny_permission(d_user):
+        if not NannyRepository().is_have_nanny_permission(d_user):
             return super().dispatch(request, *args, **kwargs)
         return self.handle_no_permission()
