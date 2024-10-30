@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-    <title>Подтверждение почты</title>
+    <title>Выход</title>
 {% endblock %}
 
 {% block style %}
@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 {% block  header %}
-    {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
 {% block content %}
-<div>
-    <h2>Подтвердите вашу почту</h2>
-    <p>Вам было отправлено письмо на почту, пожалуйста пройдите в нее и завершите регистрацию.</p>
-    <p>Если вы не нашли письмо, то просим посмотреть папку "спам"</p>
+<div class="position-absolute top-50 start-50 translate-middle poppins-reg">
+    <h1 class="text-center text-uppercase mursgothic mb-3">Вы успешно вышли из своего аккаунта</h1>
+    <p class="text-center mb-4">Для перехода на главную страницу нажмите на ссылку ниже</p>
+    <p class="text-center"><a href="{% url 'home'%}">Главная</a></p>
 </div>
+{% endblock %}
+{% block  footer %}
 {% endblock %}
