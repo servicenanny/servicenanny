@@ -7,16 +7,12 @@ from domain.entity.type import CLIENT_TYPE
 from domain.repository import NannyRepository as INannyRepository
 
 
-class NannySubscribeRequiredMixin(SubscribeRequiredMixin):
+class ParentSubscribeRequiredMixin(SubscribeRequiredMixin):
     """Verify that the current nanny is subscriber."""
 
     def __init__(self):
-        subscribe_type = CLIENT_TYPE.NANNY.value[0]
-        self.nanny_repository: INannyRepository = NannyRepository()
+        subscribe_type = CLIENT_TYPE.PARENT.value[0]
         super().__init__(subscribe_type)
 
     def dispatch(self, request: HttpRequest, *args, **kwargs):
-        d_user = to_domain_user(request.user)
-        if not self.nanny_repository.is_have_nanny_permission(d_user):
-            return super().dispatch(request, *args, **kwargs)
-        return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)

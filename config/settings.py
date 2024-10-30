@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'apps.p_home.apps.PHomeConfig'
 ]
 
-SITE_ID = 1
+SITE_ID = int(os.environ.get('SITE_ID'))
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'app_user.User'
 LOGOUT_REDIRECT_URL = '/'
 
-ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_UNIQUE = False
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
 ACCOUNT_USER_DISPLAY = lambda user: user.email
 
@@ -152,8 +152,8 @@ EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 
-EMAIL_HOST_USER = "sem4ter@yandex.ru"
-EMAIL_HOST_PASSWORD = "dxezxmpyaviniivx"
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER

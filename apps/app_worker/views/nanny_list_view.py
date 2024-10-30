@@ -1,13 +1,13 @@
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from apps.app_worker.auth.mixin import NannySubscribeRequiredMixin
+from apps.app_worker.auth.mixin import ParentSubscribeRequiredMixin
 from apps.app_worker.models import Nanny
 from apps.app_worker.repository import NannyRepository
 from apps.app_subscribe.repository import UserSubscribeRepository
 # Create your views here.
 
-class NannyListView(LoginRequiredMixin, NannySubscribeRequiredMixin, ListView):
+class NannyListView(LoginRequiredMixin, ParentSubscribeRequiredMixin, ListView):
     model = Nanny
     template_name = 'nanny_list.html'
 
