@@ -140,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTH_USER_MODEL = 'app_user.User'
+AUTH_USER_MODEL = 'app_user.User'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_EMAIL_UNIQUE = True
