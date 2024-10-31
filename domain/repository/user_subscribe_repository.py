@@ -8,13 +8,12 @@ from domain.entity import UserSubscribe, User
 
 
 @dataclass
-class UpdateUserSubscribeDTO:
+class AddUserSubscribeDTO:
     user: User
     created_at: datetime
 
-
 @dataclass
-class AddUserSubscribeDTO:
+class UpdateUserSubscribeDTO:
     id: int
     user: User | None = None
     created_at: datetime | None = None

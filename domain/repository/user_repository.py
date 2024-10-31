@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Protocol, TypeVar, Generic
+from typing import Protocol
 
 from apps.app_infrastructure.type.client_type import CLIENT_TYPE
 from domain.entity.city import City
@@ -33,5 +33,6 @@ class UpdateUserDTO:
     last_name: str = None
 
 
-class UserRepository(Protocol, BaseRepository[User, AddUserDTO, UpdateUserDTO]):
-    ...
+class UserRepository(BaseRepository[User, AddUserDTO, UpdateUserDTO], Protocol):
+    def get_by_email(self, email: str, *args, **kwargs) -> User:
+        ...

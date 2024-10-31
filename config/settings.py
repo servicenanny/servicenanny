@@ -78,6 +78,87 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+LOGGING = { 
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },  
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': '/home/app/web/log/myproject.log',
+            'when': 'D', # this specifies the interval
+            'interval': 1, # defaults to 1, only necessary for other values 
+            'backupCount': 10, # how many backup file to keep, 10 days
+            'formatter': 'verbose',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+    },  
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+        },
+        '': {
+            'handlers': ['file', 'console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': True
+        }
+    },  
+}
+
+if DEBUG == True:
+    LOGGING = { 
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+                'datefmt' : "%d/%b/%Y %H:%M:%S"
+            },
+            'simple': {
+                'format': '%(levelname)s %(message)s'
+            },
+        },  
+        'handlers': {
+            'file': {
+                'level': 'INFO',
+                'class': 'logging.handlers.TimedRotatingFileHandler',
+                'filename': 'log/myproject.log',
+                'when': 'D', # this specifies the interval
+                'interval': 1, # defaults to 1, only necessary for other values 
+                'backupCount': 10, # how many backup file to keep, 10 days
+                'formatter': 'verbose',
+            },
+            'console': {
+                'class': 'logging.StreamHandler',
+                'formatter': 'simple'
+            },
+        },  
+        'loggers': {
+            'django': {
+                'handlers': ['file', 'console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            },
+            '': {
+                'handlers': ['file', 'console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+                'propagate': True
+            }
+        },  
+    }
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -206,3 +287,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'RU'
+
+
+PAYMENT_URL = os.environ.get('PAYMENT_URL')
+PAYMENT_SECRET_KEY = os.environ.get('PAYMENT_SECRET_KEY')
