@@ -1,5 +1,6 @@
 import account.forms
 import account.views
+from django.contrib.auth import get_user_model
 
 from .forms import SignupForm
 from apps.app_worker.repository import NannyRepository
@@ -20,16 +21,18 @@ class SignupView(account.views.SignupView):
         super().__init__(*args, **kwargs)
         self.nanny_repository = NannyRepository()
 
-    def generate_username(self, form):
-        username = form.cleaned_data["email"]
-        return username
-
-    def after_signup(self, form):
-        self.create_profile(form)
-        super(SignupView, self).after_signup(form)
-
-    def create_profile(self, form):
-        if form.cleaned_data['is_worker'] == True:
-            self.nanny_repository.add(AddNannyDTO(
-                user_id = self.created_user.id
-            ))
+    def create_user(self, form, commit=True, model=None, **kwargs):
+        User = model
+        if User is None:
+            User = get_user_model()
+        user = User(**kwargs)
+        user.email = form.cleaned_data["email"].strip()
+        password = form.cleaned_data.get("password")
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
+        user.client_type = form.cleaned_data.get('client_type')
+        if commit:
+            user.save()
+        return user

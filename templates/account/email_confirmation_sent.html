@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
 {% block  header %}
-    {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
 {% block content %}
-<div>
-    <h2>Подтвердите вашу почту</h2>
-    <p>Вам было отправлено письмо на почту, пожалуйста пройдите в нее и завершите регистрацию.</p>
-    <p>Если вы не нашли письмо, то просим посмотреть папку "спам"</p>
+<div class="position-absolute top-50 start-50 translate-middle poppins-reg">
+    <h1 class="text-center text-uppercase mursgothic mb-3">Подтвердите вашу почту</h1>
+    <p class="text-center mb-4">Вам было отправлено письмо на почту, пожалуйста пройдите в нее и завершите регистрацию.</p>
+    <p class="text-center text-muted">Если вы не нашли письмо, то просим посмотреть папку "спам"</p>
 </div>
+{% endblock %}
+{% block  footer %}
 {% endblock %}
