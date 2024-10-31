@@ -3,6 +3,7 @@ from typing import Any
 from django.http import HttpRequest
 from django.http.response import HttpResponse
 from django.views.generic import TemplateView
+from django.urls import reverse
 
 from apps.app_infrastructure.models import City
 from apps.app_subscribe.repository import UserSubscribeRepository
@@ -34,6 +35,8 @@ class HomeView(TemplateView):
         return context
     
     def create_nanny_payment_url(self) -> str:
+        if self.user.is_anonymous:
+            return reverse('account_login')
         subscribe = Subscribe(
             name = SUBSCRIBE_NANNY_NAME,
             price = SUBSCRIBE_NANNY_COST,
@@ -42,6 +45,8 @@ class HomeView(TemplateView):
         return self.payment_helper.create_link(subscribe, self.user.email)
     
     def create_parent_payment_url(self) -> str:
+        if self.user.is_anonymous:
+            return reverse('account_login')
         subscribe = Subscribe(
             name = SUBSCRIBE_PARENT_NAME,
             price = SUBSCRIBE_PARENT_COST,
