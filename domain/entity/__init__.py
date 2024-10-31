@@ -8,7 +8,6 @@ from .user import User
 __all__ = [
     "City",
     "Nanny",
-    "Subscribe",
     "UserSubscribe",
     "User"
 ]

@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("apps.app_auth.urls")),
     path('nanny/', include('apps.app_worker.urls')),
+    path('subcribe/', include('apps.app_subscribe.urls')),
     path('', include('apps.p_home.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
