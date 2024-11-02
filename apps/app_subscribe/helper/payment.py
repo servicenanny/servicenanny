@@ -5,7 +5,8 @@ from django.conf import settings
 from domain.entity import Subscribe
 from domain.entity.type import CLIENT_TYPE
 from domain.port.spi.payment.contract import PaymentLinkDTO
-from apps.app_subscribe.helper import PaymentLinkBuilder, ProdamusPaidContentBuilder
+from .prodamus_link_builder import PaymentLinkBuilder
+from .prodamus_paid_content_builder import ProdamusPaidContentBuilder
 
 
 logger = logging.getLogger(__name__)
