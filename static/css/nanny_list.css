@@ -26,3 +26,8 @@
 .nanny-card {
     border-radius: 10px;
 }
+
+.app-img {
+    background-repeat: round;
+    background-size: cover;
+}

@@ -19,7 +19,7 @@ class LoginView(account.views.LoginView):
         if self.request.user.client_type == CLIENT_TYPE.PARENT:
             return reverse('nannies')
         elif self.request.user.client_type == CLIENT_TYPE.NANNY:
-            return reverse('nanny_profile')
+            return reverse('nanny_create')
         return super().get_success_url(fallback_url, **kwargs)
 
 

@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="{% static 'css/header.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/nanny_list.css' %}" />
+    <style>
+        .app-img {
+            position: relative;
+        }
+        .app-img::after {
+            content: ' ' attr(href);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url({% static "img/wa.png" %});
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-position-x: left;
+            margin-left: 2%;
+        }
+    </style>
 {% endblock %}
 
 {% block js %}
@@ -56,7 +73,13 @@
                         <div class="col-lg-10 col-md-12 col-sm-12 ps-lg-4">
                             <a href="tel:{{ nanny.phone_number }}" class="text-decoration-none">
                                 <div class="d-flex justify-content-lg-start justify-content-center">
-                                    <button class="btn btn-dark py-2 px-5 w-lg-25 w-100">Позвонить няне</button>
+                                    <div class="col-lg-5 col-10 app-img">
+                                        <button class="btn btn-dark py-2 px-5">Позвонить няне</button> 
+                                    </div>
+                                    {% comment %} <div class="col-lg-2 col-2">
+                                        <img class="app-img img-fluid h" />
+                                        <div class="h-100 app-img" style="background-image: url('{% static "img/wa.png" %}')"></div>
+                                    </div> {% endcomment %}
                                 </div>
                             </a>
                         </div>
