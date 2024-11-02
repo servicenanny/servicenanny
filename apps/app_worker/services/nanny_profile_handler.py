@@ -39,7 +39,6 @@ class UpdateProfileDTO(UpdateNannyDTO, UpdateUserDTO):
 
 
 class NannyProfileHandler:
-    @transaction.atomic
     def update_profile(self, dto: UpdateProfileDTO) -> None:
         self.update_user_info(dto)
         self.update_nanny_info(dto)
@@ -53,6 +52,7 @@ class NannyProfileHandler:
 
     def update_nanny_info(self, dto: UpdateNannyDTO) -> Nanny:
         nanny = Nanny.objects.get(user__id = dto.user_id)
+        raise Exception(nanny)
         nanny.phone_number = dto.phone_number
         nanny.cost_per_hour = dto.cost_per_hour
         nanny.photo = dto.photo

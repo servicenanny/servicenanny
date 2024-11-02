@@ -23,6 +23,12 @@ class AddNannyDTO:
 
 
 class NannyRepository(BaseRepository[Nanny, AddNannyDTO, UpdateNannyDTO], Protocol):
+    def get_by_user_id(self, user_id: int, *args, **kwargs) -> Nanny:
+        ...
+
+    def is_nanny_exist(self, user_id: int, *args, **kwargs) -> bool:
+        ...
+
     def get_fresh_subscriber_nanny(self, user_subscribe_repository: UserSubscribeRepository, *args, **kwargs):
         ...
 

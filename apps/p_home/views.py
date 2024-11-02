@@ -42,7 +42,7 @@ class HomeView(TemplateView):
             price = SUBSCRIBE_NANNY_COST,
             quantity = 1
         )
-        return self.payment_helper.create_link(subscribe, self.user.email)
+        return self.payment_helper.create_link(subscribe, self.user.email, self.user.client_type)
     
     def create_parent_payment_url(self) -> str:
         if self.user.is_anonymous:
@@ -52,4 +52,4 @@ class HomeView(TemplateView):
             price = SUBSCRIBE_PARENT_COST,
             quantity = 1
         )
-        return self.payment_helper.create_link(subscribe, self.user.email)
+        return self.payment_helper.create_link(subscribe, self.user.email, self.user.client_type)
