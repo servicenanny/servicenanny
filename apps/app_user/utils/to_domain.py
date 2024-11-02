@@ -10,7 +10,5 @@ def to_domain_user(user_model: AbstractBaseUser) -> DUser:
             client_type = user_model.client_type,
             city = user_model.city,
             is_superuser = user_model.is_superuser,
-            is_staff = user_model.is_staff,
-            first_name = user_model.first_name,
-            last_name = user_model.last_name
+            is_staff = user_model.is_staff
         )

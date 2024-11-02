@@ -1,4 +1,5 @@
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
+from django.urls import reverse
 
 from apps.app_subscribe.auth.mixin import SubscribeRequiredMixin
 from apps.app_worker.repository.nanny_repository import NannyRepository
@@ -17,6 +18,21 @@ class NannySubscribeRequiredMixin(SubscribeRequiredMixin):
 
     def dispatch(self, request: HttpRequest, *args, **kwargs):
         d_user = to_domain_user(request.user)
-        if not self.nanny_repository.is_have_nanny_permission(d_user):
+        if self.nanny_repository.is_have_nanny_permission(d_user):
             return super().dispatch(request, *args, **kwargs)
         return self.handle_no_permission()
+    
+
+class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
+    """Verify that the current nanny is subscriber."""
+
+    def __init__(self):
+        subscribe_type = CLIENT_TYPE.NANNY.value[0]
+        self.nanny_repository: INannyRepository = NannyRepository()
+        super().__init__(subscribe_type)
+
+    def dispatch(self, request: HttpRequest, *args, **kwargs):
+        d_user = to_domain_user(request.user)
+        if not self.nanny_repository.is_have_nanny_permission(d_user):
+            return super().dispatch(request, *args, **kwargs)
+        return HttpResponseRedirect(reverse('nanny_update'))

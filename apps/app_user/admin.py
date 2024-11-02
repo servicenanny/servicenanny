@@ -26,7 +26,6 @@ class UserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        ("Персональная информация", {"fields": ("last_name", "first_name")}),
         (gettext_lazy("Permissions"), {"fields": ("is_staff", "client_type", "is_superuser", "is_active", "groups")}),
     )
 
@@ -37,13 +36,6 @@ class UserAdmin(UserAdmin):
                 "classes": ("wide"),
                 "fields": ("email", "password1", "password2"),
             },
-        ),
-        (
-            "Персональная информация",
-            {
-                "classes": ("collapse"),
-                "fields": ("last_name", "first_name")
-            }
         ),
         (gettext_lazy("Permissions"), {"fields": ("is_staff", "client_type", "is_superuser", "is_active", "groups")}),
     )

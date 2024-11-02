@@ -10,13 +10,12 @@ from domain.repository.nanny_repository import AddNannyDTO
 
 
 class NannyRepository(INannyRepository):
-    # def add(self, dto: AddNannyDTO) -> DNanny:
-    #     result = Nanny(
-    #         user_id = dto.user_id
-    #     )
-    #     result.save()
-    #     return result
-
+    def get_by_user_id(self, user_id, *args, **kwargs):
+        return Nanny.objects.get(user__id = user_id)
+    
+    def is_nanny_exist(self, user_id, *args, **kwargs):
+        return Nanny.objects.filter(user__id = user_id).exists()
+    
     def get_fresh_subscriber_nanny(self, user_subscribe_repository: UserSubscribeRepository, *args, **kwargs) -> QuerySet[Nanny]:
         return Nanny.objects.filter(user__id__in = user_subscribe_repository.get_fresh_subscriber())
     

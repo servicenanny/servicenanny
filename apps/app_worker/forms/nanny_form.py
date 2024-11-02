@@ -13,7 +13,6 @@ class NannyForm(ModelForm):
         self.fields['experience'].widget.attrs['placeholder'] = "10 лет"
         self.fields['describe'].widget.attrs['placeholder'] = "Работаю с детьми от 3-х лет..."
 
-
     class Meta:
         model = Nanny
         fields = [
