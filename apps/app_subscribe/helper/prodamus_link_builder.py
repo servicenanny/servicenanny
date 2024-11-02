@@ -16,7 +16,8 @@ class PaymentLinkBuilder:
         data = {
             "do": dto.do,
             "products": products,
-            "customer_email": dto.customer_email
+            "customer_email": dto.customer_email,
+            "paid_content": dto.paid_content
         }
         data['signature'] = self.sign(data, dto.secret_key)
         link = dto.linktoform + '?' + urlencode(self.http_build_query(data))

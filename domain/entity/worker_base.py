@@ -7,10 +7,6 @@ from .user import User
 class BaseWorkerRequired:
     id: int
     user: User
-
-
-@dataclass
-class BaseWorkerDefaults:
-    phone_number: str = None
-    cost_per_hour: int = None
-    photo: str = None
+    phone_number: str
+    cost_per_hour: str
+    photo: str

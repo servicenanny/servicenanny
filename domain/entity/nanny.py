@@ -1,24 +1,17 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from .worker_base import BaseWorkerDefaults, BaseWorkerRequired
+from .worker_base import BaseWorkerRequired
 from .type import WEEKDAYS
 
 
 @dataclass
-class NannyRequired(BaseWorkerRequired):
+class Nanny(BaseWorkerRequired):
     created_at: datetime
     updated_at: datetime
-    
-
-@dataclass
-class NannyDefaults(BaseWorkerDefaults):
-    work_days: list[WEEKDAYS] = None
-    age: int = None
-    experience: int = None
-    describe: str = None
-
-
-@dataclass
-class Nanny(NannyDefaults, NannyRequired):
-    ...
+    first_name: str
+    last_name: str
+    work_days: list[WEEKDAYS]
+    age: int
+    experience: int
+    describe: str

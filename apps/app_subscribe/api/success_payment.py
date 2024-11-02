@@ -26,7 +26,8 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
         self.user = None
         self.verificate = ProdamusVerificate()
         self.payment_url = getattr(settings, "PAYMENT_URL")
-        self.payment_secret_key = getattr(settings, "PAYMENT_URL")
+        self.payment_secret_key = getattr(settings, "PAYMENT_SECRET_KEY")
+        print(self.payment_secret_key)
         self.user_subscribe_repository: IUserSubscribeRepository = UserSubscribeRepository()
         self.user_repository: IUserRepository = UserRepository()
 

@@ -9,4 +9,5 @@ class PaymentLinkDTO:
     secret_key: str
     customer_email: str
     products: list[Subscribe]
-    do: str = 'link'
+    paid_content: str
+    do: str = 'pay'
