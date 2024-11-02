@@ -13,6 +13,7 @@
 {% block js %}
     {% load static %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
     <script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}
 {% block  header %}
@@ -35,7 +36,7 @@
                 action="{% url "account_signup" %}" 
                 method="post" 
                 id="login-form"
-                class="mb-3 poppins-reg px-sm-0 px-4"
+                class="mb-2 poppins-reg px-sm-0 px-4"
             >
                 {% csrf_token %}
                 <div class="col align-self-center">
@@ -98,9 +99,12 @@
                 <div class="d-none">{{form.client_type}}</div>
 
                 <div class="submit-row d-flex justify-content-center">
-                    <input type="submit" class="btn btn-yellow align-center fs-6 w-lg-25 w-md-50 w-sm-50 w-75 mx-auto fw-bold py-2" value="Зарегестрироваться" />
+                    <input type="submit" class="btn btn-yellow align-center fs-6 w-lg-25 w-md-50 w-sm-50 w-75 mx-auto fw-bold py-2" value="Зарегистрироваться" />
                 </div>
             </form>
+            <div class="text-center my-3">
+                <a href="{% url 'account_login' %}">Уже есть аккаунт?</a>
+            </div>
         </div>
     {% endif %}
 </div>

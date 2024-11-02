@@ -10,6 +10,13 @@
 <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
 <link rel="stylesheet" href="{% static 'css/form.css' %}" />
 {% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+
 {% block header %}
 {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}

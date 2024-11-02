@@ -11,8 +11,8 @@ from domain.entity.subscribe import Subscribe
 from domain.entity.type import CLIENT_TYPE
 from domain.const.subscribe import SUBSCRIBE_NANNY_COST, SUBSCRIBE_NANNY_NAME, SUBSCRIBE_PARENT_COST, SUBSCRIBE_PARENT_NAME
 from domain.services.subscribe import LeftoverDays
-from .services import PaymentHelper
-# Create your views here.
+from apps.app_subscribe.helper import PaymentHelper
+
 
 class HomeView(TemplateView):
     template_name = 'home.html'
@@ -37,7 +37,7 @@ class HomeView(TemplateView):
     
     def create_nanny_payment_url(self) -> str:
         if self.user.is_anonymous:
-            return reverse('account_login')
+            return reverse('account_signup')
         elif self.user.client_type == CLIENT_TYPE.PARENT:
             return ''
         subscribe = Subscribe(
@@ -49,7 +49,7 @@ class HomeView(TemplateView):
     
     def create_parent_payment_url(self) -> str:
         if self.user.is_anonymous:
-            return reverse('account_login')
+            return reverse('account_signup')
         elif self.user.client_type == CLIENT_TYPE.NANNY:
             return ''
         subscribe = Subscribe(
