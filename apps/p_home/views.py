@@ -8,6 +8,7 @@ from django.urls import reverse
 from apps.app_infrastructure.models import City
 from apps.app_subscribe.repository import UserSubscribeRepository
 from domain.entity.subscribe import Subscribe
+from domain.entity.type import CLIENT_TYPE
 from domain.const.subscribe import SUBSCRIBE_NANNY_COST, SUBSCRIBE_NANNY_NAME, SUBSCRIBE_PARENT_COST, SUBSCRIBE_PARENT_NAME
 from domain.services.subscribe import LeftoverDays
 from .services import PaymentHelper
@@ -37,6 +38,8 @@ class HomeView(TemplateView):
     def create_nanny_payment_url(self) -> str:
         if self.user.is_anonymous:
             return reverse('account_login')
+        elif self.user.client_type == CLIENT_TYPE.PARENT:
+            return ''
         subscribe = Subscribe(
             name = SUBSCRIBE_NANNY_NAME,
             price = SUBSCRIBE_NANNY_COST,
@@ -47,6 +50,8 @@ class HomeView(TemplateView):
     def create_parent_payment_url(self) -> str:
         if self.user.is_anonymous:
             return reverse('account_login')
+        elif self.user.client_type == CLIENT_TYPE.NANNY:
+            return ''
         subscribe = Subscribe(
             name = SUBSCRIBE_PARENT_NAME,
             price = SUBSCRIBE_PARENT_COST,
