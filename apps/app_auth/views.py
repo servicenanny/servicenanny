@@ -1,15 +1,26 @@
 import account.forms
 import account.views
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from .forms import SignupForm
+from domain.entity.type import CLIENT_TYPE
 from apps.app_worker.repository import NannyRepository
-from domain.repository.nanny_repository import AddNannyDTO
+
 
 
 class LoginView(account.views.LoginView):
-
     form_class = account.forms.LoginEmailForm
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+    
+    def get_success_url(self, fallback_url=None, **kwargs):
+        if self.request.user.client_type == CLIENT_TYPE.PARENT:
+            return reverse('nannies')
+        elif self.request.user.client_type == CLIENT_TYPE.NANNY:
+            return reverse('nanny_create')
+        return super().get_success_url(fallback_url, **kwargs)
 
 
 class SignupView(account.views.SignupView):

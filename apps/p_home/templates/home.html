@@ -10,8 +10,16 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
 {% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+
 {% block  header %}
 {% endblock %}
+
 {% block  content %}
 <style>
     .markers {
@@ -142,7 +150,7 @@
                             <div class="card-body p-4">
                                 <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 1</h5>
                                 <div class="mt-9">
-                                    <span class="card-text "><a href="#" class="text-dark">Зарегистрируйтесь</a> на сайте и оплатите подписку на месяц.</span>
+                                    <span class="card-text "><a href="{% url 'account_signup' %}" class="text-dark">Зарегистрируйтесь</a> на сайте и оплатите подписку на месяц.</span>
                                 </div>
                             </div>
                           </div>
@@ -300,9 +308,18 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
                                 <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3"><strong>Дополнительные обучения от сервиса</strong></li>
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Подробная анкета в личном кабинете</strong></li>
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Отдел заботы при возникновении вопросов</strong></li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3">
+                                        <strong>Дополнительные обучения от сервиса</strong>
+                                    </li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
+                                        <strong>Подробная анкета в личном кабинете</strong>
+                                    </li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
+                                        <strong>Отдел заботы при возникновении вопросов</strong>
+                                    </li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
+                                        <strong>Гарантия конфиденциальности</strong>
+                                    </li>
                                     <div class="d-flex justify-content-center w-100">
                                         <div class="list-inline-item bg-white py-2 px-4 mt-4 price"><strong>490₽ / 1 месяц</strong></div>
                                     </div>
@@ -343,8 +360,18 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
                                 <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3"><strong>Закрытая страница с базой нянь</strong></li>
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3"><strong>Отдел заботы при возникновении вопросов</strong></li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3">
+                                        <strong>Закрытая страница с базой нянь</strong>
+                                    </li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
+                                        <strong>Отдел заботы при возникновении вопросов</strong>
+                                    </li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
+                                        <strong>Проверенные и обученные няни с пакетом документов</strong>
+                                    </li>
+                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
+                                        <strong>Безопасность и гарантия с нашей стороны</strong>
+                                    </li>
                                     <div class="d-flex justify-content-center w-100">
                                         <div class="list-inline-item bg-white py-2 px-4 mt-4 price"><strong>1490₽ / 1 месяц</strong></div>
                                     </div>

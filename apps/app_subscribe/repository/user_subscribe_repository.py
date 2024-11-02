@@ -42,7 +42,7 @@ class UserSubscribeRepository(IUserSubscribeRepository):
         if user.is_superuser:
             return True
         return UserSubscribe.objects.filter(
-                Q(user__id = user.id) & Q(subscribe_type = subscribe_type)
+                Q(user__id = user.id) & Q(subscribe_type = subscribe_type.value[0])
             ).filter(
                 user__id__in = self.get_fresh_subscriber_by_type(user.client_type)
             ).exists()
