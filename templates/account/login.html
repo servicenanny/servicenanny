@@ -41,7 +41,6 @@
             >
                 {% if form.errors %}
                     <p class="text-danger text-center">Пользователь не найден, попробуйте снова</p>
-                    {{form.errors}}
                 {% endif %}
                 {% csrf_token %}
                 <div class="col align-self-center">
