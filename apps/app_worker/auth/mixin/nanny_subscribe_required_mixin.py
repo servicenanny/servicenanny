@@ -41,7 +41,7 @@ class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
     """Verify that the current nanny is subscriber."""
 
     def __init__(self):
-        subscribe_type = CLIENT_TYPE.NANNY.value[0]
+        subscribe_type = CLIENT_TYPE.NANNY
         self.nanny_repository: INannyRepository = NannyRepository()
         super().__init__(subscribe_type)
 
