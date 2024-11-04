@@ -39,7 +39,7 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
             self.create_user_subscribe(self.user_subscribe_repository, dto)
             return HttpResponseRedirect(self._get_redirect_url())
         except ValueError as e:
-            logger.fatal(f"Subscribe error. User: {request.user}. Error: {e}")
+            logger.warning(f"Subscribe error. User: {request.user}. Error: {e}")
             return HttpResponseServerError(content="Ошибка сервера")
         except Exception as e:
             logger.fatal(str(e))
