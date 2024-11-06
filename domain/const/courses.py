@@ -1,0 +1,1 @@
+NANNY_COURSE_LINK = 'https://docs.google.com/document/d/1YBEQqwiwn3ipw9z8ZAieocdtSUKyyvjC4Jjc9Ibk-QA/edit'
