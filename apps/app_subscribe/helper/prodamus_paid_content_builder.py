@@ -17,7 +17,7 @@ class ProdamusPaidContentBuilder:
     
     def __get_nanny_paid_text(self) -> str:
         return f"""
-                Спасибо за покупку \"{SUBSCRIBE_NANNY_NAME}\" за {SUBSCRIBE_NANNY_COST} рублей. Вы успешно добавлены в базу нянь.\n
+                Спасибо за покупку \"{SUBSCRIBE_NANNY_NAME}\" за {SUBSCRIBE_NANNY_COST} рублей. Вы успешно добавлены в базу нянь.
                 По ссылке вам доступны материалы для обучения: {NANNY_COURSE_LINK}
                 """
     
