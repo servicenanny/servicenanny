@@ -33,6 +33,8 @@ class HomeView(TemplateView):
         context['cities'] = City.objects.all()
         context['nanny_payment_link'] = self.create_nanny_payment_url()
         context['parent_payment_link'] = self.create_parent_payment_url()
+        context['nanny_cost'] = SUBSCRIBE_NANNY_COST
+        context['parent_cost'] = SUBSCRIBE_PARENT_COST
         return context
     
     def create_nanny_payment_url(self) -> str:
