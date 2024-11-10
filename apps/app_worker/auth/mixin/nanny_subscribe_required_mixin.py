@@ -38,7 +38,7 @@ class NannySubscribeRequiredMixin(SubscribeRequiredMixin):
     
 
 class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
-    """Verify that the current nanny is subscriber."""
+    """Verify that the current nanny is subscriber and doesn't create account."""
 
     def __init__(self):
         subscribe_type = CLIENT_TYPE.NANNY
@@ -47,6 +47,15 @@ class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
 
     def dispatch(self, request: HttpRequest, *args, **kwargs):
         d_user = to_domain_user(request.user)
+        self.subscribe_url = self._generate_payment_link(request, *args, **kwargs)
         if not self.nanny_repository.is_have_nanny_permission(d_user):
             return super().dispatch(request, *args, **kwargs)
         return HttpResponseRedirect(reverse('nanny_update'))
+    
+    def _generate_payment_link(self,  request: HttpRequest, *args, **kwargs) -> str:
+        subscribe = Subscribe(
+            name = SUBSCRIBE_NANNY_NAME,
+            price = SUBSCRIBE_NANNY_COST,
+            quantity = 1
+        )
+        return self.payment_helper.create_link(subscribe, request.user.email, self.subscribe_type)
