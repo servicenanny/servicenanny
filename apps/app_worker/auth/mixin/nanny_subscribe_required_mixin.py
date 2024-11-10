@@ -44,6 +44,7 @@ class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
         subscribe_type = CLIENT_TYPE.NANNY
         self.nanny_repository: INannyRepository = NannyRepository()
         super().__init__(subscribe_type)
+        self.payment_helper = PaymentHelper()
 
     def dispatch(self, request: HttpRequest, *args, **kwargs):
         d_user = to_domain_user(request.user)
