@@ -289,13 +289,13 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="d-md-block d-none">
-                                <h1 class="text-uppercase mb-5 w-75 mursgothic">
-                                    <strong>
+                                <strong class="mursgothic">
+                                    <h1 class="text-uppercase mb-5 w-75">
                                         <p class="mb-0">Что входит</p>
                                         <p class="mb-0">в стоимость</p>
                                         <p class="mb-0">подписки</p>
-                                    </strong>
-                                </h1>
+                                    </h1>
+                                </strong>
                             </div>
                             <div class="d-md-block d-none">
                                 <a href="{{ nanny_payment_link }}" class="me-1">
@@ -341,13 +341,13 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="d-md-block d-none">
-                                <h1 class="text-uppercase mb-5 w-75 mursgothic">
-                                    <strong>
+                                <strong class="mursgothic">
+                                    <h1 class="text-uppercase mb-5 w-75">
                                         <p class="mb-0">Что входит</p>
                                         <p class="mb-0">в стоимость</p>
                                         <p class="mb-0">подписки</p>
-                                    </strong>
-                                </h1>
+                                    </h1>
+                                </strong>
                             </div>
                             <div class="d-md-block d-none">
                                 <a href="{{ parent_payment_link }}" class="me-1">
@@ -392,7 +392,9 @@
             </div>
         </div>
     </div>
-    
+
+    {% include "faq.html" %}
+    {% include "reviews.html" %}
 
     <div class="background-blue py-3 poppins-reg">
         <div class="text-overflow-hidden w-100 align-middle">

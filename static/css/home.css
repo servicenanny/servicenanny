@@ -55,6 +55,10 @@
     background-color: var(--main-background-color);
 }
 
+#reviews {
+    background-color: var(--main-background-color);
+}
+
 .price {
     transform: rotate(357deg);
 }

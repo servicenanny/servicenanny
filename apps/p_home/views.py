@@ -5,6 +5,7 @@ from django.http.response import HttpResponse
 from django.views.generic import TemplateView
 from django.urls import reverse
 
+from .models import FAQ, Review
 from apps.app_infrastructure.models import City
 from apps.app_subscribe.repository import UserSubscribeRepository
 from domain.entity.subscribe import Subscribe
@@ -35,6 +36,8 @@ class HomeView(TemplateView):
         context['parent_payment_link'] = self.create_parent_payment_url()
         context['nanny_cost'] = SUBSCRIBE_NANNY_COST
         context['parent_cost'] = SUBSCRIBE_PARENT_COST
+        context['reviews'] = Review.objects.all()
+        context['faqs'] = FAQ.objects.all()
         return context
     
     def create_nanny_payment_url(self) -> str:
