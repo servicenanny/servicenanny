@@ -1,0 +1,36 @@
+<div id="faq" class="container poppins-reg py-5">
+    <div class="mt-5">
+        <strong class="text-uppercase mursgothic">
+            <h1 class="text-lg-start text-md-start text-sm-center text-center">
+                <p class="mb-0">Часто задаваемые</p>
+                <p class="mb-0">вопросы</p>
+            </h1>
+        </strong>
+    </div>
+    <div class="row my-5">
+        {% if faqs is none or faqs|length == 0 %}
+            <p><strong>Часто задаваемые вопросы не найдены</strong></p>
+        {% endif %}
+        {% for faq in faqs %}
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 pe-lg-4 mb-3">
+                    <div class="py-4 px-md-5 px-4 rounded-3 background-blue h-100">
+                        <h5 class="mb-3">
+                            <strong >{{ faq.question }}</strong>
+                        </h5>
+                        <div>{{ faq.answer }}</div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 ps-lg-4 mb-3">
+                    <div class="py-4 px-md-5 px-4 rounded-3 background-yellow h-100">
+                        <h5 class="mb-3">
+                            <strong >{{ faq.question }}</strong>
+                        </h5>
+                        <div>{{ faq.answer }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

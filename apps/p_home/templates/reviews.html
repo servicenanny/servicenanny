@@ -1,0 +1,41 @@
+<div id="reviews">
+    <div class="container poppins-reg py-5">
+        <div class="mt-5">
+            <strong class="text-uppercase mursgothic">
+                <h1 class="text-lg-start text-md-start text-sm-center text-center">
+                    <p>Отзывы о сервисе</p>
+                </h1>
+            </strong>
+        </div>
+        <div class="row my-5 justify-content-center">
+            {% if reviews is none or cities|length == 0 %}
+                <p><strong>Отзывы не найдены</strong></p>
+            {% endif %}
+            {% for review in reviews %}
+                {% if forloop.counter|divisibleby:2 %}
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4">
+                        <div class="py-4 px-md-5 px-4 rounded-3 background-blue h-100">
+                            <h5 class="mb-3">
+                                <strong >{{ review.from_client }}</strong>
+                            </h5>
+                            <div>
+                                {{ review.text }}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4">
+                        <div class="py-4 px-md-5 px-4 rounded-3 background-yellow h-100">
+                            <h5 class="mb-3">
+                                <strong>{{ review.from_client }}</strong>
+                            </h5>
+                            <div>
+                                {{ review.text }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
