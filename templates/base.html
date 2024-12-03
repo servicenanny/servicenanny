@@ -7,6 +7,10 @@
     {% load static %}
     <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
     <meta name="format-detection" content="telephone=no">
+    {% block og %}
+      <meta property="og:image" content="{% static 'img/page-header.jpg' %}"/>
+      <meta property="og:title" content="Сервис для поиска опытных нянь для вашего ребёнка"/>
+    {% endblock %}
     {% load django_bootstrap5 %}
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
