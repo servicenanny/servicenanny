@@ -6,6 +6,16 @@
     background-repeat: no-repeat;
 }
 
+@media (max-width: 576px) {
+    .page-header {
+        background-color: rgb(217, 217, 217);
+        background-position: left;
+        background-blend-mode: multiply;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
 .page-header-info {
     padding-top: 14%;
     padding-bottom: 14%;
