@@ -171,7 +171,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 "account.context_processors.account",
                 "apps.app_subscribe.context_processors.header_context_processor",
-                "apps.app_contrib.context_processor.og_image_context_processor"
+                "apps.app_contrib.context_processor.og_image_context_processor",
+                "apps.app_contrib.context_processor.og_url_context_processor"
             ],
         },
     },
