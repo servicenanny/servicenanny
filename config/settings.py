@@ -294,4 +294,4 @@ PAYMENT_URL = os.environ.get('PAYMENT_URL')
 PAYMENT_SECRET_KEY = os.environ.get('PAYMENT_SECRET_KEY')
 
 #OpenGraph
-OG_IMAGE_PATH = 'img/page-header.jpg'
+OG_IMAGE_PATH = 'img/og_img.jpg'
