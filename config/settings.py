@@ -170,7 +170,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "account.context_processors.account",
-                "apps.app_subscribe.context_processors.header_context_processor"
+                "apps.app_subscribe.context_processors.header_context_processor",
+                "apps.app_contrib.context_processor.og_image_context_processor"
             ],
         },
     },
@@ -290,3 +291,6 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 
 PAYMENT_URL = os.environ.get('PAYMENT_URL')
 PAYMENT_SECRET_KEY = os.environ.get('PAYMENT_SECRET_KEY')
+
+#OpenGraph
+OG_IMAGE_PATH = 'img/page-header.jpg'
