@@ -1,20 +1,16 @@
 const wheel = document.querySelector("#deal-wheel");
-let spinner = wheel.querySelector(".spinner");
-const triggers = wheel.querySelectorAll(".btn-spin");
-const ticker = wheel.querySelector(".ticker");
-const prizeNodes = wheel.querySelectorAll(".prize");
 
 const context_nanny = wheel.querySelector('#spinner-nanny')
-const spinner_nanny = context_nanny.querySelector(".spinner");
-const trigger_nanny = context_nanny.querySelectorAll(".btn-spin");
+const spinnerNanny = context_nanny.querySelector(".spinner");
+const trigger_nanny = context_nanny.querySelector(".btn-spin");
 const ticker_nanny = context_nanny.querySelector(".ticker");
-const prizeNodes_nanny = context_nanny.querySelectorAll(".prize");
+const prizeNodesNanny = context_nanny.querySelectorAll(".prize");
 
 const context_parent = wheel.querySelector('#spinner-parent')
-const spinner_parent = context_nanny.querySelector(".spinner");
-const trigger_parent = context_nanny.querySelectorAll(".btn-spin");
-const ticker_parent = context_nanny.querySelector(".ticker");
-const prizeNodes_parent = context_nanny.querySelectorAll(".prize");
+const spinnerParent = context_parent.querySelector(".spinner");
+const trigger_parent = context_parent.querySelector(".btn-spin");
+const ticker_parent = context_parent.querySelector(".ticker");
+const prizeNodesParent = context_parent.querySelectorAll(".prize");
 
 let tickerAnim;
 let rotation = 0;
@@ -24,8 +20,6 @@ const spinClass = "is-spinning";
 const selectedClass = "selected";
 
 let spinnerStyles;
-const numSlices = prizeNodes.length;
-const prizeSlice = 360 / numSlices;
 
 const spinertia = (min, max) => {
     min = Math.ceil(min);
@@ -42,13 +36,13 @@ const runTickerAnimation = () => {
     tickerAnim = requestAnimationFrame(runTickerAnimation);
 };
 
-const selectPrize = () => {
+const selectPrize = (prizeNodes, prizeSlice, numSlices) => {
     const selected = Math.floor(rotation / prizeSlice) % numSlices;
     prizeNodes[selected].classList.add(selectedClass);
 };
 
-const setPrize = () => {
-    if(wheel.querySelector('#spinner-nanny-tab').getAttribute('aria-selected') === 'true') {
+const setPrize = (is_nanny) => {
+    if(is_nanny) {
         const context = wheel.querySelector('#spinner-nanny')
         const btn = context.querySelector('.btn-spin')
         const promoBlock = context.querySelector(".win");
@@ -86,8 +80,8 @@ const setPrize = () => {
     
 }
 
-const stopAtPrize = (prizeIndex) => {
-    const targetRotation = prizeIndex * prizeSlice + (360 * Math.round(Math.random() * 6)); // 5 полных оборотов для эффекта
+const stopAtPrize = (spinner, prizeSlice, prizeIndex) => {
+    const targetRotation = prizeIndex * prizeSlice + (360 * Math.round(Math.random() * 6)) + Math.round(Math.random() * 10); // 5 полных оборотов для эффекта
     rotation = targetRotation;
     spinner.style.setProperty("--rotate", rotation);
 };
@@ -95,51 +89,49 @@ const stopAtPrize = (prizeIndex) => {
 
 trigger_nanny.addEventListener("click", () => {
     trigger_nanny.disabled = true;
-    spinnerStyles = window.getComputedStyle(spinner_nanny);
+    spinnerStyles = window.getComputedStyle(spinnerNanny);
     wheel.classList.add(spinClass);
-    ticker.style.animation = "none";
-    const desiredPrizeIndex = 4;
-    stopAtPrize(desiredPrizeIndex);
+    ticker_nanny.style.animation = "none";
+    const desiredPrizeIndex = 3;
+    const numSlices = prizeNodesNanny.length;
+    const prizeSlice = 360 / numSlices;
+    stopAtPrize(spinnerNanny, prizeSlice, desiredPrizeIndex);
     runTickerAnimation();
 });
 
 
 trigger_parent.addEventListener("click", () => {
-    trigger_nanny.disabled = true;
-    spinnerStyles = window.getComputedStyle(spinner_parent);
+    trigger_parent.disabled = true;
+    spinnerStyles = window.getComputedStyle(spinnerParent);
     wheel.classList.add(spinClass);
-    ticker.style.animation = "none";
-    const desiredPrizeIndex = 4;
-    stopAtPrize(desiredPrizeIndex);
+    ticker_parent.style.animation = "none";
+    const desiredPrizeIndex = 2;
+    const numSlices = prizeNodesParent.length;
+    const prizeSlice = 360 / numSlices;
+    stopAtPrize(spinnerParent, prizeSlice, desiredPrizeIndex);
     runTickerAnimation();
 });
 
 
-triggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-        if(wheel.querySelector('#spinner-nanny-tab').getAttribute('aria-selected') === 'true') {
-            spinner = wheel.querySelector('#spinner-nanny').querySelector('.spinner');
-            spinnerStyles = window.getComputedStyle(spinner);
-        }
-        else {
-            spinner = wheel.querySelector('#spinner-parent').querySelector('.spinner');
-            spinnerStyles = window.getComputedStyle(spinner);
-        }
-        trigger.disabled = true;
-        wheel.classList.add(spinClass);
-        ticker.style.animation = "none";
-        const desiredPrizeIndex = 4;
-        stopAtPrize(desiredPrizeIndex);
-        runTickerAnimation();
-    });
-})
-
-
-spinner.addEventListener("transitionend", () => {
+spinnerNanny.addEventListener("transitionend", () => {
     cancelAnimationFrame(tickerAnim);
     rotation %= 360;
-    selectPrize();
+    const numSlices = prizeNodesNanny.length;
+    const prizeSlice = 360 / numSlices;
+    selectPrize(prizeNodesNanny, prizeSlice, numSlices);
     wheel.classList.remove(spinClass);
-    spinner.style.setProperty("--rotate", rotation);
-    setPrize()
+    spinnerNanny.style.setProperty("--rotate", rotation);
+    setPrize(true)
+});
+
+
+spinnerParent.addEventListener("transitionend", () => {
+    cancelAnimationFrame(tickerAnim);
+    rotation %= 360;
+    const numSlices = prizeNodesParent.length;
+    const prizeSlice = 360 / numSlices;
+    selectPrize(prizeNodesParent, prizeSlice, numSlices);
+    wheel.classList.remove(spinClass);
+    spinnerParent.style.setProperty("--rotate", rotation);
+    setPrize(false)
 });
