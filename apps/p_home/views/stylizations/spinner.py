@@ -5,7 +5,7 @@ from domain.services.prizes.dto import PrizesSpinnerDTO
 
 class SpinnerStylization:
     def get_conic_gradient(self, prizes: list[PrizesSpinnerDTO]) -> str:
-        style = 'conic-gradient(from -90deg, '
+        style = 'conic-gradient(from -25deg, '
         count = len(prizes)
         for i in range(count-1, 0, -1):
             degree = str(self.__deal_wheel_degree(count, i)).replace(',', '.')

@@ -10,4 +10,4 @@ register = template.Library()
 
 @register.filter
 def rotation(arr: Sized, counter: int):
-    return math.trunc(((360 / len(arr) * (counter-1)) * -1) - 180 / len(arr))
+    return math.trunc(((360 / len(arr) * (counter-1)) * -1))
