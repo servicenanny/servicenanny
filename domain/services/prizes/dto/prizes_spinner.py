@@ -10,3 +10,6 @@ class PrizesSpinnerDTO:
 
     def __eq__(self, value):
         self.text == value.text
+
+    def __str__(self):
+        return self.text

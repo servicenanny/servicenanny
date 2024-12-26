@@ -68,7 +68,7 @@
     display: flex!important;
     align-items: center!important;
     /* задаём отступы от краёв блока */
-    padding: 0 calc(var(--size) / 9) 0 calc(var(--size) / 20)!important;
+    padding: 0 calc(var(--size) / 6.5) 0 calc(var(--size) / 20)!important;
     /* устанавливаем размеры */
     width: 50%!important;
     height: 50%!important;
