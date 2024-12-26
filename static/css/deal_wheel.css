@@ -32,9 +32,13 @@
     grid-area: spinner;
 }
 
-.spinner_block .btn-spin{
+.btn-spin{
     grid-area: trigger;
     justify-self: center;
+}
+
+.win {
+    grid-area: trigger;
 }
 
 .spinner {
@@ -76,7 +80,6 @@
     user-select: none;
 }
 
-
 .ticker {
     /* добавляем относительное позиционирование */
     position: relative;
@@ -91,4 +94,41 @@
     z-index: 1;
     /* форма язычка */
     clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+/* анимируем выпавший сектор */
+.prize.selected .text {
+    /* делаем текст белым */
+    color: white;
+    /* настраиваем длительность анимации */
+    animation: selected 800ms ease;
+}
+
+.is-spinning .spinner {
+    transition: transform 8s cubic-bezier(0.1, -0.01, 0, 1);
+}
+  
+/* настраиваем анимацию текста на выпавшем секторе по кадрам */
+@keyframes selected {
+    /* что происходит на 25% от начала анимации */
+    25% {
+      /* увеличиваем текст в 1,25 раза */
+      transform: scale(1.25);
+      /* добавляем тексту тень */
+      text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.1);
+    }
+    40% {
+      transform: scale(0.92);
+      text-shadow: 0 0 0 hsla(0 0% 0% / 0.2);
+    }
+    60% {
+      transform: scale(1.02);
+      text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1);
+    }
+    75% {
+      transform: scale(0.98);
+    }
+    85% {
+      transform: scale(1);
+    }
 }
