@@ -27,6 +27,7 @@
     .w-md-75 { width: 75%!important; }
     .w-md-100 { width: 100%!important; }
     .fs-md-5 { font-size: 1.25rem !important; }
+    .fs-md-4 { font-size: calc(1.275rem + .3vw)!important }
 }
 
 /* LG breakpoint */
@@ -119,4 +120,8 @@
 
 .nav-user-type.active {
     background-color: var(--blue-color);
+}
+
+.fs-8 {
+    font-size: 0.7rem;
 }
