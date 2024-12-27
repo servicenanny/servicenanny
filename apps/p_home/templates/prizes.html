@@ -39,7 +39,7 @@
         <div class="tab-pane fade show active" id="spinner-nanny" role="tabpanel" aria-labelledby="spinner-nanny-tab">
             <div class="spinner_block">
                 <!-- блок с призами -->
-                <ul class="spinner" style="background: {{ nanny_spinner_style }};">
+                <ul class="spinner ps-0 pe-0" style="background: {{ nanny_spinner_style }};">
                     {% load deal_wheel %}
                     {% for prize in nanny_prizes %}
                         <li class="prize" style="--rotate: {{ nanny_prizes | rotation:forloop.counter}}deg">
@@ -62,7 +62,7 @@
         <div class="tab-pane fade spinner_block" id="spinner-parent" role="tabpanel" aria-labelledby="spinner-parent-tab">
             <div class="spinner_block">
                 <!-- блок с призами -->
-                <ul class="spinner" style="background: {{ parent_spinner_style }};">
+                <ul class="spinner ps-0 pe-0" style="background: {{ parent_spinner_style }};">
                     {% load deal_wheel %}
                     {% for prize in parent_prizes %}
                         <li class="prize" style="--rotate: {{ parent_prizes | rotation:forloop.counter}}deg">
