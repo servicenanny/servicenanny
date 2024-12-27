@@ -29,17 +29,17 @@ PRIZES_PARENT = (
         promo = 'PARENT'
     ),
     PrizesSpinnerDTO(
-        text = "Обучение",
+        text = "Обучение по самопрограм- мированию",
         color = "rgba(176, 242, 255, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
-        text = "Гайд",
+        text = "Гайд от нейропсихолога",
         color = "rgba(255, 167, 167, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
-        text = "Книга",
+        text = "Книга от основателя сервиса",
         color = "rgba(255, 246, 142, 1)",
         chance = 0
     ),
@@ -79,12 +79,12 @@ PRIZES_NANNY = (
         promo = 'NANNY'
     ),
     PrizesSpinnerDTO(
-        text = "Обучение",
+        text = "Обучение по самопрограм- мированию",
         color = "rgba(176, 242, 255, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
-        text = "Гайд",
+        text = "Гайд от нейропсихолога",
         color = "rgba(255, 246, 142, 1)",
         chance = 0
     ),
