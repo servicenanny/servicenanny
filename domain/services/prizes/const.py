@@ -84,7 +84,7 @@ PRIZES_NANNY = (
         chance = 0
     ),
     PrizesSpinnerDTO(
-        text = "Гайд от нейропсихолога",
+        text = "Гайд от нейропсихолог",
         color = "rgba(255, 246, 142, 1)",
         chance = 0
     ),
