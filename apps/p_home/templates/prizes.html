@@ -1,4 +1,6 @@
 <div id="deal-wheel" class="poppins-reg py-5">
+    {% load static %}
+    <script src={% static 'js/deal_wheel_view.js' %}></script>
     <strong class="mursgothic">
         <h1 class="text-uppercase text-center my-5">
             <p class="mb-0">РУЛЕТКА</p> 
@@ -41,7 +43,7 @@
                     {% load deal_wheel %}
                     {% for prize in nanny_prizes %}
                         <li class="prize" style="--rotate: {{ nanny_prizes | rotation:forloop.counter}}deg">
-                            <span class="fs-4">{{prize.text}}</span>
+                            <span class="fs-md-4 fs-8">{{prize.text}}</span>
                         </li>
                     {% endfor %}
                 </ul>
@@ -64,7 +66,7 @@
                     {% load deal_wheel %}
                     {% for prize in parent_prizes %}
                         <li class="prize" style="--rotate: {{ parent_prizes | rotation:forloop.counter}}deg">
-                            <span class="fs-4">{{prize.text}}</span>
+                            <span class="fs-md-4 fs-8">{{prize.text}}</span>
                         </li>
                     {% endfor %}
                 </ul>
@@ -81,6 +83,5 @@
             </div>
         </div>
     </div>
-    {% load static %}
     <script src={% static 'js/deal_wheel.js' %}></script>
 </div>
