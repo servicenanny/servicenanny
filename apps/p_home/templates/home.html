@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/header.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/deal_wheel.css' %}" />
 {% endblock %}
 
 {% block js %}
@@ -71,6 +72,8 @@
         </div>
         <div class="triangle"></div>
     </div>
+
+    {% include "prizes.html" %}
 
     <div id="how-to-use">
         <div class="container py-5">
@@ -261,8 +264,11 @@
                         <button 
                             class="nav-user-type active px-5 poppins-semibold" 
                             id="in_subscribe-nanny-tab" 
-                            data-bs-toggle="pill" data-bs-target="#in_subscribe-nanny" 
-                            type="button" role="tab" aria-controls="in_subscribe-nanny" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#in_subscribe-nanny" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="in_subscribe-nanny" 
                             aria-selected="true"
                         >
                             <strong>Я — няня</strong>

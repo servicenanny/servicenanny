@@ -35,8 +35,16 @@
     margin: 0;
 }
 
-#how-to-use {
+#deal-wheel {
     background-color: var(--main-background-color);
+}
+
+.ticker {
+    background-color: var(--main-background-color)!important;
+}
+
+#how-to-use {
+    background-color: var(--white-background-color);
 }
 
 .card {
