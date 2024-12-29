@@ -42,8 +42,7 @@ PRIZES_PARENT = (
         text = "Книга от основателя сервиса",
         color = "rgba(255, 246, 142, 1)",
         chance = 0
-    ),
-    
+    ),  
 )
 
 PRIZES_NANNY = (
