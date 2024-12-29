@@ -15,6 +15,7 @@ from domain.entity.type.client_type import CLIENT_TYPE
 from domain.const.subscribe import SUBSCRIBE_NANNY_COST, SUBSCRIBE_PARENT_COST
 from domain.services.subscribe import LeftoverDays
 from domain.services.prizes import PrizesSpinner
+from domain.services.views.why_choose_us import NANNY_WHY_CHOOSE_US, PARENT_WHY_CHOOSE_US
 
 
 class HomeView(TemplateView):
@@ -52,4 +53,6 @@ class HomeView(TemplateView):
         context['faqs'] = FAQ.objects.all()
         context['nanny_spinner_style'] = self.stylization.get_conic_gradient(context['nanny_prizes'])
         context['parent_spinner_style'] = self.stylization.get_conic_gradient(context['parent_prizes'])
+        context['nanny_why_choose_us'] = NANNY_WHY_CHOOSE_US
+        context['parent_why_choose_us'] = PARENT_WHY_CHOOSE_US
         return context
