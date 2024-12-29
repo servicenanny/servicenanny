@@ -1,12 +1,12 @@
 <div class="why-choose-us-block poppins-reg py-5 container">
     <strong class="mursgothic">
-        <h1 class="text-uppercase text-center my-5">
+        <h1 class="text-md-start text-center text-uppercase my-5">
             {% for paragraph in wcu.title %}
                 <p class="mb-0">{{ paragraph }}</p>
             {% endfor %}
         </h1>
     </strong>
-    <div class="justify-content-center row w-100">
+    <div class="row justify-content-center">
         {% load static %}
         {% for reason in wcu.reasons %}
             <div class="col-lg-4 col-12 mb-4">

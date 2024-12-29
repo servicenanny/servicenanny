@@ -1,0 +1,7 @@
+.img-block {
+    padding-top: calc(33% + 20vh);
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
     <link rel="stylesheet" href="{% static 'css/deal_wheel.css' %}" />
     <link rel="stylesheet" href="{% static 'css/why_choose_us.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/img_block.css' %}" />
 {% endblock %}
 
 {% block js %}
@@ -185,6 +186,8 @@
         </div>
     </div>
 
+    {% include "img_block.html" with  img='img/block/1.jpg' %}
+
     <div id="cities-block" class="py-5">
         <div class="container">
             <div class="row">
@@ -214,7 +217,9 @@
 
     <div id="why_choose_us">
         {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
+        {% include "img_block.html" with  img='img/block/2.jpg' %}
         {% include 'why_choose_us.html' with wcu=parent_why_choose_us %}
+        {% include "img_block.html" with  img='img/block/3.jpg' %}
     </div>
 
     <div id="in_subscribe">
