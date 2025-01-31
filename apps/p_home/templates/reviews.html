@@ -8,34 +8,48 @@
             </strong>
         </div>
         <div class="row my-5 justify-content-center">
-            {% if reviews is none or cities|length == 0 %}
+            {% if reviews is none or reviews|length == 0 %}
                 <p><strong>Отзывы не найдены</strong></p>
             {% endif %}
             {% for review in reviews %}
-                {% if forloop.counter|divisibleby:2 %}
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4">
-                        <div class="py-4 px-md-5 px-4 rounded-3 background-blue h-100">
-                            <h5 class="mb-3">
-                                <strong >{{ review.from_client }}</strong>
-                            </h5>
-                            <div>
-                                {{ review.text }}
-                            </div>
-                        </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4">
+                    {% if forloop.counter|divisibleby:3 %}
+                    <div class="py-2 px-md-5 px-4 rounded-3 mb-2 h-75 background-yellow">
+                    {% else %}
+                    <div class="py-2 px-md-5 px-4 rounded-3 mb-2 h-75 background-blue">
+                    {% endif %}
+                        <h6 class="justify-content-center">
+                            <strong >{{ review.from_client }}</strong>
+                        </h6>
                     </div>
-                {% else %}
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4">
-                        <div class="py-4 px-md-5 px-4 rounded-3 background-yellow h-100">
-                            <h5 class="mb-3">
-                                <strong>{{ review.from_client }}</strong>
-                            </h5>
-                            <div>
-                                {{ review.text }}
+                    <div class="review">
+                        {% if review.is_video %}
+                            <video class="w-100 h-100" controls>
+                                <source src="{{ review.file_url }}" type="video/mp4">
+                            </video>
+                        {% elif review.is_audio %}
+                            <div class="audio-message">
+                                <audio src="{{ review.file_url }}" id="audioPlayer"></audio>
+                                <button id="playPauseBtn" class="play-pause-btn">▶️</button>
+                                <div class="progress-bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <span class="time">0:00</span>
+                                <canvas id="waveform" width="200" height="40"></canvas>
                             </div>
-                        </div>
+                            {% comment %} <audio src="{{ review.file_url }}" id="audioPlayer" controls></audio>
+                            <button id="playPauseBtn" class="play-pause-btn">▶️</button>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <span class="time">0:00</span>
+                            <canvas id="waveform" width="200" height="40"></canvas> {% endcomment %}
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
             {% endfor %}
         </div>
     </div>
+    {% load static %}
+    <script src="{% static 'js/audio.js' %}"></script>
 </div>

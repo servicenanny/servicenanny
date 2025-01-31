@@ -7,6 +7,7 @@ from django.urls import reverse
 
 from .stylizations import SpinnerStylization
 from apps.p_home.models import FAQ, Review
+from apps.p_home.services.reviews_view import ReviewsView
 from apps.app_infrastructure.models import City
 from apps.app_subscribe.repository import UserSubscribeRepository
 from apps.app_subscribe.services.payment_url_factory import ParentPaymentURLFactory, NannyPaymentURLFactory
@@ -30,6 +31,7 @@ class HomeView(TemplateView):
         self.parent_factory = ParentPaymentURLFactory()
         self.prizes = PrizesSpinner()
         self.stylization = SpinnerStylization()
+        self.reviews = ReviewsView()
 
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         self.user = request.user
@@ -49,8 +51,7 @@ class HomeView(TemplateView):
             context['parent_payment_link'] = self.parent_factory.create_payment_url(d_user)
         context['nanny_cost'] = SUBSCRIBE_NANNY_COST
         context['parent_cost'] = SUBSCRIBE_PARENT_COST
-        context['reviews'] = Review.objects.all()
-        context['faqs'] = FAQ.objects.all()
+        context['reviews'] = self.reviews.get()
         context['nanny_spinner_style'] = self.stylization.get_conic_gradient(context['nanny_prizes'])
         context['parent_spinner_style'] = self.stylization.get_conic_gradient(context['parent_prizes'])
         context['nanny_why_choose_us'] = NANNY_WHY_CHOOSE_US
