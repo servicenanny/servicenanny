@@ -7,43 +7,28 @@
                 </h1>
             </strong>
         </div>
-        <div class="row my-5 justify-content-center">
+        <div class="row w-100 my-5 justify-content-center">
             {% if reviews is none or reviews|length == 0 %}
                 <p><strong>Отзывы не найдены</strong></p>
             {% endif %}
             {% for review in reviews %}
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4">
                     {% if forloop.counter|divisibleby:3 %}
-                    <div class="py-2 px-md-5 px-4 rounded-3 mb-2 h-75 background-yellow">
+                    <div class="card-review card-text-review background-yellow">
                     {% else %}
-                    <div class="py-2 px-md-5 px-4 rounded-3 mb-2 h-75 background-blue">
+                    <div class="card-review card-text-review background-blue">
                     {% endif %}
-                        <h6 class="justify-content-center">
-                            <strong >{{ review.from_client }}</strong>
-                        </h6>
+                        <div class="card-text-content">
+                            <h6>
+                                <strong >{{ review.from_client }}</strong>
+                            </h6>
+                        </div>
                     </div>
                     <div class="review">
                         {% if review.is_video %}
-                            <video class="w-100 h-100" controls>
-                                <source src="{{ review.file_url }}" type="video/mp4">
-                            </video>
+                            {% include "video_card.html" with review=review %}
                         {% elif review.is_audio %}
-                            <div class="audio-message">
-                                <audio src="{{ review.file_url }}" id="audioPlayer"></audio>
-                                <button id="playPauseBtn" class="play-pause-btn">▶️</button>
-                                <div class="progress-bar">
-                                    <div class="progress"></div>
-                                </div>
-                                <span class="time">0:00</span>
-                                <canvas id="waveform" width="200" height="40"></canvas>
-                            </div>
-                            {% comment %} <audio src="{{ review.file_url }}" id="audioPlayer" controls></audio>
-                            <button id="playPauseBtn" class="play-pause-btn">▶️</button>
-                            <div class="progress-bar">
-                                <div class="progress"></div>
-                            </div>
-                            <span class="time">0:00</span>
-                            <canvas id="waveform" width="200" height="40"></canvas> {% endcomment %}
+                            {% include "audio_card.html" with review=review %}
                         {% endif %}
                     </div>
                 </div>
@@ -51,5 +36,5 @@
         </div>
     </div>
     {% load static %}
-    <script src="{% static 'js/audio.js' %}"></script>
+    <script src="{% static 'js/review.js' %}"></script>
 </div>
