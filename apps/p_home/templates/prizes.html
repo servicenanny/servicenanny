@@ -39,7 +39,7 @@
             <div class="spinner_block">
                 <!-- блок с призами -->
                 <ul class="spinner ps-0 pe-0" style="background: {{ nanny_spinner_style }};">
-                    {% load deal_wheel %}
+                    {% load p_home %}
                     {% for prize in nanny_prizes %}
                         <li class="prize" style="--rotate: {{ nanny_prizes | rotation:forloop.counter}}deg">
                             <span class="fs-md-4 fs-sm-6 fs-8">{{prize.text}}</span>
@@ -62,7 +62,7 @@
             <div class="spinner_block">
                 <!-- блок с призами -->
                 <ul class="spinner ps-0 pe-0" style="background: {{ parent_spinner_style }};">
-                    {% load deal_wheel %}
+                    {% load p_home %}
                     {% for prize in parent_prizes %}
                         <li class="prize" style="--rotate: {{ parent_prizes | rotation:forloop.counter}}deg">
                             <span class="fs-md-4 fs-sm-6 fs-8">{{prize.text}}</span>
