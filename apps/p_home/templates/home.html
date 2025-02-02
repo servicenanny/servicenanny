@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{% static 'css/deal_wheel.css' %}" />
     <link rel="stylesheet" href="{% static 'css/why_choose_us.css' %}" />
     <link rel="stylesheet" href="{% static 'css/img_block.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 {% endblock %}
 
 {% block js %}
@@ -373,10 +375,6 @@
             </div>
         </div>
     </div>
-
-    {% include "faq.html" %}
-    {% include "reviews.html" %}
-
     <div class="background-blue py-3 poppins-reg">
         <div class="text-overflow-hidden w-100 align-middle">
             <strong>абота няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>р</strong>
@@ -404,5 +402,7 @@
             </div>
         </div>
     </div>
+    
+    {% include "reviews.html" %}
 </div>
 {% endblock %}
