@@ -1,6 +1,7 @@
-from .deal_wheel import rotation
+from .p_home import rotation, int_divide
 
 
 __all__ = [
-    "rotation"
+    "rotation",
+    "int_divide"
 ]

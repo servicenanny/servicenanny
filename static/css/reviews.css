@@ -1,29 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    min-height: 100vh;
-    justify-content: center;
-}
-
-.review-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 900px;
-    max-height: 450px;
-    height: 450px;
-}
-@media (max-width: 768px) {
-    .review-container {
-        grid-template-columns: 1fr;
-        padding: 10px;
-    }
-}
 .card-review {
-    background: white;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -31,8 +6,22 @@ body {
     height: 450px;
 }
 
-.card-review:hover {
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+@media(min-width: 576px) {
+    .card-review {
+        height: 550px;
+    }
+}
+
+@media(min-width: 768px) {
+    .card-review {
+        height: 800px;
+    }
+}
+
+@media(min-width: 975px) {
+    .card-review {
+        height: 550px;
+    }
 }
 
 .card-review video{
@@ -42,12 +31,47 @@ body {
     border-radius: 15px 15px 0 0;
 }
 
+.card-text-content p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.card-image-review {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-text-review {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+}
+
+.card-text-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
 
 .card-text-content p {
     margin: 5px 0 0;
     font-size: 0.9rem;
     color: #666;
 }
+
 .controls-box {
     position: absolute;
     bottom: 10px;
@@ -72,7 +96,7 @@ body {
 }
 
 .play-btn:hover {
-    color: #ff5722;
+    color: #00abd6;
 }
 
 .progress-container {
@@ -87,7 +111,7 @@ body {
 .progress-bar {
     width: 0%;
     height: 100%;
-    background-color: #ff5722;
+    background-color: #00abd6;
     border-radius: 5px;
     transition: width 0.1s linear;
 }
@@ -165,39 +189,4 @@ body {
 
 .play-btn-video.playing i {
     transform: scale(1); 
-}
-.card-image-review {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px 15px 0 0;
-}
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.card-text-review {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    text-align: center;
-}
-
-.card-text-content h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.card-text-content p {
-    margin: 5px 0 0;
-    font-size: 0.9rem;
-    color: #666;
 }
