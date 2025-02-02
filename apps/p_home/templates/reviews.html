@@ -15,12 +15,12 @@
                 <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4 justify-content-center">
                     {% load p_home %}
                     {% if forloop.counter|add:"-1"|int_divide:3|divisibleby:2%}
-                    <div class="card-review card-text-review background-yellow">
+                    <div class="card-text-review px-4 py-2 background-yellow">
                     {% else %}
-                    <div class="card-review card-text-review background-blue">
+                    <div class="card-text-review px-4 py-2 background-blue">
                     {% endif %}
                         <div class="card-text-content">
-                            <h6>
+                            <h6 class="my-0">
                                 <strong >{{ review.from_client }}</strong>
                             </h6>
                         </div>

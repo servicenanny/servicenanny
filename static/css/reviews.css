@@ -1,9 +1,54 @@
 .card-review {
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     position: relative;
     height: 450px;
+}
+
+.card-review video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-text-content {
+    align-items: center;
+}
+
+.card-text-content p {
+    margin: 5px 0 0;
+}
+
+.card-image-review {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-text-review {
+    height: 5em;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.card-text-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.card-text-content p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #666;
 }
 
 @media(min-width: 576px) {
@@ -22,54 +67,6 @@
     .card-review {
         height: 550px;
     }
-}
-
-.card-review video{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px 15px 0 0;
-}
-
-.card-text-content p {
-    margin: 5px 0 0;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.card-image-review {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px 15px 0 0;
-}
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.card-text-review {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    text-align: center;
-}
-
-.card-text-content h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.card-text-content p {
-    margin: 5px 0 0;
-    font-size: 0.9rem;
-    color: #666;
 }
 
 .controls-box {
