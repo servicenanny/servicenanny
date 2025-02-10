@@ -77,153 +77,7 @@
         <div class="triangle"></div>
     </div>
 
-    {% include "prizes.html" %}
-
-    <div id="how-to-use">
-        <div class="container py-5">
-            <strong class="mursgothic">
-                <h1 class="text-uppercase text-center my-5">
-                    <p class="mb-0">Как пользоваться</p> 
-                    <p>сервисом</p>
-                </h1>
-            </strong>
-            <div class="justify-content-center d-flex">
-                <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
-                    <li class="nav-item navbar-background" role="presentation">
-                        <button 
-                            class="nav-user-type active px-5 poppins-semibold" 
-                            id="pills-nanny-tab" 
-                            data-bs-toggle="pill" 
-                            data-bs-target="#pills-nanny" 
-                            type="button" 
-                            role="tab" 
-                            aria-controls="pills-nanny" 
-                            aria-selected="true"
-                        ><strong>Я — няня</strong></button>
-                    </li>
-                    <li class="nav-item navbar-background" role="presentation">
-                        <button 
-                            class="nav-user-type px-5 poppins-semibold" 
-                            id="pills-parent-tab" 
-                            data-bs-toggle="pill" 
-                            data-bs-target="#pills-parent" 
-                            type="button" 
-                            role="tab" 
-                            aria-controls="pills-parent" 
-                            aria-selected="false"
-                        ><strong>Я — родитель</strong></button>
-                    </li>
-                </ul>
-            </div>
-            <div class="tab-content poppins-reg" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-nanny" role="tabpanel" aria-labelledby="pills-nanny-tab">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                          <div class="card border-0 h-100">
-                            <div class="card-body p-4">
-                                <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 1</h5>
-                                <div class="mt-9">
-                                    <span class="card-text "><a href="{% url 'account_signup' %}" class="text-dark">Зарегистрируйтесь</a> на сайте и оплатите подписку на месяц.</span>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                            <div class="card border-0 h-100">
-                              <div class="card-body p-4">
-                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 2</h5>
-                                  <div class="mt-9">
-                                      <span class="card-text ">Заполните подробно анкету в личном кабинете, не забудьте указать контактные данные.</span>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                            <div class="card border-0 h-100">
-                              <div class="card-body p-4">
-                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 3</h5>
-                                  <div class="mt-9">
-                                      <span class="card-text ">В скором времени с вами свяжется родитель, ожидайте сообщение в WhatsApp или звонок.</span>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-parent" role="tabpanel" aria-labelledby="pills-parent-tab">
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                          <div class="card card-step border-0 h-100">
-                            <div class="card-body p-4">
-                                <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 1</h5>
-                                <div class="mt-9">
-                                    <span class="card-text "><a href="{% url 'account_signup' %}" class="text-dark">Зарегистрируйтесь</a> на сайте и оплатите подписку на месяц.</span>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                            <div class="card border-0 h-100">
-                              <div class="card-body p-4">
-                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 2</h5>
-                                  <div class="mt-9">
-                                      <span class="card-text ">После оплаты вам на почту придут доступы к закрытой базе нянь.</span>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
-                            <div class="card border-0 h-100">
-                              <div class="card-body p-4">
-                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 3</h5>
-                                  <div class="mt-9">
-                                      <span class="card-text ">Изучайте анкеты на странице с базой нянь, выбирайте кандидатов и связывайтесь с ними с помощью звонка или WhatsApp.</span>
-                                  </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% include "img_block.html" with  img='img/block/1.jpg' %}
-
-    <div id="cities-block" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-md-12 col-sm-12 col-12 row mb-5 mx-0">
-                    <div class="col-lg-12 col-md-6 col-sm-12 col-12 px-0">
-                        <strong class="mursgothic">
-                            <h1 class="text-lg-start text-md-start text-sm-center text-center text-uppercase">
-                                <strong>где работает сервис — приложение доступно в 63 городах:</strong>
-                            </h1>
-                        </strong>
-                    </div>
-                    <div class="text-lg-start text-md-start text-sm-center text-center col-lg-12 col-md-6 col-sm-12 col-12 poppins-reg px-0">
-                        {% if cities is not none and cities|length > 0 %}
-                            <span>{{ cities|join:' · '|escape }}</span>
-                        {% else %}
-                            <span><strong>Города не найдены</strong></span>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12 col-12 map">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A24c954f43c03612abc1f2dd8542b637045ae3ba93bc26dcb46017b23d49089a9&amp;source=constructor" height="400" frameborder="0" class="w-100"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="why_choose_us">
-        {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
-        {% include "img_block.html" with  img='img/block/2.jpg' %}
-        {% include 'why_choose_us.html' with wcu=parent_why_choose_us %}
-        {% include "img_block.html" with  img='img/block/3.jpg' %}
-    </div>
-
+    <!--Что входит в стоимость подписку-->
     <div id="in_subscribe">
         <div class="container py-5">
             <div class="d-sm-block d-md-none">
@@ -375,6 +229,154 @@
             </div>
         </div>
     </div>
+
+    <div id="how-to-use">
+        <div class="container py-5">
+            <strong class="mursgothic">
+                <h1 class="text-uppercase text-center my-5">
+                    <p class="mb-0">Как пользоваться</p> 
+                    <p>сервисом</p>
+                </h1>
+            </strong>
+            <div class="justify-content-center d-flex">
+                <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
+                    <li class="nav-item navbar-background" role="presentation">
+                        <button 
+                            class="nav-user-type active px-5 poppins-semibold" 
+                            id="pills-nanny-tab" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#pills-nanny" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="pills-nanny" 
+                            aria-selected="true"
+                        ><strong>Я — няня</strong></button>
+                    </li>
+                    <li class="nav-item navbar-background" role="presentation">
+                        <button 
+                            class="nav-user-type px-5 poppins-semibold" 
+                            id="pills-parent-tab" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#pills-parent" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="pills-parent" 
+                            aria-selected="false"
+                        ><strong>Я — родитель</strong></button>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content poppins-reg" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-nanny" role="tabpanel" aria-labelledby="pills-nanny-tab">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
+                          <div class="card border-0 h-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 1</h5>
+                                <div class="mt-9">
+                                    <span class="card-text "><a href="{% url 'account_signup' %}" class="text-dark">Зарегистрируйтесь</a> на сайте и оплатите подписку на месяц.</span>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
+                            <div class="card border-0 h-100">
+                              <div class="card-body p-4">
+                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 2</h5>
+                                  <div class="mt-9">
+                                      <span class="card-text ">Заполните подробно анкету в личном кабинете, не забудьте указать контактные данные.</span>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
+                            <div class="card border-0 h-100">
+                              <div class="card-body p-4">
+                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 3</h5>
+                                  <div class="mt-9">
+                                      <span class="card-text ">В скором времени с вами свяжется родитель, ожидайте сообщение в WhatsApp или звонок.</span>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-parent" role="tabpanel" aria-labelledby="pills-parent-tab">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
+                          <div class="card card-step border-0 h-100">
+                            <div class="card-body p-4">
+                                <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 1</h5>
+                                <div class="mt-9">
+                                    <span class="card-text "><a href="{% url 'account_signup' %}" class="text-dark">Зарегистрируйтесь</a> на сайте и оплатите подписку на месяц.</span>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
+                            <div class="card border-0 h-100">
+                              <div class="card-body p-4">
+                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 2</h5>
+                                  <div class="mt-9">
+                                      <span class="card-text ">После оплаты вам на почту придут доступы к закрытой базе нянь.</span>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
+                            <div class="card border-0 h-100">
+                              <div class="card-body p-4">
+                                  <h5 class="card-title text-uppercase h2 mb-5 mursgothic">Шаг 3</h5>
+                                  <div class="mt-9">
+                                      <span class="card-text ">Изучайте анкеты на странице с базой нянь, выбирайте кандидатов и связывайтесь с ними с помощью звонка или WhatsApp.</span>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "img_block.html" with  img='img/block/1.jpg' %}
+
+    <div id="cities-block" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12 row mb-5 mx-0">
+                    <div class="col-lg-12 col-md-6 col-sm-12 col-12 px-0">
+                        <strong class="mursgothic">
+                            <h1 class="text-lg-start text-md-start text-sm-center text-center text-uppercase">
+                                <strong>где работает сервис — приложение доступно в 63 городах:</strong>
+                            </h1>
+                        </strong>
+                    </div>
+                    <div class="text-lg-start text-md-start text-sm-center text-center col-lg-12 col-md-6 col-sm-12 col-12 poppins-reg px-0">
+                        {% if cities is not none and cities|length > 0 %}
+                            <span>{{ cities|join:' · '|escape }}</span>
+                        {% else %}
+                            <span><strong>Города не найдены</strong></span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12 map">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A24c954f43c03612abc1f2dd8542b637045ae3ba93bc26dcb46017b23d49089a9&amp;source=constructor" height="400" frameborder="0" class="w-100"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="why_choose_us">
+        {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
+        {% include "img_block.html" with  img='img/block/2.jpg' %}
+        {% include 'why_choose_us.html' with wcu=parent_why_choose_us %}
+        {% include "img_block.html" with  img='img/block/3.jpg' %}
+    </div>
+
+    {% include "prizes.html" %}
+
     <div class="background-blue py-3 poppins-reg">
         <div class="text-overflow-hidden w-100 align-middle">
             <strong>абота няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>р</strong>
