@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{% static 'css/header.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/deal_wheel.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/why_choose_us.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/img_block.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 {% endblock %}
 
 {% block js %}
@@ -181,6 +186,8 @@
         </div>
     </div>
 
+    {% include "img_block.html" with  img='img/block/1.jpg' %}
+
     <div id="cities-block" class="py-5">
         <div class="container">
             <div class="row">
@@ -209,41 +216,15 @@
 
 
     <div id="why_choose_us">
-        <div class="container py-5">
-            <strong class="mursgothic">
-                <h1 class="my-5 text-uppercase text-lg-start text-md-start text-sm-center text-center">
-                    почему выбирают наш сервис
-                </h1>
-            </strong>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="rounded-3 background-blue w-lg-25 w-md-50 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto mb-4 py-1 px-3 poppins-reg">
-                        <strong>Няни:</strong>
-                    </div>
-                    <ul class="markers w-lg-75 w-md-75 w-sm-100 w-100 m-0 p-0">
-                        <strong>
-                            <li class="mb-3">Возможность быстрого обновления своей анкеты и профиля</li>
-                            <li class="mb-3">Дополнительное обучение, повышающее квалификацию</li>
-                            <li class="mb-3">Поддержка и советы от отдела заботы</li>
-                        </strong>
-                    </ul>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="rounded-3 background-yellow w-lg-25 w-md-50 w-sm-50 text-center mx-lg-0 mx-md-0 mx-sm-auto mx-0 mb-4 py-1 px-3 poppins-reg">
-                        <strong>Родители:</strong>
-                    </div>
-                    <ul class="markers w-lg-75 w-md-75 w-sm-100 w-100 m-0 p-0">
-                        <strong>
-                            <li class="mb-3">Лёгкий поиск нянь с различными навыками и графиком</li>
-                            <li class="mb-3">Безопасность: проверка личных данных и опыта работы нянь</li>
-                            <li class="mb-3">Доступная стоимость и удобный интерфейс сервиса</li>
-                        </strong>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
+        {% include "img_block.html" with  img='img/block/2.jpg' %}
+        {% include 'why_choose_us.html' with wcu=parent_why_choose_us %}
+        {% include "img_block.html" with  img='img/block/3.jpg' %}
     </div>
 
+    {% include "prizes.html" %}
+
+    <!--Что входит в стоимость подписку-->
     <div id="in_subscribe">
         <div class="container py-5">
             <div class="d-sm-block d-md-none">
@@ -261,8 +242,11 @@
                         <button 
                             class="nav-user-type active px-5 poppins-semibold" 
                             id="in_subscribe-nanny-tab" 
-                            data-bs-toggle="pill" data-bs-target="#in_subscribe-nanny" 
-                            type="button" role="tab" aria-controls="in_subscribe-nanny" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#in_subscribe-nanny" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="in_subscribe-nanny" 
                             aria-selected="true"
                         >
                             <strong>Я — няня</strong>
@@ -393,9 +377,6 @@
         </div>
     </div>
 
-    {% include "faq.html" %}
-    {% include "reviews.html" %}
-
     <div class="background-blue py-3 poppins-reg">
         <div class="text-overflow-hidden w-100 align-middle">
             <strong>абота няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>р</strong>
@@ -423,5 +404,7 @@
             </div>
         </div>
     </div>
+    
+    {% include "reviews.html" %}
 </div>
 {% endblock %}

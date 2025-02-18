@@ -1,0 +1,134 @@
+.spinner_block {
+    box-sizing: border-box;
+    place-items: center;
+    overflow: hidden;
+    /* задаём переменные блока, внутри которого всё будет рисоваться */
+    /* размеры колеса */
+    --size: clamp(250px, 80vmin, 700px);
+    /* clamp — функция CSS, которая задаёт три размера: минимальное, предпочтительное и максимальное. В данном случае мы хотим, чтобы колесо было не меньше 250 пикселей, не больше 700 пикселей, но в идеале — 80% от безопасно малой высоты окна браузера */
+    /* настройки яркости и заливки фона секторов. Нам понадобится описать поведение градиента, это у нас делается через много переменных */
+    --lg-hs: 0 3%;
+    --lg-stop: 50%;
+    --lg: linear-gradient(
+        hsl(var(--lg-hs) 0%) 0 var(--lg-stop),
+        hsl(var(--lg-hs) 20%) var(--lg-stop) 100%
+        );
+    /* добавляем позиционирование относительно других элементов */
+    position: relative;
+    /* подключаем стандартную CSS-сетку */
+    display: grid;
+    grid-gap: calc(var(--size) / 20);
+    /* выравниваем содержимое блока по центру */
+    align-items: center;
+    /* задаём имена областей внутри сетки — в CSS теперь можно прямо назвать эти области */
+    grid-template-areas:
+        "spinner"
+        "trigger";
+    /* устанавливаем размер шрифта */
+    font-size: calc(var(--size) / 21);
+}
+
+.spinner_block * {
+    grid-area: spinner;
+}
+
+.btn-spin{
+    grid-area: trigger;
+    justify-self: center;
+}
+
+.win {
+    grid-area: trigger;
+}
+
+.spinner {
+    /* добавляем относительное позиционирование */
+    position: relative;
+    /* подключаем сетку */
+    display: grid;
+    /* выравниваем всё по центру */
+    align-items: center;
+    /* добавляем элемент в сетку */
+    grid-template-areas: "spinner";
+    /* устанавливаем размеры */
+    width: var(--size);
+    height: var(--size);
+    /* поворачиваем элемент  */
+    transform: rotate(calc(var(--rotate, 25) * 1deg));
+    /* рисуем круглую обводку, а всё, что не поместится, — будет скрыто за кругом */
+    border-radius: 50%
+};
+
+.spinner * {
+    grid-area: spinner;
+}
+
+.prize {
+    /* включаем «гибкую» вёрстку */
+    display: flex!important;
+    align-items: center!important;
+    /* задаём отступы от краёв блока */
+    padding: 0 calc(var(--size) / 6.5) 0 calc(var(--size) / 20)!important;
+    /* устанавливаем размеры */
+    width: 50%!important;
+    height: 50%!important;
+    /* устанавливаем координаты, относительно которых будем вращать текст */
+    transform-origin: center right!important;
+    /* поворачиваем текст */
+    transform: rotate(var(--rotate))!important;
+    /* запрещаем пользователю выделять мышкой текст на секторах */
+    user-select: none;
+}
+
+.ticker {
+    /* добавляем относительное позиционирование */
+    position: relative;
+    /* устанавливаем размеры */
+    left: calc(var(--size)/);
+    bottom: calc(var(--size)/-2.15);
+    width: calc(var(--size) / 25);
+    height: calc(var(--size) / 20);
+    /* фон язычка */
+    background: white;
+    /* делаем так, чтобы язычок был выше колеса */
+    z-index: 1;
+    /* форма язычка */
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+/* анимируем выпавший сектор */
+.prize.selected .text {
+    /* делаем текст белым */
+    color: white;
+    /* настраиваем длительность анимации */
+    animation: selected 800ms ease;
+}
+
+.is-spinning .spinner {
+    transition: transform 8s cubic-bezier(0.1, -0.01, 0, 1);
+}
+  
+/* настраиваем анимацию текста на выпавшем секторе по кадрам */
+@keyframes selected {
+    /* что происходит на 25% от начала анимации */
+    25% {
+      /* увеличиваем текст в 1,25 раза */
+      transform: scale(1.25);
+      /* добавляем тексту тень */
+      text-shadow: 1vmin 1vmin 0 hsla(0 0% 0% / 0.1);
+    }
+    40% {
+      transform: scale(0.92);
+      text-shadow: 0 0 0 hsla(0 0% 0% / 0.2);
+    }
+    60% {
+      transform: scale(1.02);
+      text-shadow: 0.5vmin 0.5vmin 0 hsla(0 0% 0% / 0.1);
+    }
+    75% {
+      transform: scale(0.98);
+    }
+    85% {
+      transform: scale(1);
+    }
+}

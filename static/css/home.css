@@ -1,3 +1,6 @@
+@import url("audio.css");
+
+
 .page-header {
     background-color: rgb(217, 217, 217);
     background-position: center;
@@ -35,6 +38,14 @@
     margin: 0;
 }
 
+#deal-wheel {
+    background-color: var(--main-background-color);
+}
+
+.ticker {
+    background-color: var(--main-background-color)!important;
+}
+
 #how-to-use {
     background-color: var(--main-background-color);
 }
@@ -62,7 +73,7 @@
 }
 
 #in_subscribe {
-    background-color: var(--main-background-color);
+    background-color: var(--white-background-color);
 }
 
 #reviews {
