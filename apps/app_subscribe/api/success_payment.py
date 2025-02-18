@@ -31,7 +31,7 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
         self.user_subscribe_repository: IUserSubscribeRepository = UserSubscribeRepository()
         self.user_repository: IUserRepository = UserRepository()
 
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         try:
             msg = self._verificate_prodamus(request)
             self.__set_user(msg.get('customer_email'))
@@ -48,8 +48,7 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
     def _verificate_prodamus(self, request: HttpRequest) -> dict[str, str]:
         if 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
-        elif sign := request.headers.get('Sign') is None:
-            raise ValueError("Needed param is None")
+        sign = request.headers.get('Sign')
         logger.info(f"Header sign {sign}")
         body_dict = self.verificate.parse(request.body)
         check_sign = self.verificate.sign(body_dict, self.payment_secret_key)
