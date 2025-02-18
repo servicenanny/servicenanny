@@ -4,5 +4,5 @@ from .api import SuccessPaymentView
 
 
 urlpatterns = [
-     path('success', SuccessPaymentView.as_view(), name='success_payment'),
+     path('success/', SuccessPaymentView.as_view(), name='success_payment'),
 ]
