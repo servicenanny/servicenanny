@@ -27,11 +27,25 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
         self.verificate = ProdamusVerificate()
         self.payment_url = getattr(settings, "PAYMENT_URL")
         self.payment_secret_key = getattr(settings, "PAYMENT_SECRET_KEY")
-        print(self.payment_secret_key)
         self.user_subscribe_repository: IUserSubscribeRepository = UserSubscribeRepository()
         self.user_repository: IUserRepository = UserRepository()
-
+    
     def post(self, request, *args, **kwargs):
+        try:
+            logger.info("Мы в post запросе")
+            msg = self._verificate_prodamus(request)
+            self.__set_user(msg.get('customer_email'))
+            dto = self.__get_add_user_subscribe_dto()
+            self.create_user_subscribe(self.user_subscribe_repository, dto)
+            return HttpResponseRedirect(self._get_redirect_url())
+        except ValueError as e:
+            logger.warning(f"Subscribe error. User: {request.user}. Error: {e}")
+            return HttpResponseServerError(content="Ошибка сервера")
+        except Exception as e:
+            logger.fatal(str(e))
+            return HttpResponseServerError(content="Ошибка сервера")
+
+    def get(self, request, *args, **kwargs):
         try:
             msg = self._verificate_prodamus(request)
             self.__set_user(msg.get('customer_email'))
@@ -46,10 +60,9 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
             return HttpResponseServerError(content="Ошибка сервера")
     
     def _verificate_prodamus(self, request: HttpRequest) -> dict[str, str]:
-        if 'Sign' in request.headers:
+        if not '_payform_sign' in request.GET:
             raise ValueError(f"Request is not valid")
-        elif sign := request.headers.get('Sign') is None:
-            raise ValueError("Needed param is None")
+        sign = request.GET.get('_payform_sign')
         logger.info(f"Header sign {sign}")
         body_dict = self.verificate.parse(request.body)
         check_sign = self.verificate.sign(body_dict, self.payment_secret_key)
