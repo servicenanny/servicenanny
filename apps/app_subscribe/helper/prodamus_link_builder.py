@@ -2,6 +2,7 @@ from typing import MutableMapping, Any
 from urllib.parse import urlencode
 
 from domain.port.spi.payment.contract import PaymentLinkDTO
+from domain.const.payment import PAYMENT_SYS
     
 
 class PaymentLinkBuilder:
@@ -16,6 +17,7 @@ class PaymentLinkBuilder:
         data = {
             "do": dto.do,
             "products": products,
+            "sys": PAYMENT_SYS,
             "customer_email": dto.customer_email,
             "paid_content": dto.paid_content
         }

@@ -60,9 +60,9 @@ class SuccessPaymentView(RedirectView, SuccessAPI):
             return HttpResponseServerError(content="Ошибка сервера")
     
     def _verificate_prodamus(self, request: HttpRequest) -> dict[str, str]:
-        if 'Sign' in request.headers:
+        if not '_payform_sign' in request.GET:
             raise ValueError(f"Request is not valid")
-        sign = request.headers.get('Sign')
+        sign = request.GET.get('_payform_sign')
         logger.info(f"Header sign {sign}")
         body_dict = self.verificate.parse(request.body)
         check_sign = self.verificate.sign(body_dict, self.payment_secret_key)
