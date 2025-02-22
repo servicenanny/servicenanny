@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from apps.app_subscribe.repository import UserSubscribeRepository
 from apps.app_user.utils import to_domain_user
 from domain.entity.type.client_type import CLIENT_TYPE
-from domain.repository.user_subscribe_repository import UserSubscribeRepository as IUserSubscribeRepository
+from domain.repository.user_subscribe_repository import IUserSubscribeRepository as IUserSubscribeRepository
 
 
 class SubscribeRequiredMixin(AccessMixin):

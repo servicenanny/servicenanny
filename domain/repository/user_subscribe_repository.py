@@ -19,7 +19,7 @@ class UpdateUserSubscribeDTO:
     created_at: datetime | None = None
 
 
-class UserSubscribeRepository(BaseRepository[UserSubscribe, AddUserSubscribeDTO, UpdateUserSubscribeDTO], Protocol):
+class IUserSubscribeRepository(BaseRepository[UserSubscribe, AddUserSubscribeDTO, UpdateUserSubscribeDTO], Protocol):
     def get_leftover_days(self, user_id: int, *args, **kwargs) -> timedelta | None:
         ...
 

@@ -9,6 +9,7 @@ from domain.entity.type import CLIENT_TYPE
 
 class UserSubscribe(models.Model):
     user = models.ForeignKey(get_user_model(), db_index=True, on_delete=models.CASCADE, verbose_name="Пользователь", help_text="Пользователь, который оформил подписку")
+    # Можно было бы хранить только пользователя и получать тип подписки от него, но предполагалась, что таким образом будут храниться подписки с разной продолжительностью
     subscribe_type = models.CharField(
         choices=CLIENT_TYPE.get_choices(),
         max_length=1,
