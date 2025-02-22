@@ -42,16 +42,16 @@ class SuccessPaymentProcess(SuccessAPI):
         """
         logger.info(request.method)
         logger.info(request.headers)
+        logger.info(request.body)
+        logger.info(request.POST)
         if not 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
         sign = request.headers.get('Sign')
-        logger.info(f"Header sign {sign}")
-        body_dict = self._verificate.parse(request.body)
+        is_verify = self._verificate.verify(sign, request.POST, self.payment_secret_key)
+        if not is_verify:
+            raise ValueError(f"Request is not valid")
+        body_dict = request.POST.dict()
         logger.info(f"Body dict {body_dict}")
-        check_sign = self._verificate.sign(body_dict, self.payment_secret_key)
-        logger.info(f"Our sign {check_sign}")
-        verify_result = self._verificate.verify(body_dict, sign, self.payment_secret_key)
-        if verify_result == False: raise ValueError("Payment message is not verify")
         return body_dict
     
     def create_user_subscribe(self, user_email: str) -> UserSubscribe:
