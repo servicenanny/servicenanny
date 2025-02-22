@@ -1,5 +1,6 @@
 from datetime import datetime
 import logging
+import json
 
 from django.http import HttpRequest, HttpResponseServerError, HttpResponseRedirect
 from django.conf import settings
@@ -47,7 +48,9 @@ class SuccessPaymentProcess(SuccessAPI):
         if not 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
         sign = request.headers.get('Sign')
-        is_verify = self._verificate.verify(sign, request.body, self.payment_secret_key)
+        data = json.loads(request.body)
+        logger.info(data)
+        is_verify = self._verificate.verify(data, self.payment_secret_key, sign)
         if not is_verify:
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
