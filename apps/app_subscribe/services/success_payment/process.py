@@ -31,8 +31,8 @@ class SuccessPaymentProcess(SuccessAPI):
         super().__init__(*args, **kwargs)
         self.user = None
         self._verificate = ProdamusVerificate()
-        self.payment_url = getattr(settings, "PAYMENT_URL")
-        self.payment_secret_key = getattr(settings, "PAYMENT_SECRET_KEY")
+        self.payment_url: str = getattr(settings, "PAYMENT_URL")
+        self.payment_secret_key: str = getattr(settings, "PAYMENT_SECRET_KEY")
         self.user_subscribe_repository = user_subscribe_repository
         self.user_repository = user_repository
 
@@ -47,7 +47,7 @@ class SuccessPaymentProcess(SuccessAPI):
         if not 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
         sign = request.headers.get('Sign')
-        is_verify = self._verificate.verify(sign, request.POST, self.payment_secret_key)
+        is_verify = self._verificate.verify(sign, request.body, self.payment_secret_key)
         if not is_verify:
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
