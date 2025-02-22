@@ -1,21 +1,19 @@
 from datetime import datetime
 import logging
 
-from django.http import HttpRequest, HttpResponseServerError, HttpResponseRedirect
+from django.http import HttpResponseServerError
 from django.views.generic import FormView
-from django.conf import settings
 from django.urls import reverse
 
 from domain.entity.type import CLIENT_TYPE
 from domain.entity.user import User
 from domain.port.api.payment import SuccessAPI
-from domain.repository.user_subscribe_repository import IUserSubscribeRepository as IUserSubscribeRepository
+from domain.repository.user_subscribe_repository import IUserSubscribeRepository
 from domain.repository.user_repository import UserRepository as IUserRepository
 from apps.app_subscribe.forms import SuccessPaymentForm
 from apps.app_subscribe.repository import UserSubscribeRepository
 from apps.app_subscribe.services.success_payment import SuccessPaymentProcess
 from apps.app_user.repository import UserRepository
-from apps.app_user.utils import to_domain_user
 
 
 logger = logging.getLogger(__name__)
@@ -27,10 +25,11 @@ class SuccessPaymentView(FormView, SuccessAPI):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.user = None
-        self.process = SuccessPaymentProcess()
-        self.user_subscribe_repository: IUserSubscribeRepository = UserSubscribeRepository()
-        self.user_repository: IUserRepository = UserRepository()
-
+        self.process = SuccessPaymentProcess(
+            UserRepository(),
+            UserSubscribeRepository()
+        )
+    
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
     
