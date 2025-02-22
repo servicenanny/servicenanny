@@ -11,7 +11,7 @@ class ProdamusVerificate:
         if algo not in hashlib.algorithms_available:
             return False
 
-        # Приводим данные к строковому виду
+        # Приводим все значения к строковому виду
         def stringify(value):
             if isinstance(value, (dict, list)):
                 return {k: stringify(v) for k, v in value.items()} if isinstance(value, dict) else [stringify(v) for v in value]
