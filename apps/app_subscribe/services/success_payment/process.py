@@ -47,9 +47,9 @@ class SuccessPaymentProcess(SuccessAPI):
         sign = request.headers.get('Sign')
         logger.info(f"Header sign {sign}")
         body_dict = self._verificate.parse(request.body)
+        logger.info(f"Body dict {body_dict}")
         check_sign = self._verificate.sign(body_dict, self.payment_secret_key)
         logger.info(f"Our sign {check_sign}")
-        logger.info(f"Body dict {body_dict}")
         verify_result = self._verificate.verify(body_dict, sign, self.payment_secret_key)
         if verify_result == False: raise ValueError("Payment message is not verify")
         return body_dict

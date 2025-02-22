@@ -1,15 +1,14 @@
-from datetime import datetime
 import logging
 
 from django.http import HttpResponseServerError
 from django.views.generic import FormView
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 from domain.entity.type import CLIENT_TYPE
 from domain.entity.user import User
 from domain.port.api.payment import SuccessAPI
-from domain.repository.user_subscribe_repository import IUserSubscribeRepository
-from domain.repository.user_repository import UserRepository as IUserRepository
 from apps.app_subscribe.forms import SuccessPaymentForm
 from apps.app_subscribe.repository import UserSubscribeRepository
 from apps.app_subscribe.services.success_payment import SuccessPaymentProcess
@@ -19,8 +18,10 @@ from apps.app_user.repository import UserRepository
 logger = logging.getLogger(__name__)
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class SuccessPaymentView(FormView, SuccessAPI):
     form_class = SuccessPaymentForm
+    http_method_names = ['post']
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

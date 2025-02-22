@@ -31,10 +31,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = False
 
+# --Production host config--
 if DEBUG == False:
     ALLOWED_HOSTS = [
         'servicenanny.ru',
-        'www.servicenanny.ru'
+        'www.servicenanny.ru',
+        'nanny.payform.ru',
+        'www.nanny.payform.ru'
+    ]
+    CSRF_TRUSTED_ORIGINS = [
+        'https://servicenanny.ru/',
+        'https://nanny.payform.ru/'
     ]
 
 
