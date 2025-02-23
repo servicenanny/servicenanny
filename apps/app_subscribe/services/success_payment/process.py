@@ -48,9 +48,13 @@ class SuccessPaymentProcess(SuccessAPI):
         if not 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
         sign = request.headers.get('Sign')
-        data = json.loads(request.body)
+        data = json.loads(request.POST.dict())
         logger.info(data)
-        is_verify = self._verificate.verify(data, self.payment_secret_key, sign)
+        bodyDict = self._verificate.parse(data)
+        checkSign = self._verificate.sign(bodyDict)
+        logger.info(checkSign)
+        is_verify = self._verificate.verify(bodyDict, sign)
+        # is_verify = self._verificate.verify(data, self.payment_secret_key, sign)
         if not is_verify:
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
