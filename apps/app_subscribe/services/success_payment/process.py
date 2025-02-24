@@ -1,6 +1,6 @@
 from datetime import datetime
 import logging
-import json
+import copy
 
 from django.http import HttpRequest, HttpResponseServerError, HttpResponseRedirect
 from django.conf import settings
@@ -31,9 +31,9 @@ class SuccessPaymentProcess(SuccessAPI):
         ) -> None:
         super().__init__(*args, **kwargs)
         self.user = None
-        self._verificate = ProdamusVerificate()
         self.payment_url: str = getattr(settings, "PAYMENT_URL")
         self.payment_secret_key: str = getattr(settings, "PAYMENT_SECRET_KEY")
+        self._verificate = ProdamusVerificate(self.payment_secret_key)
         self.user_subscribe_repository = user_subscribe_repository
         self.user_repository = user_repository
 
@@ -41,24 +41,18 @@ class SuccessPaymentProcess(SuccessAPI):
         """
         Verify sign of payment and return body as dict
         """
-        logger.info(request.method)
-        logger.info(request.headers)
-        logger.info(request.body)
-        logger.info(request.POST)
         if not 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
         sign = request.headers.get('Sign')
-        data = json.loads(request.POST.dict())
-        logger.info(data)
-        bodyDict = self._verificate.parse(data)
-        checkSign = self._verificate.sign(bodyDict)
+        data = request.POST.dict()
+        body_dict = copy.deepcopy(data)
+        logger.info(f"Body dict {data}")
+        is_verify = self._verificate.verify(data, sign)
+        checkSign = self._verificate.sign(data, self.payment_secret_key)
         logger.info(checkSign)
-        is_verify = self._verificate.verify(bodyDict, sign)
-        # is_verify = self._verificate.verify(data, self.payment_secret_key, sign)
         if not is_verify:
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
-        logger.info(f"Body dict {body_dict}")
         return body_dict
     
     def create_user_subscribe(self, user_email: str) -> UserSubscribe:

@@ -31,9 +31,6 @@ class SuccessPaymentView(FormView, SuccessAPI):
             UserSubscribeRepository()
         )
     
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-    
     def post(self, request, *args, **kwargs):
         try:
             logger.info("Мы в post запросе")
@@ -51,20 +48,6 @@ class SuccessPaymentView(FormView, SuccessAPI):
         except Exception as e:
             logger.fatal(str(e))
             return HttpResponseServerError(content="Ошибка сервера")
-
-    # def get(self, request, *args, **kwargs):
-    #     try:
-    #         msg = self.process.verificate_prodamus(request)
-    #         logger.info(msg)
-    #         user_subscribe = self.process.create_user_subscribe(msg.get('customer_email'))
-    #         self.__set_user(user_subscribe.user)
-    #         return HttpResponseRedirect(self._get_redirect_url())
-    #     except ValueError as e:
-    #         logger.warning(f"Subscribe error. User: {request.user}. Error: {e}")
-    #         return HttpResponseServerError(content="Ошибка сервера")
-    #     except Exception as e:
-    #         logger.fatal(str(e))
-    #         return HttpResponseServerError(content="Ошибка сервера")
     
     def __set_user(self, user: User) -> None:
         self.user = user
