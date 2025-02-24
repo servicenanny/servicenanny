@@ -1,21 +1,17 @@
 from datetime import datetime
-import json
 import logging
 import copy
+import re
 
 from django.http import HttpRequest
 from django.conf import settings
 
-from domain.entity.type import CLIENT_TYPE
 from domain.entity import UserSubscribe, User
 from domain.port.api.payment import SuccessAPI
 from domain.repository.user_subscribe_repository import AddUserSubscribeDTO
 from domain.repository.user_subscribe_repository import IUserSubscribeRepository as IUserSubscribeRepository
 from domain.repository.user_repository import UserRepository as IUserRepository
 from apps.app_subscribe.helper import ProdamusVerificate
-from apps.app_subscribe.repository import UserSubscribeRepository
-from apps.app_user.repository import UserRepository
-from apps.app_user.utils import to_domain_user
 
 
 logger = logging.getLogger(__name__)
@@ -46,23 +42,43 @@ class SuccessPaymentProcess(SuccessAPI):
         sign = request.headers.get('Sign')
         data = self.__parse_post(request)
         body_dict = copy.deepcopy(data)
-        logger.info(f"Body dict {data}")
         is_verify = self._verificate.verify(data, sign)
-        checkSign = self._verificate.sign(data, self.payment_secret_key)
-        logger.info(checkSign)
         if not is_verify:
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
         return body_dict
     
     def __parse_post(self, request: HttpRequest) -> dict[str, str]:
-        data = request.POST.dict()
-        # Обрабатываем вложенный массив products
-        products = request.POST.getlist('products[]')  # Получаем список продуктов
-        data['products'] = []
-        for product in products:
-            product_data = json.loads(product)  # Преобразуем JSON-строку в словарь
-            data['products'].append(product_data)
+        data = {
+            'date': request.POST.get('date'),
+            'order_id': request.POST.get('order_id'),
+            'order_num': request.POST.get('order_num'),
+            'domain': request.POST.get('domain'),
+            'sum': request.POST.get('sum'),
+            'customer_phone': request.POST.get('customer_phone'),
+            'customer_email': request.POST.get('customer_email'),
+            'customer_extra': request.POST.get('customer_extra'),
+            'payment_type': request.POST.get('payment_type'),
+            'commission': request.POST.get('commission'),
+            'commission_sum': request.POST.get('commission_sum'),
+            'attempt': request.POST.get('attempt'),
+            'sys': request.POST.get('sys'),
+            'payment_status': request.POST.get('payment_status'),
+            'payment_status_description': request.POST.get('payment_status_description'),
+        }
+        products = []
+        pattern = re.compile(r'products\[(\d+)\]\[(\w+)\]')
+        for key in request.POST.keys():
+            match = pattern.match(key)
+            if match:
+                index, field = match.groups()
+                index = int(index)
+                # Убедимся, что список products достаточно большой
+                while len(products) <= index:
+                    products.append({})
+                products[index][field] = request.POST.get(key)
+
+        data['products'] = products
         return data
     
     def create_user_subscribe(self, user_email: str) -> UserSubscribe:
