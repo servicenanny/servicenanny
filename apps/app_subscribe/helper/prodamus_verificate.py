@@ -6,8 +6,8 @@ import hashlib
 
 
 class ProdamusVerificate:
-    def __init__(self, secret):
-        self.secret = secret
+    def __init__(self, secret: str):
+        self.__secret = secret
         
     def sign(self, data: dict, secret_key: str) -> str:
         # переводим все значения data в string c помощью кастомной функции deep_int_to_string (см ниже)
@@ -27,5 +27,5 @@ class ProdamusVerificate:
             else: dictionary[key] = str(value)
 
     def verify(self, obj: dict, sign: str):
-        expected_sign = self.sign(obj)
+        expected_sign = self.sign(obj, self.__secret)
         return expected_sign and (expected_sign.lower() == sign.lower())
