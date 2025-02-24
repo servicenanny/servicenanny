@@ -1,10 +1,10 @@
 from datetime import datetime
+import json
 import logging
 import copy
 
-from django.http import HttpRequest, HttpResponseServerError, HttpResponseRedirect
+from django.http import HttpRequest
 from django.conf import settings
-from django.urls import reverse
 
 from domain.entity.type import CLIENT_TYPE
 from domain.entity import UserSubscribe, User
@@ -44,7 +44,7 @@ class SuccessPaymentProcess(SuccessAPI):
         if not 'Sign' in request.headers:
             raise ValueError(f"Request is not valid")
         sign = request.headers.get('Sign')
-        data = request.POST.dict()
+        data = self.__parse_post(request)
         body_dict = copy.deepcopy(data)
         logger.info(f"Body dict {data}")
         is_verify = self._verificate.verify(data, sign)
@@ -54,6 +54,16 @@ class SuccessPaymentProcess(SuccessAPI):
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
         return body_dict
+    
+    def __parse_post(self, request: HttpRequest) -> dict[str, str]:
+        data = request.POST.dict()
+        # Обрабатываем вложенный массив products
+        products = request.POST.getlist('products[]')  # Получаем список продуктов
+        data['products'] = []
+        for product in products:
+            product_data = json.loads(product)  # Преобразуем JSON-строку в словарь
+            data['products'].append(product_data)
+        return data
     
     def create_user_subscribe(self, user_email: str) -> UserSubscribe:
         """
