@@ -13,3 +13,6 @@ class User:
     city: City = None
     is_superuser: bool = False
     is_staff: bool = False
+
+    def __str__(self):
+        return self.email
