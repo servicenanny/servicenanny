@@ -16,8 +16,6 @@ class AddUserDTO:
     city: City = None
     is_superuser: bool = False
     is_staff: bool = False
-    first_name: str = None
-    last_name: str = None
 
 
 @dataclass
@@ -29,8 +27,6 @@ class UpdateUserDTO:
     city: City = None
     is_superuser: bool = False
     is_staff: bool = False
-    first_name: str = None
-    last_name: str = None
 
 
 class UserRepository(BaseRepository[User, AddUserDTO, UpdateUserDTO], Protocol):

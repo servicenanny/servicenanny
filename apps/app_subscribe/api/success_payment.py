@@ -1,6 +1,6 @@
 import logging
 
-from django.http import HttpResponseServerError
+from django.http import HttpResponseServerError, HttpResponse
 from django.views.generic import FormView
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -35,14 +35,10 @@ class SuccessPaymentView(FormView, SuccessAPI):
         try:
             msg = self.process.verificate_prodamus(request)
             logger.info(f"Успешная верификация. Тело: {msg}")
-            form = self.get_form()
-            logger.info(f"Полученная форма: {form}")
-            if form.is_valid():
-                user_subscribe = self.process.create_user_subscribe(msg.get('customer_email'))
-                logger.info(f"Успешно создана подписка: {str(user_subscribe)}")
-                self.__set_user(user_subscribe.user)
-            else:
-                return HttpResponseServerError(content="Invalid request")
+            user_subscribe = self.process.create_user_subscribe(msg.get('customer_email'))
+            logger.info(f"Успешно создана подписка: {str(user_subscribe)}")
+            self.__set_user(user_subscribe.user)
+            return HttpResponse("Success", status=200)
         except ValueError as e:
             logger.warning(f"Subscribe error. User: {request.user}. Error: {e}")
             return HttpResponseServerError(content="Ошибка сервера")

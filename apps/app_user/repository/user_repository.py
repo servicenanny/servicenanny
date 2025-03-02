@@ -1,5 +1,4 @@
 from domain.repository.user_repository import UserRepository as IUserRepository
-from domain.repository.user_repository import AddUserDTO, UpdateUserDTO
 from apps.app_user.models import User
 from apps.app_user.utils import to_domain_user
 
@@ -26,8 +25,6 @@ class UserRepository(IUserRepository):
         user.city = dto.city
         user.is_superuser = dto.is_superuser
         user.is_staff = dto.is_staff
-        user.first_name = dto.first_name
-        user.last_name = dto.last_name
         user.save()
         return to_domain_user(user)
     
@@ -38,9 +35,7 @@ class UserRepository(IUserRepository):
             client_type = dto.client_type,
             city = dto.city,
             is_superuser = dto.is_superuser,
-            is_staff = dto.is_staff,
-            first_name = dto.first_name,
-            last_name = dto.last_name
+            is_staff = dto.is_staff
         )
         user.save()
         return to_domain_user(user)
