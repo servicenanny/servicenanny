@@ -13,3 +13,7 @@ class UserSubscribe:
     user_id: int
     subscribe_type: Literal[CLIENT_TYPE.NANNY, CLIENT_TYPE.PARENT]
     user: User | None = None
+
+
+    def __str__(self):
+        return f"[{self.created_at}] user: {self.user_id}"
