@@ -22,7 +22,7 @@ class UserSubscribeMapper(IMapper[DUserSubscribe, UserSubscribe]):
         )
     
     def deep_to_domain(self, model):
-        subscribe_type = CLIENT_TYPE(model.subscribe_type)
+        subscribe_type = CLIENT_TYPE.from_value(model.subscribe_type)
         return DUserSubscribe(
             id = model.id,
             created_at = model.created_at,
