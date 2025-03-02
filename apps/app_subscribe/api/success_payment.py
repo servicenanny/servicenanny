@@ -34,10 +34,12 @@ class SuccessPaymentView(FormView, SuccessAPI):
     def post(self, request, *args, **kwargs):
         try:
             msg = self.process.verificate_prodamus(request)
-            logger.info(msg)
+            logger.info(f"Успешная верификация. Тело: {msg}")
             form = self.get_form()
+            logger.info(f"Полученная форма: {form}")
             if form.is_valid():
                 user_subscribe = self.process.create_user_subscribe(msg.get('customer_email'))
+                logger.info(f"Успешно создана подписка: {str(user_subscribe)}")
                 self.__set_user(user_subscribe.user)
             else:
                 return HttpResponseServerError(content="Invalid request")

@@ -46,7 +46,6 @@ class SuccessPaymentProcess(SuccessAPI):
         if not is_verify:
             logger.info(f"Expected result: {sign}, created: {self._verificate.sign(data)}")
             raise ValueError(f"Request is not valid")
-        body_dict = request.POST.dict()
         return body_dict
     
     def __parse_post(self, request: HttpRequest) -> dict[str, str]:
@@ -80,7 +79,6 @@ class SuccessPaymentProcess(SuccessAPI):
                 while len(products) <= index:
                     products.append({})
                 products[index][field] = request.POST.get(key)
-
         data['products'] = products
         return data
     
@@ -88,9 +86,17 @@ class SuccessPaymentProcess(SuccessAPI):
         """
         Create subscribe by user email and return subscribe
         """
-        user = self.user_repository.get_by_email(user_email)
-        dto = self.__get_add_user_subscribe_dto(user)
-        return self.user_subscribe_repository.add(dto)
+        try:
+            user = self.user_repository.get_by_email(user_email)
+            logger.info(f"[create_user_subscribe | user]: {str(user)}")
+            dto = self.__get_add_user_subscribe_dto(user)
+            logger.info(f"[create_user_subscribe | dto]: {dto}")
+            result = self.user_subscribe_repository.add(dto)
+            logger.info(f"[create_user_subscribe | result]: {result}")
+            return result
+        except Exception as e:
+            logger.error(str(e))
+            raise e
     
     def __get_add_user_subscribe_dto(self, user: User) -> AddUserSubscribeDTO:
         return AddUserSubscribeDTO(
