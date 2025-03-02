@@ -33,7 +33,6 @@ class SuccessPaymentView(FormView, SuccessAPI):
     
     def post(self, request, *args, **kwargs):
         try:
-            logger.info("Мы в post запросе")
             msg = self.process.verificate_prodamus(request)
             logger.info(msg)
             form = self.get_form()

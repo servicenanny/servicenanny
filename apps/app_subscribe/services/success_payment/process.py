@@ -44,6 +44,7 @@ class SuccessPaymentProcess(SuccessAPI):
         body_dict = copy.deepcopy(data)
         is_verify = self._verificate.verify(data, sign)
         if not is_verify:
+            logger.info(f"Expected result: {sign}, created: {self._verificate.sign(data)}")
             raise ValueError(f"Request is not valid")
         body_dict = request.POST.dict()
         return body_dict
@@ -55,6 +56,7 @@ class SuccessPaymentProcess(SuccessAPI):
             'order_num': request.POST.get('order_num'),
             'domain': request.POST.get('domain'),
             'sum': request.POST.get('sum'),
+            'currency': request.POST.get('currency'),
             'customer_phone': request.POST.get('customer_phone'),
             'customer_email': request.POST.get('customer_email'),
             'customer_extra': request.POST.get('customer_extra'),
@@ -65,6 +67,7 @@ class SuccessPaymentProcess(SuccessAPI):
             'sys': request.POST.get('sys'),
             'payment_status': request.POST.get('payment_status'),
             'payment_status_description': request.POST.get('payment_status_description'),
+            'payment_init': request.POST.get('payment_init')
         }
         products = []
         pattern = re.compile(r'products\[(\d+)\]\[(\w+)\]')
