@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Успешная оплата</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+{% block  header %}
+{% endblock %}
+{% block content %}
+<div class="position-absolute top-50 start-50 translate-middle poppins-reg">
+    <h1 class="text-center text-uppercase mursgothic mb-3">Оплата успешно прошла</h1>
+    <p class="text-center mb-4">Спасибо, что выбрали нас. Пожалуйста нажмите на кнопку снизу для перехода в {{ client_content }}.</p>
+    <div class="submit-row d-flex justify-content-center">
+        <a href="{{ redirect_to }}" class="btn btn-yellow align-center w-lg-50 w-md-75 w-sm-75 w-75 mx-auto">
+            <input class="btn btn-yellow fs-5 w-100" value="Перейти" />
+        </a>
+    </div>
+</div>
+{% endblock %}
+{% block  footer %}
+{% endblock %}
