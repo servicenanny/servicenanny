@@ -6,7 +6,6 @@ from django.views.generic import TemplateView
 from django.urls import reverse
 
 from .stylizations import SpinnerStylization
-from apps.p_home.models import FAQ, Review
 from apps.p_home.services.reviews_view import ReviewsView
 from apps.app_infrastructure.models import City
 from apps.app_subscribe.repository import UserSubscribeRepository
