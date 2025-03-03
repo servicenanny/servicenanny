@@ -86,7 +86,16 @@
                         {% for value, text in form.work_days.field.choices %}
                             <div class="form-check form-check-inline me-lg-2 me-0">
                                 <label class="form-check-label">{{ text }}</label>
-                                <input id="id_providers_{{ forloop.counter0 }}" name="{{ form.work_days.name }}" class="form-check-input" type="checkbox" value="{{ value }}"{% if value in checked_providers %} checked="checked"{% endif %}>
+                                <input 
+                                    id="id_providers_{{ forloop.counter0 }}" 
+                                    name="{{ form.work_days.name }}" 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    value="{{ value }}"
+                                    {% if value in checked_providers %} 
+                                        checked="checked"
+                                    {% endif %}
+                                >
                             </div>
                         {% endfor %}
                     </div>
