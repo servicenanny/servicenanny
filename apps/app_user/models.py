@@ -76,13 +76,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=1,
         verbose_name="Тип пользователя", 
         help_text="Выберите тип пользователя",
-        null=True
+        null = True
     )
     city = models.ForeignKey(
         City,
         on_delete=models.CASCADE,
         verbose_name="Город пользователя",
-        null=True
+        default = City.objects.first().id
     )
 
     USERNAME_FIELD = 'email'

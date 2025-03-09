@@ -46,7 +46,15 @@ class NannyUpdateView(
             form.fields['cost_per_hour'].initial = self.object.cost_per_hour
             form.fields['experience'].initial = self.object.experience
             form.fields['describe'].initial = self.object.describe
+            form.fields['work_days'].initial = self.object.work_days
         return form
+    
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        if 'object' in self.__dict__:
+            context["checked_providers"] = list(map(int, self.object.work_days))
+        return context
+    
     
     def get_object(self, queryset = None):
         if queryset is None:

@@ -25,7 +25,7 @@ class UserAdmin(UserAdmin):
     list_display = ("email", "client_type", "is_active")
 
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {"fields": ("email", "password", "city")}),
         (gettext_lazy("Permissions"), {"fields": ("is_staff", "client_type", "is_superuser", "is_active", "groups")}),
     )
 

@@ -49,6 +49,19 @@
     }
 }
 
-.btn-dark {
+.bg-dark-light {
     background-color: rgba(27, 27, 27, 1)!important;
+}
+
+.active>.page-link {
+    background-color: rgba(27, 27, 27, 1)!important;
+    border-color: rgba(27, 27, 27, 1)!important;
+}
+
+.page-link {
+    color: rgba(27, 27, 27, 1);
+}
+
+.page-link:hover {
+    color: rgba(27, 27, 27, 1);
 }
