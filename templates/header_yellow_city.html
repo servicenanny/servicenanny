@@ -44,8 +44,8 @@
                             <li class="nav-item mb-2">
                                 <a href="{% url 'home' %}#why_choose_us" class="text-decoration-none {{text_color}}">Преимущества</a>
                             </li>
-                            <li class="d-sm-block d-collapse-none">
-                                <a href="{% url 'home' %}#why_choose_us" class="text-decoration-none {{text_color}}">{{ user.city }}</a>
+                            <li class="d-sm-block d-collapse-none" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#cityModal">
+                                <span class="{{text_color}}">{{ user.city }}</a>
                             </li>
                         </ul>
                     </div>
