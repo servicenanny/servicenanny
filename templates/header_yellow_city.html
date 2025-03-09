@@ -102,7 +102,7 @@
                     {% endfor %}
                     <form
                         method="post" 
-                        action="{% url 'change_city' pk=user.id %}"
+                        action="{% url 'change_city' pk=user.id %}?success_url={{ request.path|urlencode }}"
                         id="update_city_form"
                     >
                         {% csrf_token %}

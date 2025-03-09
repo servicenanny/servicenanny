@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 from django.views.generic import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,9 +23,9 @@ class UpdateUserCityView(LoginRequiredMixin, UserOwnRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-        if 'success_url' in kwargs:
-            self.success_url = kwargs.get('success_url')
-        form = self.get_form()
+        if "success_url" in request.GET:
+            success_url = unquote(request.GET.get("success_url"))
+            self.success_url = success_url
         result = super().post(request, *args, **kwargs)
         return result
     
