@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=1,
         verbose_name="Тип пользователя", 
         help_text="Выберите тип пользователя",
-        null=True
+        default=1
     )
     city = models.ForeignKey(
         City,

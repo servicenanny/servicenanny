@@ -4,6 +4,11 @@
     --dark: rgba(27, 27, 27, 1);
 }
 
+
+header {
+    
+}
+
 .registration-white, .registration-white:hover, .registration-white:active, .registration-black:visited {
     border-radius: 5px;
     background-color: var(--white)!important;

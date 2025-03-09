@@ -5,7 +5,8 @@ from apps.app_worker.auth.mixin import ParentSubscribeRequiredMixin
 from apps.app_worker.models import Nanny
 from apps.app_worker.repository import NannyRepository
 from apps.app_subscribe.repository import UserSubscribeRepository
-# Create your views here.
+from apps.app_user.forms import UpdateUserCityForm
+
 
 class NannyListView(LoginRequiredMixin, ParentSubscribeRequiredMixin, ListView):
     model = Nanny
@@ -22,5 +23,8 @@ class NannyListView(LoginRequiredMixin, ParentSubscribeRequiredMixin, ListView):
                 count = 10
             )
     
-    def get_template_names(self):
-        return super().get_template_names()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['change_city_form'] = UpdateUserCityForm()
+        context['cities'] = context['change_city_form'].fields['city'].queryset
+        return context

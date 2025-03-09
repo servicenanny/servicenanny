@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/header.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
     <link rel="stylesheet" href="{% static 'css/nanny_list.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/full_page.css' %}" />
     <style>
         .app-img {
             position: relative;
@@ -26,7 +27,7 @@
 {% endblock %}
 
 {% block  header %}
-    {% include "header_yellow.html" with text_color='text-dark' %}
+    {% include "header_yellow_city.html" with text_color='text-dark' %}
 {% endblock %}
 {% block  content %}
 <div class="container my-5">
