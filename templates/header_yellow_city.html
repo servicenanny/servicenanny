@@ -1,0 +1,119 @@
+<header class="py-3 mb-4 header-bg-yellow">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="d-sm-block d-collapse-none">
+                {% if not user.is_authenticated  %}
+                    <div id="registration-block">
+                        <a href="{% url 'account_login' %}" class="text-decoration-none">
+                            <button class="registration-white btn py-2 px-5">Войти</button>
+                        </a>
+                    </div>
+                {% elif end_range %}
+                    {% load static %}
+                    <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                        <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                    </div>
+                {% else %}
+                    <a href="{{ header_button_href }}" class="text-decoration-none">
+                        <button class="registration-white btn py-2 px-5"><strong>{{ header_button_text }}</strong></button>
+                    </a>
+                {% endif %}
+            </div>
+            <button 
+                class="navbar-toggler d-lg-none bg-white"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+                aria-expanded="false" 
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon" id="open-menu"></span>
+            </button>
+            <div class="offcanvas offcanvas-end header-bg-yellow" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close btn-close-white text-reset px-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="justify-content navbar-collapse">
+                        <ul class="navbar-nav justify-content-between w-lg-50 w-md-50 w-sm-100">
+                            <li class="nav-item mb-2">
+                                <a href="{% url 'home' %}#how-to-use" class="text-decoration-none {{text_color}}">О приложении</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{% url 'home' %}#cities-block" class="text-decoration-none {{text_color}}">Города</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{% url 'home' %}#why_choose_us" class="text-decoration-none {{text_color}}">Преимущества</a>
+                            </li>
+                            <li class="d-sm-block d-collapse-none" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#cityModal">
+                                <span class="{{text_color}}">{{ user.city }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-collapse-block d-none">
+                        {% if not user.is_authenticated  %}
+                            <div id="registration-block">
+                                <a href="{% url 'account_login' %}" class="text-decoration-none">
+                                    <button class="registration-white btn py-2 px-5">Войти</button>
+                                </a>
+                            </div>
+                        {% elif end_range %}
+                            {% load static %}
+                            <div class="mx-lg-0 mx-md-0 mx-sm-auto d-flex justify-content-between">
+                                <div class="rounded-3 bg-white text-center py-1 px-3">
+                                    <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                                </div>
+                                <div class="ms-3 align-self-center" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#cityModal">
+                                    <svg  width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="16" height="16" rx="2" fill="#F3F8FE"/>
+                                        <path d="M8 5C8.79565 5 9.55871 5.31607 10.1213 5.87868C10.6839 6.44129 11 7.20435 11 8C11 9.242 10.0533 10.5433 8.2 11.9333C8.1423 11.9766 8.07212 12 8 12C7.92788 12 7.8577 11.9766 7.8 11.9333C5.94667 10.5433 5 9.242 5 8C5 7.20435 5.31607 6.44129 5.87868 5.87868C6.44129 5.31607 7.20435 5 8 5ZM8 7C7.73478 7 7.48043 7.10536 7.29289 7.29289C7.10536 7.48043 7 7.73478 7 8C7 8.26522 7.10536 8.51957 7.29289 8.70711C7.48043 8.89464 7.73478 9 8 9C8.26522 9 8.51957 8.89464 8.70711 8.70711C8.89464 8.51957 9 8.26522 9 8C9 7.73478 8.89464 7.48043 8.70711 7.29289C8.51957 7.10536 8.26522 7 8 7Z" fill="#1B1B1B"/>
+                                    </svg>
+                                    <span class="ms-1">{{ user.city }}</span>
+                                </div>
+                            </div>
+                        {% else %}
+                            {% load static %}
+                            <a href="{{ header_button_href }}" class="text-decoration-none">
+                                <div class="rounded-3 bg-white text-dark text-center mx-lg-0 mx-md-0 mx-sm-auto py-2 px-5">
+                                    <strong>{{ header_button_text }}</strong>
+                                </div> 
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--Модальное окно города-->
+    <div class="modal fade" id="cityModal" tabindex="-1" aria-labelledby="cityModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cityModalLabel">{{ change_city_form.city.label }}</h5>
+                </div>
+                <div class="modal-body">
+                    {% for city in cities %}
+                        {% if user.city is city%}
+                            <strong>
+                                <li class="list-group-item cities" data-city-id="{{ city.id }}" style="cursor: pointer;">{{ city.name }}</li>
+                            </strong>
+                        {% endif %}
+                        <li class="list-group-item cities" data-city-id="{{ city.id }}" style="cursor: pointer;">{{ city.name }}</li>
+                    {% endfor %}
+                    <form
+                        method="post" 
+                        action="{% url 'change_city' pk=user.id %}?success_url={{ request.path|urlencode }}"
+                        id="update_city_form"
+                    >
+                        {% csrf_token %}
+                        {{ change_city_form.city }}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src={% static 'js/update_user_city.js' %}></script>
+</header>

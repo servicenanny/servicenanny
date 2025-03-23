@@ -1,0 +1,37 @@
+:root {
+    --yellow-header-color: rgba(235, 245, 214, 1);
+    --white: rgb(255, 255, 255);
+    --dark: rgba(27, 27, 27, 1);
+}
+
+
+header {
+    
+}
+
+.registration-white, .registration-white:hover, .registration-white:active, .registration-black:visited {
+    border-radius: 5px;
+    background-color: var(--white)!important;
+    color: var(--dark)!important;
+    font-size: 12px;
+}
+
+.registration-black, .registration-black:hover, .registration-black:active, .registration-black:visited {
+    border-radius: 5px;
+    background-color: var(--dark)!important;
+    color: var(--white)!important;
+    font-size: 12px;
+}
+
+.header-bg-yellow {
+    background-color: var(--yellow-header-color);
+}
+
+@media (min-width: 978px) {
+    .d-collapse-none {
+        display: none!important;
+    }
+    .d-collapse-block {
+        display: block!important;
+    }
+}

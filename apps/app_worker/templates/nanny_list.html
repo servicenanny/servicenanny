@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>База нянь</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nanny_list.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/full_page.css' %}" />
+    <style>
+        .app-img {
+            position: relative;
+            display: list-item;
+            list-style: none;
+            max-height: 2.75rem;
+        }
+    </style>
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+
+{% block  header %}
+    {% include "header_yellow_city.html" with text_color='text-dark' %}
+{% endblock %}
+{% block  content %}
+<div class="container my-5">
+    {% if nanny_list %}
+        <div class="row justify-content-center mx-2">
+        {% for nanny in nanny_list %}
+            <div class="col-lg-12 col-md-12 col-sm-12 row background-light-blue nanny-card p-lg-5 p-3 poppins-reg mb-3 mx-lg-auto max-lg">
+                <div class="col-lg-2 col-md-12 col-sm-12 d-flex justify-content-center mb-2">
+                    <img class="nanny-img" src="{{ nanny.photo.url }}" alt="Фото няни" />
+                </div>
+                <div class="col-lg-10 col-md-12 col-sm-12 px-lg-4 mb-lg-5 mb-4">
+                    <p class="text-lg-start text-md-center text-sm-center text-center text-uppercase fs-2 mb-4 mursgothic"><strong>{{ nanny.first_name }} {{ nanny.last_name }} </strong></p>
+                    <div class="row mx-0 w-xl-75 w-lg-75 w-md-100 w-sm-100 justify-content-center mb-lg-4 mb-4">
+                        <div class="col-lg-3 col-md-5 col-sm-4 col-4 px-1">
+                            <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto mx-0 py-2 px-3 h-auto"><strong class="align-middle">{{ nanny.age }} лет</strong></div>
+                        </div>
+                        <div class="col-lg-4 col-md-7 col-sm-6 col-6 px-1">
+                            <div class="rounded-3 w-sm-100 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto mx-0 py-2 px-3 my-auto h-auto"><strong>{{ nanny.experience }} лет опыта</strong></div>
+                        </div>
+                        <div class="col-lg-5 col-md-8 col-sm-6 col-8 px-1">
+                            <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto mx-0 mt-lg-0 mt-2 py-2 px-3 align-middle"><strong>График · {{nanny.work_days}}</strong></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-lg-start text-md-center text-sm-center text-center">{{ nanny.describe }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-12 col-sm-12 mb-3">
+                            <p class="text-lg-start text-md-center text-sm-center text-center"><img src={% static 'img/price.svg' %} class="me-1"/>от {{ nanny.cost_per_hour }}₽/час</strong></p>
+                        </div>
+                        <div class="col-lg-9 col-md-12 col-sm-12 ps-lg-4 row mx-0 px-0">
+                            <div class="col-lg-5 col-md-11 col-10 px-sm-max-0">
+                                <a href="tel:{{ nanny.phone_number }}" class="text-decoration-none w-100">
+                                    <div class="w-100">
+                                        <button class="btn btn-dark bg-dark-light py-2 px-5 w-100">Позвонить няне</button> 
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-md-1 col-2 ps-lg-0 ps-md-0 ps-0 px-sm-max-0 ps-sm-max-1">
+                                <a href="https://api.whatsapp.com/send?phone={{ nanny.phone_number }}">
+                                    <img class="app-img img-fluid" src="{% static "img/wa.png" %}"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mt-4">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<header class="py-3 mb-4 header-bg-yellow">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="d-sm-block d-collapse-none">
+                {% if not user.is_authenticated  %}
+                    <div id="registration-block">
+                        <a href="{% url 'account_login' %}" class="text-decoration-none">
+                            <button class="registration-white btn py-2 px-5">Войти</button>
+                        </a>
+                    </div>
+                {% elif end_range %}
+                    {% load static %}
+                    <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                        <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                    </div> 
+                {% else %}
+                    <a href="{{ header_button_href }}" class="text-decoration-none">
+                        <button class="registration-white btn py-2 px-5"><strong>{{ header_button_text }}</strong></button>
+                    </a>
+                {% endif %}
+            </div>
+            <button 
+                class="navbar-toggler d-lg-none bg-white"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+                aria-expanded="false" 
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon" id="open-menu"></span>
+            </button>
+            <div class="offcanvas offcanvas-end header-bg-yellow" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <button type="button" class="btn-close btn-close-white text-reset px-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="justify-content navbar-collapse">
+                        <ul class="navbar-nav justify-content-between w-lg-50 w-md-50 w-sm-100">
+                            <li class="nav-item mb-2">
+                                <a href="{% url 'home' %}#how-to-use" class="text-decoration-none {{text_color}}">О приложении</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{% url 'home' %}#cities-block" class="text-decoration-none {{text_color}}">Города</a>
+                            </li>
+                            <li class="nav-item mb-2">
+                                <a href="{% url 'home' %}#why_choose_us" class="text-decoration-none {{text_color}}">Преимущества</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-collapse-block d-none">
+                        {% if not user.is_authenticated  %}
+                            <div id="registration-block">
+                                <a href="{% url 'account_login' %}" class="text-decoration-none">
+                                    <button class="registration-white btn py-2 px-5">Войти</button>
+                                </a>
+                            </div>
+                        {% elif end_range %}
+                            {% load static %}
+                            <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                                <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                            </div> 
+                        {% else %}
+                            {% load static %}
+                            <a href="{{ header_button_href }}" class="text-decoration-none">
+                                <div class="rounded-3 bg-white text-dark text-center mx-lg-0 mx-md-0 mx-sm-auto py-2 px-5">
+                                    <strong>{{ header_button_text }}</strong>
+                                </div> 
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>

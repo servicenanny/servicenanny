@@ -1,0 +1,18 @@
+<div class="card-review">
+    <img src="{{ review.preview_url }}" alt="Отзыв" class="card-image-review" />
+    <div class="controls-box">
+        <audio class="audio" data-audio="{{ review.number }}">
+            <source src="{{ review.file_url }}" type="audio/mp3">
+            Ваш браузер не поддерживает аудио.
+        </audio>
+        <button class="play-btn" data-audio="{{ review.number }}">
+            <i class="bi bi-play-fill"></i>
+        </button>
+        <div class="progress-container" data-audio="{{ review.number }}">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="speed-container">
+            <span class="speed-text">1x</span>
+        </div>
+    </div>
+</div>

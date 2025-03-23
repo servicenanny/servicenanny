@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans with site_name=current_site.name %}Подтверждение почты для {{ site_name }}{% endblocktrans %}

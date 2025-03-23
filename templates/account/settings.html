@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Настройки</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+{% block  header %}
+{% endblock %}
+{% block  content %}
+<div class="container">
+    {% if form.errors %}
+      <p>Пользователь не найден, попробуйте снова</p>
+    {% endif %}
+  
+    {% if user.is_authenticated %}
+        <div class="container">
+            <p class="text-center mt-2 h2">У вас нет доступа к этой странице, так как вы уже вошли в аккаунт</p>
+            <p class="text-center mt-2"><a href="{% url 'logout' %}" class="fs-5">Выйти?</a></p>
+        </div>
+    {% else %}
+        <p class="h2 text-center">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ</p>
+        <form 
+            action="{% url "account_login" %}" 
+            method="post" 
+            id="login-form"
+            class="mb-3"
+        >
+            {% csrf_token %}
+            {{ form }}
+        </form>
+        <div class="password-reset-link text-center">
+            <a href="{% url 'account_password_reset' %}">Забыли свой пароль?</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

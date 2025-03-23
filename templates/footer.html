@@ -1,0 +1,53 @@
+{% load static %}
+<footer class="text-center text-lg-start background-blue text-muted border-top">
+    <section class="border-bottom">
+        <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
+                    <h6 class="mb-4">Навигация по сайту</h6>
+                    <p>
+                        <a href="#how-to-use" class="text-reset text-decoration-none">
+                            <strong>О сервисе</strong>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{% url 'account_signup' %}" class="text-reset text-decoration-none">
+                            <strong>Зарегистрироваться</strong>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-md-0 mb-4 align-self-start">
+                    <h6 class="mb-4">Контакты</h6>
+                    <p>
+                        <a href="mailto:servicenanny@yandex.ru" class="text-reset text-decoration-none">
+                            <strong>servicenanny@yandex.ru</strong>
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 ms-md-auto mb-4 text-muted">
+                    <div class="m-auto">
+                        <br />
+                        <p class="mb-0">ИП Муртазина Снежана Валерьевна</p>
+                        <p class="mb-0">ИНН: 210324399274</p>
+                        <p>ОГРНИП: 323169000065417</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="m-0" />
+    <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
+                    <a href="{% static "doc/355f7cc3-f59b-4da6-bf1c-5c752aa171e7.pdf" %}" class="text-doc text-decoration-none">Политика конфиденциальности</a>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-4 align-self-start">
+                    <a href="{% static "doc/bedac6d0-a796-463b-ad3d-72adf0a8ff7d.pdf" %}" class="text-doc text-decoration-none">Договор оферты</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>

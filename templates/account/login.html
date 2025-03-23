@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Вход</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+
+{% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
+{% endblock %}
+{% block  content %}
+<div class="container my-5 py-5">
+    {% if user.is_authenticated %}
+        <div class="container">
+            <p class="text-center mt-2 h2">У вас нет доступа к этой странице, так как вы уже вошли в аккаунт</p>
+            <p class="text-center mt-2"><a href="{% url 'logout' %}" class="fs-5">Выйти?</a></p>
+        </div>
+    {% else %}
+        <h1 class="text-center text-uppercase mursgothic">
+            <p>Страница</p>
+            <p>входа</p>
+        </h1>
+        <div class="row poppins-reg">
+            <form 
+                action="{% url "account_login" %}" 
+                method="post" 
+                id="login-form"
+                class="mb-3"
+            >
+                {% if form.errors %}
+                    <p class="text-danger text-center">Пользователь не найден, попробуйте снова</p>
+                {% endif %}
+                {% csrf_token %}
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.email.errors | first }}</p>
+                        <label class="mb-2">Email</label> 
+                        <p class="input-control">{{ form.email }}</p>
+                        
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.password.errors }}</p>
+                        <label class="mb-2">Пароль</label> 
+                        <p class="input-control">{{ form.password }}</p>
+                    </div>
+                </div>
+                <div class="col align-self-center mb-4">
+                    <div class="w-lg-25 w-md-25 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.remember.errors }}</p>
+                        <span class="input-check">{{ form.remember }} Запомнить меня </span>
+                    </div>
+                </div>
+                <div class="submit-row d-flex justify-content-center">
+                    <input type="submit" class="btn btn-yellow align-center fs-5 w-25 mx-auto" value="Войти" />
+                </div>
+            </form>
+            <div class="text-center my-3">
+                <a href="{% url 'account_signup' %}">Регистрация</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

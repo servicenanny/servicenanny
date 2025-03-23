@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Регистрация нянь</title>
+{% endblock %}
+
+{% block style %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}" />
+<link rel="stylesheet" href="{% static 'css/header.css' %}" />
+<link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+{% include "header_yellow.html" with text_color='text-dark' %}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-uppercase mb-5 my-5 w-100 mursgothic">
+        <strong>
+            <p class="mb-0">Личная</p>
+            <p class="mb-0">информация</p>
+        </strong>
+    </h1>
+    <form action="{% url 'nanny_update' %}" method="POST" enctype="multipart/form-data" class="mb-5">
+        {% csrf_token %}
+        <div class="row px-lg-0 px-md-5 mx-lg-0 mx-3 poppins-reg justify-content-between">
+            <div class="col-lg-3 col-12 px-0">
+                <div class="">
+                    <p class="text-danger">{{ form.first_name.errors | first }}</p>
+                    <label class="mb-2">Ваше имя</label>
+                    <p class="input-control" placeholder="Татьяна" type="text">{{ form.first_name }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.last_name.errors | first }}</p>
+                    <label class="mb-2">Ваша фамилия</label>
+                    <p class="input-control" placeholder="Иванова" type="text">{{ form.last_name }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.phone_number.errors | first }}</p>
+                    <label class="mb-2">Ваш номер телефона</label>
+                    <p class="input-control" placeholder="+7 999 999 99 99" type="text">{{ form.phone_number }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.age.errors | first }}</p>
+                    <label class="mb-2">Ваш возраст</label>
+                    <p class="input-control" placeholder="65 лет" type="text">{{ form.age }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.experience.errors | first }}</p>
+                    <label class="mb-2">Опыт работы</label>
+                    <p class="input-control" placeholder="10 лет" type="text">{{ form.experience }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.cost_per_hour.errors | first }}</p>
+                    <label class="mb-2">Ставка в час</label>
+                    <p class="input-control" placeholder="от 450" type="text">{{ form.cost_per_hour }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.city.errors | first }}</p>
+                    <label class="mb-2">Выберите город</label>
+                    <p class="input-control" type="text">{{ form.city }}</p>
+                </div>
+                <div class="">
+                    <p class="text-danger">{{ form.photo.errors | first }}</p>
+                    <label class="mb-2">Добавить фото</label>
+                    <p>{{ form.photo }}</p>
+                </div>
+            </div>
+            <div class="col-lg-8 col-12 px-0">
+                <div class="">
+                    <p class="text-danger">{{ form.describe.errors | first }}</p>
+                    <label class="mb-2">Расскажите о себе</label>
+                    <p>{{ form.describe }}</p>
+                </div>
+                <div class="">
+                    <label class="mb-2">График работы</label>
+                    <div class="rounded-3 border py-3 px-md-2 px-1">
+                        <p class="text-danger">{{ form.work_days.errors | first }}</p>
+                        {% for value, text in form.work_days.field.choices %}
+                            <div class="form-check form-check-inline me-lg-2 me-0">
+                                <label class="form-check-label">{{ text }}</label>
+                                <input 
+                                    id="id_providers_{{ forloop.counter0 }}" 
+                                    name="{{ form.work_days.name }}" 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    value="{{ value }}"
+                                    {% if value in checked_providers %} 
+                                        checked="checked"
+                                    {% endif %}
+                                >
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 px-0">
+                <input type="submit" class="btn btn-yellow w-100 mt-2 mb-5 py-3" value="Сохранить изменения" />
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

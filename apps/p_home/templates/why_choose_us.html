@@ -1,0 +1,36 @@
+<div class="why-choose-us-block poppins-reg py-5 container">
+    <strong class="mursgothic">
+        <h1 class="text-md-start text-center text-uppercase my-5">
+            {% for paragraph in wcu.title %}
+                <p class="mb-0">{{ paragraph }}</p>
+            {% endfor %}
+        </h1>
+    </strong>
+    <div class="row justify-content-center">
+        {% load static %}
+        {% for reason in wcu.reasons %}
+            <div class="col-lg-4 col-12 mb-4">
+                <div class="w-100 mb-3">
+                    <img src={% static reason.img %} class="rounded w-100 reason-img"/>
+                </div>
+                <div class="">
+                    <div class="d-flex align-items-start">
+                        <img src={% static 'img/fire.svg' %}>
+                        <span class="ms-2">
+                            <h6>
+                                {% for paragraph in reason.title %}
+                                    <strong>
+                                        <p class="mb-0">
+                                            {{ paragraph }}
+                                        </p>
+                                    </strong>
+                                {% endfor %}
+                            </h6>
+                        </span>
+                    </div>
+                    <p class="mt-3">{{ reason.text }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

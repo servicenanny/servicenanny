@@ -1,0 +1,10 @@
+{% load i18n account_tags %}
+
+{% blocktrans with site_name=current_site.name %}
+Здравствуйте!
+
+Для завершения регистрации на сайте {{ site_name }} перейдите по ссылке.
+{{ activate_url }}
+
+Если это были не вы, то не переходите по ней и не подтверждайте почту.
+{% endblocktrans %}

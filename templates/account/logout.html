@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Выход</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+{% block  header %}
+{% endblock %}
+{% block content %}
+<div class="position-absolute top-50 start-50 translate-middle poppins-reg">
+    <h1 class="text-center text-uppercase mursgothic mb-3">Вы успешно вышли из своего аккаунта</h1>
+    <p class="text-center mb-4">Для перехода на главную страницу нажмите на ссылку ниже</p>
+    <p class="text-center"><a href="{% url 'home'%}">Главная</a></p>
+</div>
+{% endblock %}
+{% block  footer %}
+{% endblock %}

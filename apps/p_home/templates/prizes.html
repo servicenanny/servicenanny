@@ -1,0 +1,86 @@
+<div id="deal-wheel" class="poppins-reg py-5">
+    {% load static %}
+    <strong class="mursgothic">
+        <h1 class="text-uppercase text-center my-5">
+            <p class="mb-0">РУЛЕТКА</p> 
+            <p>С ПОДАРКАМИ</p>
+        </h1>
+    </strong>
+    <div class="justify-content-center d-flex">
+        <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
+            <li class="nav-item navbar-background" role="presentation">
+                <button 
+                    class="nav-user-type active px-5 poppins-semibold" 
+                    id="spinner-nanny-tab" 
+                    data-bs-toggle="pill" 
+                    data-bs-target="#spinner-nanny" 
+                    type="button" 
+                    role="tab" 
+                    aria-controls="spinner-nanny" 
+                    aria-selected="true"
+                ><strong>Я — няня</strong></button>
+            </li>
+            <li class="nav-item navbar-background" role="presentation">
+                <button 
+                    class="nav-user-type px-5 poppins-semibold" 
+                    id="spinner-parent-tab" 
+                    data-bs-toggle="pill" 
+                    data-bs-target="#spinner-parent" 
+                    type="button" 
+                    role="tab" 
+                    aria-controls="spinner-parent" 
+                    aria-selected="false"
+                ><strong>Я — родитель</strong></button>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content poppins-reg" id="spinner-tabContent">
+        <div class="tab-pane fade show active" id="spinner-nanny" role="tabpanel" aria-labelledby="spinner-nanny-tab">
+            <div class="spinner_block">
+                <!-- блок с призами -->
+                <ul class="spinner ps-0 pe-0" style="background: {{ nanny_spinner_style }};">
+                    {% load p_home %}
+                    {% for prize in nanny_prizes %}
+                        <li class="prize" style="--rotate: {{ nanny_prizes | rotation:forloop.counter}}deg">
+                            <span class="fs-md-4 fs-sm-6 fs-8">{{prize.text}}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- язычок барабана -->
+                <div class="ticker"></div>
+                <!-- кнопка -->
+                <button class="btn-spin btn btn-yellow px-5 py-3 poppins-reg">
+                    <strong>Крутить рулетку</strong>
+                </button>
+                <div class="win rounded bg-white py-3 px-5 text-center fs-4" hidden>
+                    <p class='my-0'>Поздравляем!</p>
+                    <p class='my-0'>Ваш промокод '<strong>NANNY</strong>' на скидку в размере 500₽</p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade spinner_block" id="spinner-parent" role="tabpanel" aria-labelledby="spinner-parent-tab">
+            <div class="spinner_block">
+                <!-- блок с призами -->
+                <ul class="spinner ps-0 pe-0" style="background: {{ parent_spinner_style }};">
+                    {% load p_home %}
+                    {% for prize in parent_prizes %}
+                        <li class="prize" style="--rotate: {{ parent_prizes | rotation:forloop.counter}}deg">
+                            <span class="fs-md-4 fs-sm-6 fs-8">{{prize.text}}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- язычок барабана -->
+                <div class="ticker"></div>
+                <!-- кнопка -->
+                <button class="btn-spin btn btn-yellow px-5 py-3 poppins-reg">
+                    <strong>Крутить рулетку</strong>
+                </button>
+                <div class="win rounded bg-white py-3 px-5 text-center fs-4" hidden>
+                    <p class='my-0'>Поздравляем!</p>
+                    <p class='my-0'>Ваш промокод '<strong>PARENT</strong>' на скидку в размере 500₽</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src={% static 'js/deal_wheel.js' %}></script>
+</div>

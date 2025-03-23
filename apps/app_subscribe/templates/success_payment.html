@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Успешная оплата</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/success_payment_timer.js' %}"></script>
+{% endblock %}
+
+{% block  header %}
+{% endblock %}
+{% block content %}
+<div class="position-absolute top-50 start-50 translate-middle poppins-reg">
+    <h1 class="text-center text-uppercase mursgothic mb-3">Оплата успешно прошла</h1>
+    <p class="text-center mb-4">Спасибо, что выбрали нас. Нам треубется <strong id="timer">30</strong> секунд для активации вашей подписки. Пожалуйста подождите и нажмите на кнопку снизу для перехода в {{ client_content }}.</p>
+    <div class="submit-row d-flex justify-content-center">
+        <button class="btn btn-yellow align-center w-100 mx-auto border-0" id="redirect_btn" disabled>
+            <a href="{{ redirect_to }}">
+                <input class="btn btn-yellow fs-5 w-100" value="Перейти" />
+            </a>
+        </button>
+    </div>
+</div>
+{% endblock %}
+{% block  footer %}
+{% endblock %}

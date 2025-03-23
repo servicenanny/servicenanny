@@ -1,0 +1,41 @@
+<div id="reviews">
+    <div class="container poppins-reg py-5">
+        <div class="mt-5">
+            <strong class="text-uppercase mursgothic">
+                <h1 class="text-lg-start text-md-start text-sm-center text-center">
+                    <p>Отзывы о сервисе</p>
+                </h1>
+            </strong>
+        </div>
+        <div class="row w-100 my-5 mx-auto justify-content-center">
+            {% if reviews is none or reviews|length == 0 %}
+                <p><strong>Отзывы не найдены</strong></p>
+            {% endif %}
+            {% for review in reviews %}
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12 mb-4 justify-content-center">
+                    {% load p_home %}
+                    {% if forloop.counter|add:"-1"|int_divide:3|divisibleby:2%}
+                    <div class="card-text-review px-4 py-2 background-yellow">
+                    {% else %}
+                    <div class="card-text-review px-4 py-2 background-blue">
+                    {% endif %}
+                        <div class="card-text-content">
+                            <h6 class="my-0">
+                                <strong >{{ review.from_client }}</strong>
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        {% if review.is_video %}
+                            {% include "video_card.html" with review=review %}
+                        {% elif review.is_audio %}
+                            {% include "audio_card.html" with review=review %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/review.js' %}"></script>
+</div>

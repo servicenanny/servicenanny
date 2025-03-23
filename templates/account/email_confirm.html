@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Подтверждение почты</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+{% block  header %}
+{% endblock %}
+{% block  content %}
+<div class="position-absolute top-50 start-50 translate-middle">
+    <h1 class="text-center text-uppercase mursgothic">
+        <p>Подтверждение почты</p>
+    </h1>
+    <div class="row poppins-reg">
+        <form 
+            action="{% url "account_confirm_email" key=confirmation.key %}"
+            method="post" 
+            id="confirmation-form"
+            class="my-5"
+        >
+            {% if form.errors %}
+                <p class="text-danger text-center">Ошибка на стороне сервера</p>
+                {{form.errors}}
+            {% endif %}
+            {% csrf_token %}
+            <div class="col align-self-center mb-5 mt-4">
+                <div class="w-lg-75 w-md-75 w-sm-75 w-100 mx-auto">
+                    <h4 class="text-center">Подтвердить регистрацию по почте <b>{{ confirmation.email_address.email }}</b>?</h4>
+                </div>
+            </div>
+            <div class="submit-row d-flex justify-content-center">
+                <input type="submit" class="btn btn-yellow align-center fs-5 w-lg-50 w-md-75 w-sm-75 w-75 mx-auto" value="Подтвердить" />
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block  footer %}
+{% endblock %}

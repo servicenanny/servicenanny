@@ -1,0 +1,96 @@
+@import url("audio.css");
+
+
+.page-header {
+    background-color: rgb(217, 217, 217);
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 576px) {
+    .page-header {
+        background-color: rgb(217, 217, 217);
+        background-position: left;
+        background-blend-mode: multiply;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+.page-header-info {
+    padding-top: 14%;
+    padding-bottom: 14%;
+}
+
+.page-header-btn {
+    font-weight: 525;
+}
+
+.triangle {
+    position: relative;
+    border-left: 48.5vw solid transparent;
+	border-right: 48.5vw solid transparent;
+	border-bottom: 5vh solid var(--main-background-color);
+    width: 100%!important;
+    padding: 0;
+    margin: 0;
+}
+
+#deal-wheel {
+    background-color: var(--main-background-color);
+}
+
+.ticker {
+    background-color: var(--main-background-color)!important;
+}
+
+#how-to-use {
+    background-color: var(--main-background-color);
+}
+
+.card {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+    border-radius: calc(var(--bs-card-border-radius) + 1rem);
+}
+
+.navbar-background {
+    background-color: white;
+}
+
+.navbar-nav-active {
+    background-color: var(--blue-color)!important;
+    color: black;
+}
+
+#cities-block {
+    background: linear-gradient(var(--blue-color), var(--yellow-color));
+}
+
+#why_choose_us {
+    background-color: var(--white-background-color);
+}
+
+#in_subscribe {
+    background-color: var(--white-background-color);
+}
+
+#reviews {
+    background-color: var(--main-background-color);
+}
+
+.price {
+    transform: rotate(357deg);
+}
+
+.price li::before {
+    list-style-type: none!important;
+}
+
+.text-overflow-hidden {
+    width : 100px;
+    overflow:hidden;
+    display:inline-block;
+    white-space: nowrap;
+}

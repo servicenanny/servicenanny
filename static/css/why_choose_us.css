@@ -1,0 +1,19 @@
+.reason-img {
+    max-height: 17rem;
+}
+
+
+@media(max-width: 975px) {
+    .reason-img {
+        max-height: 25rem;
+        height: auto;
+    }
+}
+
+
+@media(max-width: 768px) {
+    .reason-img {
+        max-height: 20rem;
+        height: auto;
+    }
+}

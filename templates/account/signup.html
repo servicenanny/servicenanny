@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Регистрация</title>
+{% endblock %}
+
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %}
+{% block js %}
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/signup.js' %}"></script>
+{% endblock %}
+{% block  header %}
+    {% include "header_yellow.html" with text_color='text-dark' %}
+{% endblock %}
+{% block  content %}
+<div class="container my-4 pt-5 pb-">
+    {% if user.is_authenticated %}
+        <div class="container">
+            <p class="text-center mt-2 h2">У вас нет доступа к этой странице, так как вы уже вошли в аккаунт</p>
+            <p class="text-center mt-2"><a href="{% url 'logout' %}" class="fs-5">Выйти?</a></p>
+        </div>
+    {% else %}
+        <h1 class="text-center text-uppercase mursgothic">
+            <p>Страница</p>
+            <p>регистрации</p>
+        </h1>
+        <div class="row">
+            <form 
+                action="{% url "account_signup" %}" 
+                method="post" 
+                id="login-form"
+                class="mb-2 poppins-reg px-sm-0 px-4"
+            >
+                {% csrf_token %}
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-50 w-sm-75 w-100 mx-auto justify-content-center d-flex">
+                        <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-2 p-1" id="pills-tab" role="tablist">
+                            <li class="nav-item navbar-background" role="presentation">
+                                <input 
+                                    id="is_worker"
+                                    class="nav-user-type active px-4 poppins-semibold" 
+                                    data-bs-toggle="pill" 
+                                    type="button" 
+                                    role="tab" 
+                                    aria-selected="true"
+                                    value = "Я — няня"
+                                />
+                            </li>
+                            <li class="nav-item navbar-background" role="presentation">
+                                <input
+                                    id="is_not_worker"
+                                    class="nav-user-type px-4 poppins-semibold" 
+                                    data-bs-toggle="pill" 
+                                    type="button" 
+                                    role="tab" 
+                                    aria-selected="false"
+                                    value = "Я — родитель"
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-50 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.email.errors | first }}</p>
+                        <label class="mb-2">Email</label> 
+                        <p class="input-control">{{ form.email }}</p>
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-50 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.password.errors | first }}</p>
+                        <label class="mb-2">Пароль</label> 
+                        <p class="input-control">{{ form.password }}</p>
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-50 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.password_confirm.errors | first }}</p>
+                        <label class="mb-2">Подтвердите пароль</label> 
+                        <p class="input-control">{{ form.password_confirm }}</p>
+                    </div>
+                </div>
+                <div class="col align-self-center">
+                    <div class="w-lg-25 w-md-50 w-sm-50 w-100 mx-auto">
+                        <p class="text-danger">{{ form.is_accept.errors | first }}</p>
+                        <p class="input-check text-muted h7">{{ form.is_accept }} <small>Нажимая на кнопку «Зарегистрироваться», я даю согласие на обработку персональных данных</small></p>
+                    </div>
+                </div>
+
+                <div>{{form.client_type.errors}}</div>
+                <div class="d-none">{{form.client_type}}</div>
+
+                <div class="submit-row d-flex justify-content-center">
+                    <input type="submit" class="btn btn-yellow align-center fs-6 w-lg-25 w-md-50 w-sm-50 w-75 mx-auto fw-bold py-2" value="Зарегистрироваться" />
+                </div>
+            </form>
+            <div class="text-center my-3">
+                <a href="{% url 'account_login' %}">Уже есть аккаунт?</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
