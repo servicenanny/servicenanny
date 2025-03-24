@@ -22,67 +22,331 @@
     <script src="{% static 'js/header.js' %}"></script>
 {% endblock %}
 
-{% block  header %}
-{% endblock %}
+
 
 {% block  content %}
 <style>
-    .markers {
-        list-style: none;
-    }
-    .markers li {
-        display: flex;
-        align-items: center;
-    }
+
     .markers li::before {
         flex-shrink: 0;
         content: url({% static 'img/fire.svg' %});
         margin-right: 2%;
     }
+    .page-header {
+    display: flex;
+    width: 100%;
+    height: 800px;
+    }
+
+    .image-block {
+        flex: 1;
+        
+        padding-top: 30px;
+        
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+                url({% static 'img/page-header.jpg' %}) no-repeat center center;
+    
+        /* background: url({% static 'img/page-header.jpg' %}) no-repeat center center; */
+        background-size: cover;
+        background-position: 5% center;
+    }
+
+    .text-block {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 30px 40px 25px 40px;
+        background: white;
+        width: 640px;
+    }
+
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn {
+        background: #EBF5D6;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: 0.3s;
+        width: 210px;
+    }
+
+    .btn:hover {
+        background: #bfe39a;
+    }
+    
+    .yellow-bg {
+        background-color: #EBF5D6;
+        padding: 10px 0;
+
+    }
+    .ending {
+        background: url({% static 'img/find.jpg' %}) no-repeat center center;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
+    .ending a {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #f0f8d8;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;    
+        transition: background 0.3s;
+        text-decoration: none;
+        color: #000;
+    }
+    </style>
 </style>
 <div>
-    {% load static %}
-    <div 
-        class="page-header justify-content-center w-100 mursgothic"
-        style="background-image: url('{% static 'img/page-header.jpg' %}')"
-    >
-        {% include "header.html" with text_color='text-white' %}
-        <div class="page-header-info px-2">
-            <div class="m-auto w-lg-50 w-md-50 w-sm-100 w-100">
-                <h1 class="text-uppercase text-center text-white">
-                    <strong>
-                        <p class="mb-0">Сервис для поиска</p>
-                        <p class="mb-0">опытных нянь</p>
-                        <p class="mb-0">для вашего ребёнка</p>
-                    </strong>
-                </h1>
+    {% load static %}   
+    <header class="page-header">
+        <div class="image-block">
+            <div class="navbar-collapse justify-content-center d-flex">
+                <ul class="navbar-nav w-lg-50 w-md-50 w-sm-100 d-flex flex-row gap-3">
+                    <li class="nav-item mb-2"><a href="#why_choose_us" class="toAnchor text-decoration-none text-white">Преимущества</a></li>
+                    <li class="nav-item mb-2">
+                        <a href="#how-to-use" class="toAnchor text-decoration-none text-white">О приложении</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#cities-block" class="toAnchor text-decoration-none text-white">Города</a></li>
+                </ul>
             </div>
-            <div class="row mt-4 justify-content-center w-100 m-auto poppins-semibold">
-                <div class="col-lg-2 col-md-4 col-sm-7 col-7 mb-2">
-                    <a href="#in_subscribe">
-                        <button class="btn btn-yellow px-5 py-3 w-100 page-header-btn">
-                            <strong>Стать няней</strong>
-                        </button>
+        </div>
+        <div class="text-block">
+            <div class="d-collapse-block d-none">
+                {% if not user.is_authenticated  %}
+                    <div id="registration-block">
+                        <a href="{% url 'account_login' %}" class="text-decoration-none ">
+                            <button class="registration-white btn py-2 px-5 border border-dark rounded-3">Регистрация</button>
+                        </a>
+                        <a href="{% url 'account_login' %}" class="text-decoration-none">
+                            <button class="registration-white btn py-2 px-5 border border-dark rounded-3">Войти</button>
+                        </a>
+                    </div>
+                {% elif end_range %}
+                    {% load static %}
+                    <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                        <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                    </div> 
+                {% else %}
+                    {% load static %}
+                    <a href="{{ header_button_href }}" class="text-decoration-none">
+                        <div class="rounded-3 bg-white text-dark text-center mx-lg-0 mx-md-0 mx-sm-auto py-2 px-5">
+                            <strong>{{ header_button_text }}</strong>
+                        </div> 
                     </a>
+                {% endif %}
+            </div>  
+            <div>
+                <h1 class="mursgothic" >СЕРВИС<br> ДЛЯ ПОИСКА <br> ОПЫТНЫХ НЯНЬ<br>ДЛЯ ВАШЕГО<br> РЕБЁНКА</h1>
+                <p>Сервис для родителей, который поможет найти<br> лучшую няню с минимальными вложениями</p>
+                <div class="buttons">
+                    <button class="btn rounded-3" >Стать няней</button>
+                    <button class="btn rounded-3">Найти няню</button>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-7 col-7 mb-2">
-                    <a href="#in_subscribe">
-                        <button class="btn btn-yellow px-5 py-3 w-100 page-header-btn">
-                            <strong>Найти няню</strong>
-                        </button>
-                    </a>
+            </div>
+            <a href="#open-popup" class='text-black poppins-semibold' id="openPopup">Отправить</a>
+        </div>
+        <div class="popup-overlay" id="popupOverlay">
+            <div class="popup">
+                <span class="popup-close" id="closePopup"></span>
+                <input type="text" placeholder="Введите имя">
+    
+                <input type="text" placeholder="Введие номер">
+    
+                <label class="poppins-reg">
+                    <input type="checkbox" id="consentCheckbox"> Cогласен с политикой обработки персональных данных
+                </label>
+                <button id="submitButton" disabled>Отправить заявку</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="for-who-service mt-6">
+        <div class="container">
+            <h1 class="mursgothic">ДЛЯ КОГО ЭТОТ СЕРВИС?</h1>
+        </div>
+        {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
+        
+       <div class="yellow-bg">
+            <div class="why-choose-us-block poppins-reg container">
+                <strong class="mursgothic">
+                    <h1 class="text-md-start text-center text-uppercase my-4">
+                        {% for paragraph in parent_why_choose_us.title %}
+                            <p class="mb-0" style="font-size: 24px;">{{ paragraph }}</p>
+                        {% endfor %}
+                    </h1>
+                </strong>
+                <div class="row justify-content-center">
+                    {% for reason in parent_why_choose_us.reasons %}
+                        <div class="col-lg-4 col-12 mb-4">
+                            <div class="w-100 mb-3">
+                                <img src={% static reason.img %} class="rounded w-100 reason-img"/>
+                            </div>
+                            <div class="">
+                                <div class="d-flex align-items-start">
+                                    <img src={% static 'img/fire.svg' %}>
+                                    <span class="ms-2">
+                                        <h6>
+                                            {% for paragraph in reason.title %}
+                                                <strong>
+                                                    <p class="mb-0">
+                                                        {{ paragraph }}
+                                                    </p>
+                                                </strong>
+                                            {% endfor %}
+                                        </h6>
+                                    </span>
+                                </div>
+                                <p class="mt-3">{{ reason.text }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+       </div>
+    </div>
+
+    <div class="owner-message">
+        <div class="container">
+            <div class="owner-message__content">
+                <div class="owner-message__text">
+                    <h1 class="owner-message__text_title mursgothic">СНЕЖАНА МУРТАЗИНА — <br>ОСНОВАТЕЛЬНИЦЫ СЕРВИСА</h1>
+                    <div class="d-flex align-items-start gap-2">
+                        <img src="{% static 'img/fire_white.svg' %}" class=''>
+                        <span class="ms-2">
+                            <h6>
+                                <strong>
+                                    <p class="mb-0 poppins-reg" style="font-weight: 400;">
+                                        основатель агентства по подбору нянь «Детская<br>история» @nanny_baby_story
+                                    </p>
+                                </strong>
+                            </h6>
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-start gap-2">
+                        <img src="{% static 'img/fire_white.svg' %}">
+                        <span class="ms-2">
+                            <h6>
+                                <strong>
+                                    <p class="mb-0 poppins-reg " style="font-weight: 400;">
+                                        мама 3х детей
+                                    </p>
+                                </strong>
+                            </h6>
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-start gap-2">
+                        <img src="{% static 'img/fire_white.svg' %}">
+                        <span class="ms-2">
+                            <h6>
+                                <strong>
+                                    <p class="mb-0 poppins-reg" style="font-weight: 400;">
+                                        основательница женского сообщества<br>в г. Казань 
+                                    </p>
+                                </strong>
+                            </h6>
+                        </span>
+                    </div>
+                    <div class="d-flex align-items-start gap-2">
+                        <img src="{% static 'img/fire_white.svg' %}">
+                        <span class="ms-2">
+                            <h6>
+                                <strong>
+                                    <p class="mb-0 poppins-reg" style="font-weight: 400;">
+                                        предприниматель 
+                                    </p>
+                                </strong>
+                            </h6>
+                        </span>
+                    </div>
+                </div>
+                <div class="owner-message__video">
+                    <div class="card-review">
+                        <video class="video">
+                            <source src="{% static 'review/1.mov' %}" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                        <div class="play-btn-container-video">
+                            <button class="play-btn-video">
+                                <i class="bi bi-play-fill"></i>     
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="triangle"></div>
     </div>
+
+    <div class="how-it-happens">
+        <div class="container">
+            <div class="how-it-happens__content">
+                <h1 class="how-it-happens__title mursgothic">КАК ВСЁ ПРОИСХОДИТ?</h1>
+                <div class="how-it-happens__list">
+                    <div class="how-it-happens__item">
+                        <div class="how-it-happens__list-number mursgothic">01</div>
+                        <div class="how-it-happens__list-text">Нажимаете на кнопку<br> «Оставить заявку»</div>
+                    </div>
+                    <div class="how-it-happens__item">
+                        <div class="how-it-happens__list-number mursgothic">04</div>
+                        <div class="how-it-happens__list-text">После оплаты попадаете <br>в личный кабинет</div>
+                    </div>
+
+                    <div class="how-it-happens__item">
+                        <div class="how-it-happens__list-number mursgothic">02</div>
+                        <div class="how-it-happens__list-text">Проходите<br> регистрацию</div>
+                    </div>
+                    <div class="how-it-happens__item">
+                        <div class="how-it-happens__list-number mursgothic">05</div>
+                        <div class="how-it-happens__list-text">Открываете подборку -><br> выстраиваете фильтры<br> для удобного поиска</div>
+                    </div>
+                    <div class="how-it-happens__item">
+                        <div class="how-it-happens__list-number mursgothic">03</div>
+                        <div class="how-it-happens__list-text">Оплачиваете выбранный<br> тариф подписки: няня/<br>родитель</div>
+                    </div>
+
+                    <div class="how-it-happens__item">
+                        <div class="how-it-happens__list-number mursgothic">06</div>
+                        <div class="how-it-happens__list-text">Находите няню/клиента<br> для работы</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div id="how-to-use">
         <div class="container py-5">
             <strong class="mursgothic">
                 <h1 class="text-uppercase text-center my-5">
-                    <p class="mb-0">Как пользоваться</p> 
-                    <p>сервисом</p>
+                    Как пользоваться<br> 
+                    сервисом
                 </h1>
             </strong>
             <div class="justify-content-center d-flex">
@@ -90,31 +354,31 @@
                     <li class="nav-item navbar-background" role="presentation">
                         <button 
                             class="nav-user-type active px-5 poppins-semibold" 
-                            id="pills-nanny-tab" 
-                            data-bs-toggle="pill" 
-                            data-bs-target="#pills-nanny" 
-                            type="button" 
-                            role="tab" 
-                            aria-controls="pills-nanny" 
-                            aria-selected="true"
-                        ><strong>Я — няня</strong></button>
-                    </li>
-                    <li class="nav-item navbar-background" role="presentation">
-                        <button 
-                            class="nav-user-type px-5 poppins-semibold" 
                             id="pills-parent-tab" 
                             data-bs-toggle="pill" 
                             data-bs-target="#pills-parent" 
                             type="button" 
                             role="tab" 
                             aria-controls="pills-parent" 
-                            aria-selected="false"
+                            aria-selected="true"
                         ><strong>Я — родитель</strong></button>
+                    </li>
+                    <li class="nav-item navbar-background" role="presentation">
+                        <button 
+                            class="nav-user-type px-5 poppins-semibold" 
+                            id="pills-nanny-tab" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#pills-nanny" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="pills-nanny" 
+                            aria-selected="false"
+                        ><strong>Я — няня</strong></button>
                     </li>
                 </ul>
             </div>
             <div class="tab-content poppins-reg" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-nanny" role="tabpanel" aria-labelledby="pills-nanny-tab">
+                <div class="tab-pane fade" id="pills-nanny" role="tabpanel" aria-labelledby="pills-nanny-tab">
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                           <div class="card border-0 h-100">
@@ -148,7 +412,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-parent" role="tabpanel" aria-labelledby="pills-parent-tab">
+                <div class="tab-pane fade show active" id="pills-parent" role="tabpanel" aria-labelledby="pills-parent-tab">
                     <div class="row">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-2">
                           <div class="card card-step border-0 h-100">
@@ -186,53 +450,58 @@
         </div>
     </div>
 
-    {% include "img_block.html" with  img='img/block/1.jpg' %}
-
-    <div id="cities-block" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 col-md-12 col-sm-12 col-12 row mb-5 mx-0">
-                    <div class="col-lg-12 col-md-6 col-sm-12 col-12 px-0">
-                        <strong class="mursgothic">
-                            <h1 class="text-lg-start text-md-start text-sm-center text-center text-uppercase">
-                                <strong>где работает сервис — приложение доступно в 63 городах:</strong>
-                            </h1>
-                        </strong>
-                    </div>
-                    <div class="text-lg-start text-md-start text-sm-center text-center col-lg-12 col-md-6 col-sm-12 col-12 poppins-reg px-0">
-                        {% if cities is not none and cities|length > 0 %}
-                            <span>{{ cities|join:' · '|escape }}</span>
-                        {% else %}
-                            <span><strong>Города не найдены</strong></span>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-12 col-sm-12 col-12 map">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A24c954f43c03612abc1f2dd8542b637045ae3ba93bc26dcb46017b23d49089a9&amp;source=constructor" height="400" frameborder="0" class="w-100"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div id="why_choose_us">
-        {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
-        {% include "img_block.html" with  img='img/block/2.jpg' %}
-        {% include 'why_choose_us.html' with wcu=parent_why_choose_us %}
         {% include "img_block.html" with  img='img/block/3.jpg' %}
     </div>
 
     {% include "prizes.html" %}
+
+    <div id="cities-block" class="py-5">
+        <div class="container">
+            <h1 class="mursgothic">ГДЕ РАБОТАЕТ СЕРВИС — <br>ПРИЛОЖЕНИЕ ДОСТУПНО<br>В 63 ГОРОДАХ</h1>
+            <button id="openCitiesPopup">Список городов</button>
+        </div>
+    </div>
+
+    <div id="cities-popup-overlay">
+        <div id="cities-popup">
+            <span id="cities-popup-close">&times;</span>
+            <h2>Список городов</h2>
+            <div class="text-lg-start text-md-start text-sm-center text-center col-lg-12 col-md-6 col-sm-12 col-12 poppins-reg px-0">
+                {% if cities is not none and cities|length > 0 %}
+                    <span>{{ cities|join:' · '|escape }}</span>
+                {% else %}
+                    <span><strong>Города не найдены</strong></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("openCitiesPopup").addEventListener("click", function() {
+            document.getElementById("cities-popup-overlay").style.display = "flex";
+        });
+
+        document.getElementById("cities-popup-close").addEventListener("click", function() {
+            document.getElementById("cities-popup-overlay").style.display = "none";
+        });
+
+        document.getElementById("cities-popup-overlay").addEventListener("click", function(event) {
+            if (event.target === this) {
+                this.style.display = "none";
+            }
+        });
+    </script>
 
     <!--Что входит в стоимость подписку-->
     <div id="in_subscribe">
         <div class="container py-5">
             <div class="d-sm-block d-md-none">
                 <strong class="mursgothic">
-                    <h1 class="text-center text-uppercase mb-5 w-100">
-                        <p class="mb-0">Что входит</p>
-                        <p class="mb-0">в стоимость</p>
-                        <p class="mb-0">подписки</p>
+                    <h1 class="text-left text-uppercase mb-5 w-100 mursgothic">
+                        Что входит</br>
+                        в стоимость</br>
+                        подписки
                     </h1>
                 </strong>
             </div>
@@ -240,44 +509,45 @@
                 <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
                     <li class="nav-item navbar-background" role="presentation">
                         <button 
-                            class="nav-user-type active px-5 poppins-semibold" 
-                            id="in_subscribe-nanny-tab" 
-                            data-bs-toggle="pill" 
-                            data-bs-target="#in_subscribe-nanny" 
-                            type="button" 
-                            role="tab" 
-                            aria-controls="in_subscribe-nanny" 
-                            aria-selected="true"
-                        >
-                            <strong>Я — няня</strong>
-                        </button>
-                    </li>
-                    <li class="nav-item navbar-background" role="presentation">
-                        <button 
-                            class="nav-user-type px-5 poppins-semibold" 
+                            class="nav-user-type px-5 poppins-semibold active" 
                             id="in_subscribe-parent-tab" 
                             data-bs-toggle="pill" 
                             data-bs-target="#in_subscribe-parent" 
                             type="button" 
                             role="tab" 
                             aria-controls="in_subscribe-parent" 
-                            aria-selected="false"
+                            aria-selected="true"
                         >
                             <strong>Я — родитель</strong>
                         </button>
                     </li>
+                    <li class="nav-item navbar-background" role="presentation">
+                        <button 
+                            class="nav-user-type px-5 poppins-semibold" 
+                            id="in_subscribe-nanny-tab" 
+                            data-bs-toggle="pill" 
+                            data-bs-target="#in_subscribe-nanny" 
+                            type="button" 
+                            role="tab" 
+                            aria-controls="in_subscribe-nanny" 
+                            aria-selected="false"
+                        >
+                            <strong>Я — няня</strong>
+                        </button>
+                    </li>
+                    
                 </ul>
             </div>
             <div class="tab-content poppins-reg" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="in_subscribe-nanny" role="tabpanel" aria-labelledby="in_subscribe-nanny-tab">
+                <div class="tab-pane fade" id="in_subscribe-nanny" role="tabpanel" aria-labelledby="in_subscribe-nanny-tab">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="d-md-block d-none">
                                 <strong class="mursgothic">
-                                    <h1 class="text-uppercase mb-5 w-75">
-                                        <p class="mb-0">Что входит</p>
-                                        <p class="mb-0">в стоимость</p>
-                                        <p class="mb-0">подписки</p>
+                                    <h1 class="text-left text-uppercase mb-5 w-100 mursgothic">
+                                        Что входит</br>
+                                        в стоимость</br>
+                                        подписки
                                     </h1>
                                 </strong>
                             </div>
@@ -321,15 +591,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="in_subscribe-parent" role="tabpanel" aria-labelledby="in_subscribe-parent-tab">
+                <div class="tab-pane fade show active" id="in_subscribe-parent" role="tabpanel" aria-labelledby="in_subscribe-parent-tab">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="d-md-block d-none">
                                 <strong class="mursgothic">
-                                    <h1 class="text-uppercase mb-5 w-75">
-                                        <p class="mb-0">Что входит</p>
-                                        <p class="mb-0">в стоимость</p>
-                                        <p class="mb-0">подписки</p>
+                                    <h1 class="text-left text-uppercase mb-5 w-100 mursgothic">
+                                        Что входит</br>
+                                        в стоимость</br>
+                                        подписки
                                     </h1>
                                 </strong>
                             </div>
@@ -345,17 +615,16 @@
                             <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
                                 <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3">
-                                        <strong>Закрытая страница с базой нянь</strong>
+                                        <strong>Быстрый доступ к базе обученных и проверенных <br>нянь с пакетом документов</strong>
                                     </li>
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
-                                        <strong>Отдел заботы при возникновении вопросов</strong>
+                                        <strong>Поддержка отдела заботы 
+                                            <br>при возникновении вопросов</strong>
                                     </li>
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
-                                        <strong>Проверенные и обученные няни с пакетом документов</strong>
+                                        <strong>Безопасность и гарантия от сервиса</strong>
                                     </li>
-                                    <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
-                                        <strong>Безопасность и гарантия с нашей стороны</strong>
-                                    </li>
+
                                     <div class="d-flex justify-content-center w-100">
                                         <div class="list-inline-item bg-white py-2 px-4 mt-4 price"><strong>{{parent_cost}}₽ / 1 месяц</strong></div>
                                     </div>
@@ -379,7 +648,7 @@
 
     <div class="background-blue py-3 poppins-reg">
         <div class="text-overflow-hidden w-100 align-middle">
-            <strong>абота няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire.svg' %} class="mx-3"/>р</strong>
+            <strong>абота няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>р</strong>
         </div>
     </div>
     <div 
@@ -404,7 +673,122 @@
             </div>
         </div>
     </div>
-    
+
     {% include "reviews.html" %}
+
+    <div class="faq">
+        <div class="container">
+            <div class="faq-container">
+                <div class="faq-title">ОСТАЛИСЬ ВОПРОСЫ?</div>
+            
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Как пользоваться сервисом?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        После прохождения регистрации и оплаты подписки, вы получаете полный доступ к проверенной базе нянь/ клиентов. Информация постоянно обновляется. 
+                        </div>
+                </div>
+            
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Найду ли я няню?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Определённо, да! Благодаря огромной подборке проверенных нянь вы сможете найти «ту самую».
+                    </div>
+                </div>
+            
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Я няня, найду ли я клиентов?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Определенно, да! В базу попадают проверенные клиенты + администраторы постоянно обновляют подборку.
+                    </div>
+                </div>
+            
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Какие гарантии?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        На нашем сайте вы никому не переводите деньги на карту = избегаете риска попасть в руки мошенников. Мы создавали этот сервис практически 1 год, чтобы сделать все прозрачно и безопасно для вас 
+                    </div>
+                </div>
+            
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Куда писать промокод из рулетки?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Нажимайте на кнопку «Оставить заявку» -> вводите данные для регистрациии -> при оплате внизу введите ПРОМОКОД из рулетки
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ending">
+        <h1 class="endign_title mursgothic">СЕРВИС ПОИСКА ОПЫТНЫХ НЯНЬ ДЛЯ ВАШЕГО РЕБЕНКА</h1>
+        <a  id="openPopup">Оставить заявку</a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+    
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById("openPopup").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.getElementById("popupOverlay").style.display = "flex";
+        });
+
+        document.getElementById("closePopup").addEventListener("click", function() {
+            document.getElementById("popupOverlay").style.display = "none";
+        });
+
+        document.getElementById("popupOverlay").addEventListener("click", function(event) {
+            if (event.target === this) {
+                this.style.display = "none";
+            }
+        });
+
+        document.getElementById("consentCheckbox").addEventListener("change", function() {
+            document.getElementById("submitButton").disabled = !this.checked;
+        });
+
+        document.getElementById("openCitiesPopup").addEventListener("click", function() {
+            document.getElementById("cities-popup-overlay").style.display = "flex";
+        });
+
+        document.getElementById("cities-popup-close").addEventListener("click", function() {
+            document.getElementById("cities-popup-overlay").style.display = "none";
+        });
+
+        document.getElementById("cities-popup-overlay").addEventListener("click", function(event) {
+            if (event.target === this) {
+                this.style.display = "none";
+            }
+        });
+    </script>
+    
 </div>
 {% endblock %}
