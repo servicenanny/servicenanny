@@ -36,7 +36,7 @@
     height: 5em;
     display: flex;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 0 0 15px 15px;
 }
 
 .card-text-content h3 {
@@ -186,4 +186,44 @@
 
 .play-btn-video.playing i {
     transform: scale(1); 
+}
+
+
+
+.video-block {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.video-block__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.text-reviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.text-reviews__item {
+    width: 360px;
+    height: 295px;
+    background: #EBF5D6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 15px 25px;
+}
+.text-reviews__title {
+    font-size: 23px;
+    font-weight: bold;
+}
+.text-reviews__body {
+    line-height: 1.7;
 }

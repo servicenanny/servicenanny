@@ -1,0 +1,119 @@
+@media (min-width: 950px) {
+    .btn {
+        width: 200px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .how-it-happens__content {
+        flex-direction: column;
+    }
+    .how-it-happens__list {
+        grid-template-columns: repeat(1, 2fr);
+    }
+    .owner-message__content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .page-header {
+        flex-direction: column;
+    }
+    .text-block {
+        width: 100%;
+        gap: 10px;
+    }
+    .video-block {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        gap: 20px;
+
+    }
+    .video-block__items {
+        flex-wrap: nowrap;
+    }
+    .text-reviews {
+        flex-wrap: nowrap;
+
+    }
+}
+
+@media (max-width: 425px) {
+    .video-block {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        gap: 20px;
+        
+    }
+    .for-who-service__title {
+        font-size: 18px;
+        text-align: center;
+    }
+    .for-who-service__text {
+        font-size: 14px;
+    }
+    .owner-message__text_title {
+        font-size: 18px;
+        text-align: center;
+    }
+    .how-it-happens__title {
+        font-size: 30px;
+    }
+    .page-header {
+        flex-direction: column;
+    }
+    .text-block {
+        width: 100%;
+        gap: 10px;
+    }
+    .text-block__info h1{
+        font-size: 20px;
+        text-align: center;
+    }
+    .text-block__info p {
+        font-size: 12px;
+        text-align: center;
+    }
+    #registration-block {
+        display: none;
+    }
+    .image-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-size: 175%;
+        background-position: 0% center;
+    }
+    .triangle {
+        display: block;
+        border-bottom: 2vh solid var(--main-background-color);
+    }
+    .page-header__nav {display: none;}
+    .register-mobile {
+        display: block;
+    }
+    .register-mobile #registration-block{
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        width: 400px;
+    }
+    .register-mobile #registration-block a .btn{
+        width: 150px;
+        border: none;
+    }
+    .register-mobile #registration-block a .border-dark{
+        border: none;
+    }
+    .popup {
+        width: 300px;
+    }
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+
+    }
+    #openPopup {
+        align-self: center;
+    }
+}

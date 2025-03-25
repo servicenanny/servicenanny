@@ -4,12 +4,12 @@ from .dto import PrizesSpinnerDTO
 PRIZES_PARENT = (
     PrizesSpinnerDTO(
         text = "Скидка 100₽",
-        color = "rgba(169, 209, 255, 1)",
+        color = "rgba(254, 233, 106, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
         text = "Скидка 200₽",
-        color = "rgba(217, 255, 154, 1)",
+        color = "rgba(96, 175, 27, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
@@ -19,28 +19,28 @@ PRIZES_PARENT = (
     ),
     PrizesSpinnerDTO(
         text = "Скидка 400₽",
-        color = "rgba(255, 158, 223, 1)",
+        color = "rgba(189, 43, 35, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
         text = "Скидка 500₽",
-        color = "rgba(198, 161, 247, 1)",
+        color = "rgba(249, 195, 64, 1)",
         chance = 1,
         promo = 'PARENT'
     ),
     PrizesSpinnerDTO(
         text = "Обучение по самопрограм- мированию",
-        color = "rgba(176, 242, 255, 1)",
+        color = "rgba(218, 224, 224, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
         text = "Гайд от нейропсихолога",
-        color = "rgba(255, 167, 167, 1)",
+        color = "rgba(255, 159, 110, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
         text = "Книга от основателя сервиса",
-        color = "rgba(255, 246, 142, 1)",
+        color = "rgba(166, 213, 254, 1)",
         chance = 0
     ),  
 )
@@ -48,12 +48,12 @@ PRIZES_PARENT = (
 PRIZES_NANNY = (
     PrizesSpinnerDTO(
         text = "Скидка 50₽",
-        color = "rgba(169, 209, 255, 1)",
+        color = "rgba(254, 233, 106, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
         text = "Скидка 100₽",
-        color = "rgba(217, 255, 154, 1)",
+        color = "rgba(96, 175, 27, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
@@ -68,23 +68,23 @@ PRIZES_NANNY = (
     ),
     PrizesSpinnerDTO(
         text = "Скидка 400₽",
-        color = "rgba(198, 161, 247, 1)",
+        color = "rgba(189, 43, 35, 1)",
         chance = 1
     ),
     PrizesSpinnerDTO(
         text = "Скидка 500₽",
-        color = "rgba(255, 167, 167, 1)",
+        color = "rgba(249, 195, 64, 1)",
         chance = 0,
         promo = 'NANNY'
     ),
     PrizesSpinnerDTO(
         text = "Обучение по самопрограм- мированию",
-        color = "rgba(176, 242, 255, 1)",
+        color = "rgba(218, 224, 224, 1)",
         chance = 0
     ),
     PrizesSpinnerDTO(
         text = "Гайд от нейропсихолог",
-        color = "rgba(255, 246, 142, 1)",
+        color = "rgba(255, 159, 110, 1)",
         chance = 0
     ),
 )

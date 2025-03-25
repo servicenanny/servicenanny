@@ -1,5 +1,42 @@
 @import url("audio.css");
 
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    background: #EBF5D6;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+    width: 210px;
+}
+
+.btn:hover {
+    background: #bfe39a;
+}
+
+.yellow-bg {
+    background-color: #EBF5D6;
+    padding: 10px 0;
+
+}
 
 .page-header {
     background-color: rgb(217, 217, 217);
@@ -7,6 +44,14 @@
     background-blend-mode: multiply;
     background-size: cover;
     background-repeat: no-repeat;
+}
+.text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px 25px 40px;
+    background: white;
+    width: 640px;
 }
 
 @media (max-width: 576px) {
@@ -19,6 +64,10 @@
     }
 }
 
+.register-mobile {
+    display: none;
+}
+
 .page-header-info {
     padding-top: 14%;
     padding-bottom: 14%;
@@ -27,8 +76,14 @@
 .page-header-btn {
     font-weight: 525;
 }
+.page-header__nav {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
 
 .triangle {
+    display: none;
     position: relative;
     border-left: 48.5vw solid transparent;
 	border-right: 48.5vw solid transparent;
@@ -357,7 +412,7 @@
 }
 
 .faq-container {
-    width: 1160px;
+    width: 100%;
     margin: 0 auto;
     padding: 90px 0;
 }
@@ -417,4 +472,72 @@
 
 .faq-item.active .faq-toggle {
     transform: rotate(45deg);
+}
+
+.ending {
+    background: url({% static 'img/find.jpg' %}) no-repeat center center;
+    background-size: cover;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.ending a {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f0f8d8;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    color: #000;
+}
+
+.ending a:hover {
+    background-color: #e0e8c8;
+}
+
+/* Popup styles */
+#ending-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#ending-popup {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 500px;
+    height: 300px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#ending-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+#ending-popup-close:hover {
+    color: black;
 }

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{% static 'css/why_choose_us.css' %}" />
     <link rel="stylesheet" href="{% static 'css/img_block.css' %}" />
     <link rel="stylesheet" href="{% static 'css/reviews.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/adapt.css' %}" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
 {% endblock %}
 
@@ -46,60 +48,15 @@
         background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
                 url({% static 'img/page-header.jpg' %}) no-repeat center center;
     
-        /* background: url({% static 'img/page-header.jpg' %}) no-repeat center center; */
         background-size: cover;
         background-position: 5% center;
     }
 
-    .text-block {
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 30px 40px 25px 40px;
-        background: white;
-        width: 640px;
-    }
 
-    h1 {
-        font-size: 36px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        line-height: 1.2;
-    }
-
-    p {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .buttons {
-        display: flex;
-        gap: 10px;
-    }
-
-    .btn {
-        background: #EBF5D6;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        border-radius: 5px;
-        transition: 0.3s;
-        width: 210px;
-    }
-
-    .btn:hover {
-        background: #bfe39a;
-    }
-    
-    .yellow-bg {
-        background-color: #EBF5D6;
-        padding: 10px 0;
-
-    }
     .ending {
         background: url({% static 'img/find.jpg' %}) no-repeat center center;
+        background-size: cover;
         height: 600px;
         display: flex;
         flex-direction: column;
@@ -121,30 +78,23 @@
         text-decoration: none;
         color: #000;
     }
-    </style>
+    .ending a a:link, a:visited, a:hover, a:focus, a:active {
+        color: #000;
+        text-decoration: none;
+    }
 </style>
+
 <div>
     {% load static %}   
     <header class="page-header">
         <div class="image-block">
-            <div class="navbar-collapse justify-content-center d-flex">
-                <ul class="navbar-nav w-lg-50 w-md-50 w-sm-100 d-flex flex-row gap-3">
-                    <li class="nav-item mb-2"><a href="#why_choose_us" class="toAnchor text-decoration-none text-white">Преимущества</a></li>
-                    <li class="nav-item mb-2">
-                        <a href="#how-to-use" class="toAnchor text-decoration-none text-white">О приложении</a>
-                    </li>
-                    <li class="nav-item mb-2"><a href="#cities-block" class="toAnchor text-decoration-none text-white">Города</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-block">
-            <div class="d-collapse-block d-none">
+            <div class="register-mobile">
                 {% if not user.is_authenticated  %}
                     <div id="registration-block">
-                        <a href="{% url 'account_login' %}" class="text-decoration-none ">
+                        <a href="{% url 'account_login' %}" class="text-decoration-none">
                             <button class="registration-white btn py-2 px-5 border border-dark rounded-3">Регистрация</button>
                         </a>
-                        <a href="{% url 'account_login' %}" class="text-decoration-none">
+                        <a href="{% url 'account_signup' %}" class="text-decoration-none">
                             <button class="registration-white btn py-2 px-5 border border-dark rounded-3">Войти</button>
                         </a>
                     </div>
@@ -162,15 +112,51 @@
                     </a>
                 {% endif %}
             </div>  
+            <div class="page-header__nav">
+                <ul class="navbar-nav w-lg-85 w-md-50 w-sm-100 d-flex flex-row gap-3 justify-content-center">
+                    <li class="nav-item mb-2"><a href="#why_choose_us" class="toAnchor text-decoration-none text-white">Преимущества</a></li>
+                    <li class="nav-item mb-2">
+                        <a href="#how-to-use" class="toAnchor text-decoration-none text-white">О приложении</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#cities-block" class="toAnchor text-decoration-none text-white">Города</a></li>
+                </ul>
+            </div>
+            <div class="triangle"></div>
+        </div>
+        <div class="text-block w-md-50" >
             <div>
+                {% if not user.is_authenticated  %}
+                    <div id="registration-block">
+                        <a href="{% url 'account_login' %}" class="text-decoration-none">
+                            <button class="registration-white btn py-2 px-5 border border-dark rounded-3">Регистрация</button>
+                        </a>
+                        <a href="{% url 'account_signup' %}" class="text-decoration-none">
+                            <button class="registration-white btn py-2 px-5 border border-dark rounded-3">Войти</button>
+                        </a>
+                    </div>
+                {% elif end_range %}
+                    {% load static %}
+                    <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                        <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
+                    </div> 
+                {% else %}
+                    {% load static %}
+                    <a href="{{ header_button_href }}" class="text-decoration-none">
+                        <div class="rounded-3 bg-white text-dark text-center mx-lg-0 mx-md-0 mx-sm-auto py-2 px-5">
+                            <strong>{{ header_button_text }}</strong>
+                        </div> 
+                    </a>
+                {% endif %}
+            </div>  
+            <div class='text-block__info'>
                 <h1 class="mursgothic" >СЕРВИС<br> ДЛЯ ПОИСКА <br> ОПЫТНЫХ НЯНЬ<br>ДЛЯ ВАШЕГО<br> РЕБЁНКА</h1>
                 <p>Сервис для родителей, который поможет найти<br> лучшую няню с минимальными вложениями</p>
                 <div class="buttons">
-                    <button class="btn rounded-3" >Стать няней</button>
-                    <button class="btn rounded-3">Найти няню</button>
+                    <button class="btn rounded-3" id="openPopupFromHeader">Стать няней</button>
+                    <button class="btn rounded-3" id="openPopupFromHeader">Найти няню</button>
                 </div>
             </div>
-            <a href="#open-popup" class='text-black poppins-semibold' id="openPopup">Отправить</a>
+            <a  class='text-black poppins-semibold open-popup' id="openPopup">Оставить заявку</a>
         </div>
         <div class="popup-overlay" id="popupOverlay">
             <div class="popup">
@@ -185,11 +171,11 @@
                 <button id="submitButton" disabled>Отправить заявку</button>
             </div>
         </div>
+        
     </header>
-
     <div class="for-who-service mt-6">
         <div class="container">
-            <h1 class="mursgothic">ДЛЯ КОГО ЭТОТ СЕРВИС?</h1>
+            <h1 class="mursgothic for-who-service__title">ДЛЯ КОГО ЭТОТ СЕРВИС?</h1>
         </div>
         {% include 'why_choose_us.html' with wcu=nanny_why_choose_us %}
         
@@ -198,7 +184,7 @@
                 <strong class="mursgothic">
                     <h1 class="text-md-start text-center text-uppercase my-4">
                         {% for paragraph in parent_why_choose_us.title %}
-                            <p class="mb-0" style="font-size: 24px;">{{ paragraph }}</p>
+                            <p class="mb-0 for-who-service__text">{{ paragraph }}</p>
                         {% endfor %}
                     </h1>
                 </strong>
@@ -289,7 +275,7 @@
                 <div class="owner-message__video">
                     <div class="card-review">
                         <video class="video">
-                            <source src="{% static 'review/1.mov' %}" type="video/mp4">
+                            <source src="{% static 'video/owner.mov' %}" type="video/mp4">
                             Ваш браузер не поддерживает видео.
                         </video>
                         <div class="play-btn-container-video">
@@ -505,7 +491,7 @@
                     </h1>
                 </strong>
             </div>
-            <div class="justify-content-md-start justify-content-sm-center d-flex">
+            <div class="justify-content-md-center justify-content-sm-center d-flex">
                 <ul class="justify-content-center nav nav-pills nav-user-type-bg mb-5 p-1" id="pills-tab" role="tablist">
                     <li class="nav-item navbar-background" role="presentation">
                         <button 
@@ -560,7 +546,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
+                            <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex text-left">
                                 <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3">
                                         <strong>Дополнительные обучения от сервиса</strong>
@@ -615,7 +601,7 @@
                             <div class="rounded-3 background-linear py-5 px-xl-1 px-lg-1 px-md-2 px-sm-5 d-flex">
                                 <ul class="markers list-inline mx-auto px-md-auto px-sm-3 px-4 justify-content-center">
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3">
-                                        <strong>Быстрый доступ к базе обученных и проверенных <br>нянь с пакетом документов</strong>
+                                        <strong>Быстрый доступ к базе обученных и проверенных нянь с пакетом документов</strong>
                                     </li>
                                     <li class="list-group-item list-inline-item rounded bg-white py-2 px-3 mt-3">
                                         <strong>Поддержка отдела заботы 
@@ -736,7 +722,7 @@
 
     <div class="ending">
         <h1 class="endign_title mursgothic">СЕРВИС ПОИСКА ОПЫТНЫХ НЯНЬ ДЛЯ ВАШЕГО РЕБЕНКА</h1>
-        <a  id="openPopup">Оставить заявку</a>
+        <a  class='text-black poppins-semibold open-popup' id="openPopup">Оставить заявку</a>
     </div>
 
     <script>
@@ -756,18 +742,31 @@
     </script>
 
     <script>
-        document.getElementById("openPopup").addEventListener("click", function(event) {
-            event.preventDefault();
+                // Функция открытия попапа
+        function openPopup() {
             document.getElementById("popupOverlay").style.display = "flex";
-        });
+        }
 
-        document.getElementById("closePopup").addEventListener("click", function() {
+        // Функция закрытия попапа
+        function closePopup() {
             document.getElementById("popupOverlay").style.display = "none";
+        }
+
+        // Назначаем обработчик события всем кнопкам, которые должны открывать попап
+        document.querySelectorAll(".open-popup").forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                openPopup();
+            });
         });
 
+        // Назначаем обработчик для кнопки закрытия
+        document.getElementById("closePopup").addEventListener("click", closePopup);
+
+        // Закрытие попапа при клике вне него
         document.getElementById("popupOverlay").addEventListener("click", function(event) {
             if (event.target === this) {
-                this.style.display = "none";
+                closePopup();
             }
         });
 
