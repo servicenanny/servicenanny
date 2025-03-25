@@ -17,6 +17,7 @@ class ReviewsView:
             dto = ReviewDTO(
                 number = review.number,
                 from_client = review.from_client,
+                text = review.text,
                 preview_url = review.preview.url,
                 file_url = review.file.url,
                 is_video = True

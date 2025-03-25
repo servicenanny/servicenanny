@@ -82,7 +82,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         City,
         on_delete=models.CASCADE,
         verbose_name="Город пользователя",
-        default = City.objects.first().id
+        default = "",
+        null = True
     )
 
     USERNAME_FIELD = 'email'
