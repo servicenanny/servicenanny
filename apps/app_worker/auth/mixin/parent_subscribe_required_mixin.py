@@ -25,4 +25,4 @@ class ParentSubscribeRequiredMixin(SubscribeRequiredMixin):
             price = SUBSCRIBE_PARENT_COST,
             quantity = 1
         )
-        return self.payment_helper.create_link(subscribe, request.user.email, self.subscribe_type)
+        return self.payment_helper.create_link(subscribe, self.subscribe_type)

@@ -3,8 +3,8 @@ from .dto import Reason, WhyChooseUsBlock
 
 NANNY_WHY_CHOOSE_US = WhyChooseUsBlock(
     title = (
-        "что мы предлагаем", 
-        "няням"
+        "01. для мам и пап, которые хотят", 
+        "работать с няней напрямую без посредника"
     ),
     reasons = (
         Reason(
@@ -37,8 +37,8 @@ NANNY_WHY_CHOOSE_US = WhyChooseUsBlock(
 
 PARENT_WHY_CHOOSE_US = WhyChooseUsBlock(
     title = (
-        "что мы предлагаем", 
-        "клиентам"
+        "02. для нянь, которые хотят стать лучшими ", 
+        "в своём деле и легко находить клиентов без агентства"
     ),
     reasons = [
         Reason(

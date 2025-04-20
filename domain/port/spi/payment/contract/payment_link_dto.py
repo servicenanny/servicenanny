@@ -7,7 +7,7 @@ from domain.entity import Subscribe
 class PaymentLinkDTO:
     linktoform: str
     secret_key: str
-    customer_email: str
     products: list[Subscribe]
     paid_content: str
+    client_type: str
     do: str = 'pay'

@@ -20,7 +20,6 @@ class PaymentHelper:
     def create_link(
             self, 
             product: Subscribe, 
-            user_email: str,
             client_type: CLIENT_TYPE
         ):
         PAYMENT_URL = getattr(settings, "PAYMENT_URL")
@@ -29,8 +28,8 @@ class PaymentHelper:
         dto = PaymentLinkDTO(
             linktoform = PAYMENT_URL,
             secret_key = PAYMENT_SECRET_KEY,
-            customer_email = user_email,
             products = [product],
-            paid_content = paid_content
+            paid_content = paid_content,
+            client_type = client_type
         )
         return self.builder.generate_payment_link(dto)

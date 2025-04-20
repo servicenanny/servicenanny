@@ -34,7 +34,7 @@ class NannySubscribeRequiredMixin(SubscribeRequiredMixin):
             price = SUBSCRIBE_NANNY_COST,
             quantity = 1
         )
-        return self.payment_helper.create_link(subscribe, request.user.email, self.subscribe_type)
+        return self.payment_helper.create_link(subscribe, self.subscribe_type)
     
 
 class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
@@ -59,4 +59,4 @@ class NotNannySubscribeRequiredMixin(SubscribeRequiredMixin):
             price = SUBSCRIBE_NANNY_COST,
             quantity = 1
         )
-        return self.payment_helper.create_link(subscribe, request.user.email, self.subscribe_type)
+        return self.payment_helper.create_link(subscribe, self.subscribe_type)

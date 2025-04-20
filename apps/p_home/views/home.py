@@ -41,13 +41,10 @@ class HomeView(TemplateView):
         context['cities'] = City.objects.all()
         context['nanny_prizes'] = self.prizes.get_client_context(CLIENT_TYPE.NANNY)
         context['parent_prizes'] = self.prizes.get_client_context(CLIENT_TYPE.PARENT)
-        if self.user.is_anonymous:
-            context['nanny_payment_link'] = reverse('account_signup')
-            context['parent_payment_link'] = reverse('account_signup')
-        else:
-            d_user = to_domain_user(self.user)
-            context['nanny_payment_link'] = self.nanny_factory.create_payment_url(d_user)
-            context['parent_payment_link'] = self.parent_factory.create_payment_url(d_user)
+        
+        context['nanny_payment_link'] = self.nanny_factory.create_payment_url()
+        context['parent_payment_link'] = self.parent_factory.create_payment_url()
+        
         context['nanny_cost'] = SUBSCRIBE_NANNY_COST
         context['parent_cost'] = SUBSCRIBE_PARENT_COST
         context['reviews'] = self.reviews.get()

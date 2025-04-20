@@ -2,9 +2,13 @@ from datetime import datetime
 import logging
 import copy
 import re
+import hashlib
 
 from django.http import HttpRequest
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
+from django.core.mail import send_mail
 
 from domain.entity import UserSubscribe, User
 from domain.port.api.payment import SuccessAPI
@@ -82,17 +86,32 @@ class SuccessPaymentProcess(SuccessAPI):
         data['products'] = products
         return data
     
-    def create_user_subscribe(self, user_email: str) -> UserSubscribe:
+    def create_user_subscribe(self, user_email: str, client_type: str) -> UserSubscribe:
         """
         Create subscribe by user email and return subscribe
         """
         try:
+            password = get_random_string(10)
+            user = User.objects.create_user(
+                email=user_email,
+                client_type=client_type
+            )
+            user.set_password(password)
+            user.save()
+
             user = self.user_repository.get_by_email(user_email)
             logger.info(f"[create_user_subscribe | user]: {str(user)}")
             dto = self.__get_add_user_subscribe_dto(user)
             logger.info(f"[create_user_subscribe | dto]: {dto}")
             result = self.user_subscribe_repository.add(dto)
             logger.info(f"[create_user_subscribe | result]: {result}")
+
+            send_mail(
+                'Ваш доступ к сервису',
+                f'Ваш логин: {user_email}\nПароль: {password}\nТип аккаунта: {client_type}',
+                'noreply@yourdomain.com',
+                [user_email]
+            )
             return result
         except Exception as e:
             logger.error(str(e))

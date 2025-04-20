@@ -43,8 +43,8 @@ class AudioReviewAdmin(admin.ModelAdmin):
 
 class VideoReviewForm(forms.ModelForm):
     class Meta:
-        model = AudioReview
-        fields = ('number', 'from_client', 'preview', 'file')
+        model = VideoReview
+        fields = ('number', 'from_client', 'text', 'preview', 'file')
 
     def clean_number(self):
         number = self.cleaned_data['number']
@@ -56,3 +56,9 @@ class VideoReviewForm(forms.ModelForm):
 @admin.register(VideoReview)
 class VideoReviewAdmin(admin.ModelAdmin):
     form = VideoReviewForm
+    
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        formfield = super(VideoReviewAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+        if db_field.name == 'text':
+            formfield.widget = Textarea(attrs=formfield.widget.attrs)
+        return formfield

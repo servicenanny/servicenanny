@@ -35,7 +35,7 @@ class SuccessPaymentView(FormView, SuccessAPI):
         try:
             msg = self.process.verificate_prodamus(request)
             logger.info(f"Успешная верификация. Тело: {msg}")
-            user_subscribe = self.process.create_user_subscribe(msg.get('customer_email'))
+            user_subscribe = self.process.create_user_subscribe(msg.get('customer_email'), msg.get('order_id'))
             logger.info(f"Успешно создана подписка: {str(user_subscribe)}")
             self.__set_user(user_subscribe.user)
             return HttpResponse("Success", status=200)

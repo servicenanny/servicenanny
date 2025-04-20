@@ -1,5 +1,6 @@
 from typing import MutableMapping, Any
 from urllib.parse import urlencode
+import uuid
 
 from domain.port.spi.payment.contract import PaymentLinkDTO
 from domain.const.payment import PAYMENT_SYS
@@ -18,8 +19,8 @@ class PaymentLinkBuilder:
             "do": dto.do,
             "products": products,
             "sys": PAYMENT_SYS,
-            "customer_email": dto.customer_email,
-            "paid_content": dto.paid_content
+            "paid_content": dto.paid_content,
+            'order_id': f"{dto.client_type}_{uuid.uuid4().hex[:8]}"
         }
         data['signature'] = self.sign(data, dto.secret_key)
         link = dto.linktoform + '?' + urlencode(self.http_build_query(data))
