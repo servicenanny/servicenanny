@@ -16,7 +16,7 @@ class NannyPaymentURLFactory(APaymentURLFactory):
             price = self.get_cost(),
             quantity = 1
         )
-        return self.payment_helper.create_link(subscribe, CLIENT_TYPE.NANNY.value[0] )
+        return self.payment_helper.create_link(subscribe, CLIENT_TYPE.NANNY.value[0])
     
     def get_cost(self):
         return SUBSCRIBE_NANNY_COST

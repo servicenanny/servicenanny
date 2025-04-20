@@ -6,11 +6,11 @@ import hashlib
 
 from django.http import HttpRequest
 from django.conf import settings
-from django.contrib.auth.models import User
+from apps.app_user.models import User
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail
 
-from domain.entity import UserSubscribe, User
+from domain.entity import UserSubscribe
 from domain.port.api.payment import SuccessAPI
 from domain.repository.user_subscribe_repository import AddUserSubscribeDTO
 from domain.repository.user_subscribe_repository import IUserSubscribeRepository as IUserSubscribeRepository
@@ -91,10 +91,11 @@ class SuccessPaymentProcess(SuccessAPI):
         Create subscribe by user email and return subscribe
         """
         try:
+            print(user_email, client_type)
             password = get_random_string(10)
             user = User.objects.create_user(
                 email=user_email,
-                client_type=client_type
+                client_type=client_type[0]
             )
             user.set_password(password)
             user.save()
@@ -107,10 +108,10 @@ class SuccessPaymentProcess(SuccessAPI):
             logger.info(f"[create_user_subscribe | result]: {result}")
 
             send_mail(
-                'Ваш доступ к сервису',
-                f'Ваш логин: {user_email}\nПароль: {password}\nТип аккаунта: {client_type}',
-                'noreply@yourdomain.com',
-                [user_email]
+                subject='Ваш доступ к сервису',
+                message=f'Ваш логин: {user_email}\nПароль: {password}\nТип аккаунта: {client_type}',
+                recipient_list=[user_email],
+                from_email=None,
             )
             return result
         except Exception as e:
