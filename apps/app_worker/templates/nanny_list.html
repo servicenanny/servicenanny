@@ -31,6 +31,72 @@
 {% endblock %}
 {% block  content %}
 <div class="container my-5">
+    <form method="get" class="mb-4">
+        <div class="row">
+            <div class="col-md-2">
+                <label for="age_groups" class="form-label">Возрастные группы</label>
+                <select id="age_groups" name="age_groups" class="form-select">
+                    <option value="">Все</option>
+                    <option value="newborns" {% if filters.age_groups == 'newborns' %}selected{% endif %}>Няни для новорожденных</option>
+                    <option value="under_3" {% if filters.age_groups == 'under_3' %}selected{% endif %}>Няни для детей до 3 лет</option>
+                    <option value="ages_3_7" {% if filters.age_groups == 'ages_3_7' %}selected{% endif %}>Няни для детей 3-7 лет</option>
+                    <option value="schoolkids" {% if filters.age_groups == 'schoolkids' %}selected{% endif %}>Няни для школьников</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="work_types" class="form-label">Тип работы</label>
+                <select id="work_types" name="work_types" class="form-select">
+                    <option value="">Все</option>
+                    <option value="full_day" {% if filters.work_types == 'full_day' %}selected{% endif %}>Няни на полный день</option>
+                    <option value="part_day" {% if filters.work_types == 'part_day' %}selected{% endif %}>Няни на неполный день</option>
+                    <option value="weekends" {% if filters.work_types == 'weekends' %}selected{% endif %}>Няни на выходные</option>
+                    <option value="hourly" {% if filters.work_types == 'hourly' %}selected{% endif %}>Няни по часам</option>
+                    <option value="temporary" {% if filters.work_types == 'temporary' %}selected{% endif %}>Няни для временной работы</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="qualification_levels" class="form-label">Уровень квалификации</label>
+                <select id="qualification_levels" name="qualification_levels" class="form-select">
+                    <option value="">Все</option>
+                    <option value="experienced" {% if filters.qualification_levels == 'experienced' %}selected{% endif %}>Опытные няни</option>
+                    <option value="medical" {% if filters.qualification_levels == 'medical' %}selected{% endif %}>Няни с медицинским образованием</option>
+                    <option value="pedagogical" {% if filters.qualification_levels == 'pedagogical' %}selected{% endif %}>Няни с педагогическим образованием</option>
+                    <option value="beginner" {% if filters.qualification_levels == 'beginner' %}selected{% endif %}>Няни без опыта</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="additional_services" class="form-label">Дополнительные услуги</label>
+                <select id="additional_services" name="additional_services" class="form-select">
+                    <option value="">Все</option>
+                    <option value="cleaning" {% if filters.additional_services == 'cleaning' %}selected{% endif %}>С уборкой</option>
+                    <option value="cooking" {% if filters.additional_services == 'cooking' %}selected{% endif %}>С приготовлением пищи</option>
+                    <option value="tutoring" {% if filters.additional_services == 'tutoring' %}selected{% endif %}>С образовательной функцией</option>
+                    <option value="special_needs" {% if filters.additional_services == 'special_needs' %}selected{% endif %}>С особыми потребностями</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="living_arrangements" class="form-label">Проживание</label>
+                <select id="living_arrangements" name="living_arrangements" class="form-select">
+                    <option value="">Все</option>
+                    <option value="live_in" {% if filters.living_arrangements == 'live_in' %}selected{% endif %}>Проживающие с семьей</option>
+                    <option value="live_out" {% if filters.living_arrangements == 'live_out' %}selected{% endif %}>Приходящие на работу</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="foreign_languages" class="form-label">Иностранные языки</label>
+                <select id="foreign_languages" name="foreign_languages" class="form-select">
+                    <option value="">Все</option>
+                    <option value="english" {% if filters.foreign_languages == 'english' %}selected{% endif %}>Английский</option>
+                    <option value="french" {% if filters.foreign_languages == 'french' %}selected{% endif %}>Французский</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Применить</button>
+            </div>
+        </div>
+    </form>
     {% if nanny_list %}
         <div class="row justify-content-center mx-2">
         {% for nanny in nanny_list %}

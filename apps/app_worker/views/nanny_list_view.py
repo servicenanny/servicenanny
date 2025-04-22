@@ -46,13 +46,31 @@ class NannyListView(LoginRequiredMixin, ParentSubscribeRequiredMixin, ListView):
         return self.render_to_response(context)
 
     def get_queryset(self):
-        return self.nanny_repository.get_fresh_subscriber_nannies_by_city(
-                user_subscribe_repository = self.user_subscribe_repository, 
-                city_id = self.user.city.id
-            )
+        queryset = self.nanny_repository.get_fresh_subscriber_nannies_by_city(
+            user_subscribe_repository=self.user_subscribe_repository,
+            city_id=self.user.city.id
+        )
+        filters = {
+            'age_groups__contains': self.request.GET.get('age_groups'),
+            'work_types__contains': self.request.GET.get('work_types'),
+            'qualification_levels__contains': self.request.GET.get('qualification_levels'),
+            'additional_services__contains': self.request.GET.get('additional_services'),
+            'living_arrangements__contains': self.request.GET.get('living_arrangements'),
+            'foreign_languages__contains': self.request.GET.get('foreign_languages'),
+        }
+        filters = {k: v for k, v in filters.items() if v}
+        return queryset.filter(**filters)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['change_city_form'] = UpdateUserCityForm()
         context['cities'] = context['change_city_form'].fields['city'].queryset
+        context['filters'] = {
+            'age_groups': self.request.GET.get('age_groups', ''),
+            'work_types': self.request.GET.get('work_types', ''),
+            'qualification_levels': self.request.GET.get('qualification_levels', ''),
+            'additional_services': self.request.GET.get('additional_services', ''),
+            'living_arrangements': self.request.GET.get('living_arrangements', ''),
+            'foreign_languages': self.request.GET.get('foreign_languages', ''),
+        }
         return context
