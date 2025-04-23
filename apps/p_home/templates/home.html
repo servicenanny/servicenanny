@@ -89,7 +89,7 @@
     <header class="page-header">
         <div class="image-block">
             <div class="register-mobile">
-                <!-- {% if not user.is_authenticated  %}
+                {% if not user.is_authenticated  %}
                     <div id="registration-block">
                         <a href="{% url 'account_signup' %}" class="text-decoration-none">
                             <button class="registration-white btn py-2 border border-dark rounded-3">Регистрация</button>
@@ -98,9 +98,8 @@
                             <button class="registration-white btn py-2 border border-dark rounded-3">Войти</button>
                         </a>
                     </div>
-                {% endif %} -->
                 
-                {% if end_range %}
+                {% elif end_range %}
                     {% load static %}
                     <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
                         <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
@@ -127,7 +126,7 @@
         </div>
         <div class="text-block w-md-50" >
             <div>
-                <!-- {% if not user.is_authenticated  %}
+                {% if not user.is_authenticated  %}
                     <div id="registration-block">
                         <a href="{% url 'account_signup' %}" class="text-decoration-none">
                             <button class="registration-white btn py-2 border border-dark rounded-3">Регистрация</button>
@@ -136,8 +135,8 @@
                             <button class="registration-white btn py-2 border border-dark rounded-3">Войти</button>
                         </a>
                     </div>
-                {% endif %} -->
-                {% if end_range %}
+
+                {% elif end_range %}
                     {% load static %}
                     <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
                         <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
@@ -638,12 +637,12 @@
 
     <div class="background-blue py-3 poppins-reg">
         <div class="text-overflow-hidden w-100 align-middle">
-            <strong>абота няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>р</strong>
+            <strong>Работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>работа няней в вашем городе<img src={% static 'img/fire_white.svg' %} class="mx-3"/>р</strong>
         </div>
     </div>
     <div 
         class="page-header justify-content-center w-100"
-        style="background-image: url('{% static 'img/page-header2.jfif' %}')"
+        style="background-image: url('/static/img/page-header2.jfif');background-position: 13% center;"
     >
         <div class="page-header-info px-lg-auto px-md-auto px-sm-2 px-1">
             <div class="m-auto w-lg-50 w-md-50 w-sm-100 w-100">
