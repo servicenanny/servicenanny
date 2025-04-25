@@ -15,6 +15,16 @@
     {% load static %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/header.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            const successMessage = $('#success-message');
+            if (successMessage.length) {
+                setTimeout(() => {
+                    successMessage.fadeOut();
+                }, 5000);
+            }
+        });
+    </script>
 {% endblock %}
 
 {% block header %}
@@ -28,6 +38,11 @@
             <p class="mb-0">информация</p>
         </strong>
     </h1>
+    {% if success %}
+        <div id="success-message" class="alert alert-success text-center">
+            Данные успешно обновились
+        </div>
+    {% endif %}
     <form action="{% url 'nanny_update' %}" method="POST" enctype="multipart/form-data" class="mb-5">
         {% csrf_token %}
         <div class="row px-lg-0 px-md-5 mx-lg-0 mx-3 poppins-reg justify-content-between">

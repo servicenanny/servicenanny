@@ -15,7 +15,22 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/header.js' %}"></script>
     <script src="{% static 'js/signup.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#login-form').on('submit', function (e) {
+                if ($('#id_client_type').val() === 'N') {
+                    e.preventDefault();
+                    $('#nannyPopup').modal('show');
+                }
+            });
+
+            $('#confirmRegistration').on('click', function () {
+                $('#login-form').off('submit').submit();
+            });
+        });
+    </script>
 {% endblock %}
+
 {% block  header %}
     {% include "header_yellow.html" with text_color='text-dark' %}
 {% endblock %}
@@ -104,6 +119,24 @@
             </form>
             <div class="text-center my-3">
                 <a href="{% url 'account_login' %}">Уже есть аккаунт?</a>
+            </div>
+        </div>
+
+        <!-- Popup Modal -->
+        <div class="modal fade" id="nannyPopup" tabindex="-1" aria-labelledby="nannyPopupLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="nannyPopupLabel">Регистрация няни</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Спасибо за регистрацию! С вами скоро свяжутся для уточнения деталей.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="confirmRegistration">Ок</button>
+                    </div>
+                </div>
             </div>
         </div>
     {% endif %}
