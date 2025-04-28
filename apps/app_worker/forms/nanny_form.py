@@ -12,7 +12,7 @@ class NannyForm(ModelForm):
         self.fields['cost_per_hour'].widget.attrs['placeholder'] = "от 450₽"
         self.fields['experience'].widget.attrs['placeholder'] = "10 лет"
         self.fields['describe'].widget.attrs['placeholder'] = "Работаю с детьми от 3-х лет..."
-        # Add placeholders for new fields if necessary
+        
 
     class Meta:
         model = Nanny
