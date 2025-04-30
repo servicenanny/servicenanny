@@ -4,7 +4,7 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.shortcuts import render
 from domain.repository import NannyRepository as INannyRepository
 from apps.app_worker.repository import NannyRepository
 from apps.app_worker.auth.mixin import NannySubscribeRequiredMixin
@@ -60,3 +60,8 @@ class NannyUpdateView(
         if queryset is None:
             queryset = self.get_queryset()
         return self.nanny_repository.get_by_user_id(self.user.id)
+
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return render(self.request, self.template_name, {'form': form, 'success': True})

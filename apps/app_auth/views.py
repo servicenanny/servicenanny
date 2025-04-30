@@ -17,10 +17,10 @@ class LoginView(account.views.LoginView):
     
     def get_success_url(self, fallback_url=None, **kwargs):
         if self.request.user.client_type == CLIENT_TYPE.PARENT:
-            return reverse('nannies')
+            return reverse('home')
         elif self.request.user.client_type == CLIENT_TYPE.NANNY:
             return reverse('nanny_create')
-        return super().get_success_url(fallback_url, **kwargs)
+        return reverse('home')
 
 
 class SignupView(account.views.SignupView):
