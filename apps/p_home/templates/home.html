@@ -101,6 +101,15 @@
                 
                 {% elif end_range %}
                     {% load static %}
+                    {% if user.client_type == "N" %}
+                        <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                            <strong><a href="{% url 'nanny_update' %}">Перейти к личному кабинету </a></strong>
+                        </div>
+                    {% else %}
+                        <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                             <strong><a href="{% url 'nannies' %}">Перейти к списку нянь</a></strong>
+                        </div>
+                    {%endif%}
                     <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
                         <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
                     </div> 
@@ -138,6 +147,15 @@
 
                 {% elif end_range %}
                     {% load static %}
+                    {% if user.client_type == "N" %}
+                        <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                            <strong><a href="{% url 'nanny_update' %}">Перейти к личному кабинету </a></strong>
+                        </div>
+                    {% else %}
+                        <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
+                             <strong><a href="{% url 'nannies' %}">Перейти к списку нянь</a></strong>
+                        </div>
+                    {%endif%}
                     <div class="rounded-3 bg-white text-center mx-lg-0 mx-md-0 mx-sm-auto py-1 px-3">
                         <img src={% static 'img/fire.svg' %} /> Дней осталось: <strong>{{ end_range }}</strong>
                     </div> 
