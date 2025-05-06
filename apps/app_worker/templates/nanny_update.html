@@ -40,7 +40,7 @@
     </h1>
     {% if success %}
         <div id="success-message" class="alert alert-success text-center">
-            Данные успешно обновились
+            Поздравляем! Ваши данные успешно внесены. Клиенты свяжутся с вами удобным для вас способом по оставленным контактам.
         </div>
     {% endif %}
     <form action="{% url 'nanny_update' %}" method="POST" enctype="multipart/form-data" class="mb-5">
